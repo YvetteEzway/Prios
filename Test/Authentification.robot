@@ -1,4 +1,5 @@
 *** Settings ***
+Library    squash_tf.TFParamService
 Library    SeleniumLibrary    run_on_failure=Capture Page Screenshot
 Library    OperatingSystem
 
