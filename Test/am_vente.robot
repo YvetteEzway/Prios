@@ -9,6 +9,7 @@ ${ORDRES_LIVRAISON_BUTTON}    xpath=(//*[contains(text(), 'Ordres de livraison')
 ${ORDRES_LIVRAISON2_BUTTON}   xpath=(//*[contains(text(), 'Ordres de livraison')])[2]
 
 
+
 *** Keywords ***
 Navigate To PRIOS Ventes
     [Documentation]    Naviguer vers la section PRIOS A-M Ventes
@@ -24,6 +25,7 @@ Navigate To PRIOS Ventes
 
 Navigate To Ordres De Livraison
     [Documentation]    Naviguer vers la section Ordres de livraison
+    scroll element into view         ${ORDRES_LIVRAISON_BUTTON}
     Wait Until Element Is Visible    ${ORDRES_LIVRAISON_BUTTON}    1000s
     Log    Navigating to Ordres de livraison
     Execute JavaScript    document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);

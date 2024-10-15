@@ -1,159 +1,2942 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0.1 (Python 3.12.4 on win32)" generated="2024-08-07T12:26:20.776203" rpa="false" schemaversion="5">
-<suite id="s1" name="Authentification" source="C:\Users\EZWAY\PycharmProjects\pythonProject1\Test\Authentification.robot">
-<test id="s1-t1" name="Open Browser And Go To Page" line="12">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:26:21.201768" level="INFO">Opening browser 'Chrome' to base url 'https://portail-0015.cloud-prios.fr/'.</msg>
-<arg>${URL}</arg>
+<robot generator="Robot 7.1 (Python 3.12.4 on win32)" generated="2024-10-15T10:35:27.725651" rpa="false" schemaversion="5">
+<suite id="s1" name="Test" source="C:\Users\EZWAY\Desktop\Nouveau dossier\PycharmProjects\pythonProject1\Test\test.robot">
+<test id="s1-t1" name="Login And Navigate To Ordres De Livraison" line="29">
+<kw name="Open Browser With Options">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-10-15T10:35:28.814642" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000020516F2FD10&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-10-15T10:35:28.813552" elapsed="0.004033"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--no-first-run</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2024-10-15T10:35:28.818591" elapsed="0.000000"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--no-default-browser-check</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2024-10-15T10:35:28.818591" elapsed="0.000990"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-default-apps</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2024-10-15T10:35:28.819581" elapsed="0.000000"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-popup-blocking</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2024-10-15T10:35:28.819581" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-10-15T10:35:28.820637" level="INFO">${prefs} = {'profile.default_content_setting_values.geolocation': 1, 'profile.default_content_setting_values.notifications': 2}</msg>
+<var>${prefs}</var>
+<arg>{'profile.default_content_setting_values.geolocation': 1, 'profile.default_content_setting_values.notifications': 2}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-10-15T10:35:28.819581" elapsed="0.001056"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2024-10-15T10:35:28.821581" elapsed="0.000000"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:35:28.822568" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg time="2024-10-15T10:37:03.817989" level="WARN">The chromedriver version (128.0.6613.86) detected in PATH at C:\Users\EZWAY\Desktop\Nouveau dossier\Prios\Prios\chromedriver-win64\chromedriver.exe might not be compatible with the detected chrome version (129.0.6668.90); currently, chromedriver 129.0.6668.100 is recommended for chrome 129.*, so it is advised to delete the driver in PATH and retry</msg>
 <arg>Chrome</arg>
-<arg>keep_open=True</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-08-07T12:26:21.200739" elapsed="10.254749"/>
+<arg>options=${options}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2024-10-15T10:35:28.821581" elapsed="96.283048"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:37:05.105742" level="INFO">Opening url 'https://portail-0015.cloud-prios.fr/'</msg>
+<arg>${url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2024-10-15T10:37:05.104629" elapsed="5.408679"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2024-08-07T12:26:31.456486" elapsed="0.388190"/>
+<status status="PASS" start="2024-10-15T10:37:10.514812" elapsed="0.059774"/>
 </kw>
+<arg>${URL}</arg>
+<status status="PASS" start="2024-10-15T10:35:28.811937" elapsed="101.764084"/>
+</kw>
+<kw name="Input Username" owner="login_page">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>xpath=//*[@id="i0116"]</arg>
+<arg>30s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-08-07T12:26:31.844676" elapsed="0.967735"/>
+<status status="PASS" start="2024-10-15T10:37:10.577022" elapsed="2.433440"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:37:13.012455" level="INFO">Inputting username</msg>
+<arg>Inputting username</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:37:13.011456" elapsed="0.000999"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:26:32.813476" level="INFO">Typing text 'prios.qa1@prios.fr' into text field 'xpath=//*[@id="i0116"]'.</msg>
+<msg time="2024-10-15T10:37:13.014952" level="INFO">Typing text 'prios.qa1@prios.fr' into text field 'xpath=//*[@id="i0116"]'.</msg>
 <arg>xpath=//*[@id="i0116"]</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:37:13.013479" elapsed="0.200675"/>
+</kw>
 <arg>${USERNAME}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-08-07T12:26:32.812411" elapsed="0.247264"/>
+<status status="PASS" start="2024-10-15T10:37:10.576021" elapsed="2.638646"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:37:13.371927" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="user_name.png"&gt;&lt;img src="user_name.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>user_name.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2024-10-15T10:37:13.214667" elapsed="0.157260"/>
+</kw>
+<kw name="Click Login Button" owner="login_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="idSIButton9"]</arg>
+<arg>30s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:37:13.374496" elapsed="0.036857"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:37:13.413353" level="INFO">Clicking login button</msg>
+<arg>Clicking login button</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:37:13.412355" elapsed="0.000998"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:26:33.060675" level="INFO">Clicking element 'xpath=//*[@id="idSIButton9"]'.</msg>
+<msg time="2024-10-15T10:37:13.414861" level="INFO">Clicking element 'xpath=//*[@id="idSIButton9"]'.</msg>
 <arg>xpath=//*[@id="idSIButton9"]</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-08-07T12:26:33.060675" elapsed="0.071004"/>
+<status status="PASS" start="2024-10-15T10:37:13.413353" elapsed="0.108534"/>
 </kw>
+<status status="PASS" start="2024-10-15T10:37:13.373351" elapsed="0.148536"/>
+</kw>
+<kw name="Input Password" owner="login_page">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>xpath=//*[@id="i0118"]</arg>
+<arg>30s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-08-07T12:26:33.131679" elapsed="0.957500"/>
+<status status="PASS" start="2024-10-15T10:37:13.522934" elapsed="1.246619"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:37:14.771640" level="INFO">Inputting password</msg>
+<arg>Inputting password</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:37:14.770638" elapsed="0.001002"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:26:34.090717" level="INFO">Typing text 'Ezw@171M' into text field 'xpath=//*[@id="i0118"]'.</msg>
+<msg time="2024-10-15T10:37:14.773181" level="INFO">Typing text 'Ezw@171M' into text field 'xpath=//*[@id="i0118"]'.</msg>
 <arg>xpath=//*[@id="i0118"]</arg>
-<arg>${PASSWORD}</arg>
+<arg>${password}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-08-07T12:26:34.089179" elapsed="0.124719"/>
+<status status="PASS" start="2024-10-15T10:37:14.771640" elapsed="0.120822"/>
+</kw>
+<arg>${PASSWORD}</arg>
+<status status="PASS" start="2024-10-15T10:37:13.522934" elapsed="1.370524"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:37:15.032155" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="password.png"&gt;&lt;img src="password.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>password.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2024-10-15T10:37:14.893458" elapsed="0.138697"/>
+</kw>
+<kw name="Click Login Button" owner="login_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="idSIButton9"]</arg>
+<arg>30s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:37:15.034624" elapsed="0.036708"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:37:15.072329" level="INFO">Clicking login button</msg>
+<arg>Clicking login button</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:37:15.072329" elapsed="0.000997"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:26:34.214940" level="INFO">Clicking element 'xpath=//*[@id="idSIButton9"]'.</msg>
+<msg time="2024-10-15T10:37:15.073326" level="INFO">Clicking element 'xpath=//*[@id="idSIButton9"]'.</msg>
 <arg>xpath=//*[@id="idSIButton9"]</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-08-07T12:26:34.213898" elapsed="2.978228"/>
+<status status="PASS" start="2024-10-15T10:37:15.073326" elapsed="25.068232"/>
 </kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-08-07T12:26:47.193714" level="INFO">Slept 10 seconds.</msg>
+<status status="PASS" start="2024-10-15T10:37:15.033610" elapsed="25.109429"/>
+</kw>
+<kw name="Given L'utilisateur se trouve sur la page &quot;Plateformes métier&quot;" owner="01_AM_Vente">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Plateformes</arg>
 <arg>10s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-08-07T12:26:37.192126" elapsed="10.001588"/>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-10-15T10:37:40.144145" elapsed="6.204553"/>
+</kw>
+<doc>Vérifie que l'utilisateur est sur la page "Plateformes métier".</doc>
+<status status="PASS" start="2024-10-15T10:37:40.143039" elapsed="6.205659"/>
+</kw>
+<kw name="When L'utilisateur sélectionne l'option &quot;PRIOS Agriculture&quot; dans la section &quot;Plateformes métier&quot;" owner="01_AM_Vente">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=/html/body/pr-root/pr-main/div/pr-grid-main/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:37:46.349698" elapsed="5.164090"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:26:47.194811" level="INFO">Clicking element 'xpath=/html/body/pr-root/pr-main/div/pr-grid-main/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]'.</msg>
+<msg time="2024-10-15T10:37:51.515885" level="INFO">Clicking element 'xpath=/html/body/pr-root/pr-main/div/pr-grid-main/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]'.</msg>
 <arg>xpath=/html/body/pr-root/pr-main/div/pr-grid-main/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-08-07T12:26:47.193714" elapsed="0.141710"/>
+<status status="PASS" start="2024-10-15T10:37:51.514885" elapsed="0.142265"/>
 </kw>
+<doc>Sélectionne l'option "PRIOS Agriculture" sur la page.</doc>
+<status status="PASS" start="2024-10-15T10:37:46.349698" elapsed="5.308454"/>
+</kw>
+<kw name="Then Il est redirigé vers une nouvelle page avec les menus de navigation" owner="01_AM_Vente">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Prios</arg>
+<arg>100s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-10-15T10:37:51.659148" elapsed="0.025576"/>
+</kw>
+<doc>Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.</doc>
+<status status="PASS" start="2024-10-15T10:37:51.659148" elapsed="0.026599"/>
+</kw>
+<kw name="Then Les menus de navigation affichent les options suivantes dans les premières &quot;8&quot; options :" owner="01_AM_Vente">
 <kw name="Get Window Handles" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:26:47.354630" level="INFO">${handles} = ['E39142477B9C92AA000954EF1605E64A', '0EF3C52EE8392BF197193848528A7006']</msg>
+<msg time="2024-10-15T10:37:51.701616" level="INFO">${handles} = ['DCEFE39F1D393865D0C4CDB1DACEDEC9', '1E7B045BB92B6497CC0E47F4940D0CB3']</msg>
 <var>${handles}</var>
 <doc>Returns all child window handles of the selected browser as a list.</doc>
-<status status="PASS" start="2024-08-07T12:26:47.335424" elapsed="0.020231"/>
+<status status="PASS" start="2024-10-15T10:37:51.686743" elapsed="0.014873"/>
 </kw>
 <kw name="Switch Window" owner="SeleniumLibrary">
 <arg>${handles}[-1]</arg>
 <doc>Switches to browser window matching ``locator``.</doc>
-<status status="PASS" start="2024-08-07T12:26:47.355655" elapsed="0.112700"/>
+<status status="PASS" start="2024-10-15T10:37:51.701616" elapsed="0.122245"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-08-07T12:43:27.469622" level="INFO">Slept 16 minutes 40 seconds.</msg>
-<arg>1000s</arg>
+<msg time="2024-10-15T10:39:31.825335" level="INFO">Slept 1 minute 40 seconds.</msg>
+<arg>100s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-08-07T12:26:47.468355" elapsed="1000.001849"/>
+<status status="PASS" start="2024-10-15T10:37:51.823861" elapsed="100.001987"/>
 </kw>
-<kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:43:27.502793" level="INFO">Current page contains text 'PRIOS A-M Ventes'.</msg>
-<arg>PRIOS A-M Ventes</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2024-08-07T12:43:27.471281" elapsed="0.031512"/>
+<for flavor="IN">
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:39:31.826885" level="INFO">Vérification de l'option : PRIOS Satelit (SATF AS)</msg>
+<arg>Vérification de l'option : ${option}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:39:31.826885" elapsed="0.000000"/>
 </kw>
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//*[contains(text(), 'PRIOS A-M Ventes')]</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2024-08-07T12:43:27.503793" elapsed="0.319361"/>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:39:31.831277" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS Satelit (SATF AS)')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:39:31.828882" elapsed="53.332759"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.161641" elapsed="0.050666"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.213312" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS Satelit (SATF AS)')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.226508" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.62")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.212307" elapsed="0.014201"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.227716" level="INFO">Option PRIOS Satelit (SATF AS) trouvée.</msg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.227716" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.226508" elapsed="0.001208"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.227716" elapsed="0.000000"/>
+</kw>
+<var name="${option}">PRIOS Satelit (SATF AS)</var>
+<status status="PASS" start="2024-10-15T10:39:31.826885" elapsed="53.401829"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.228714" level="INFO">Vérification de l'option : PRIOS A-M Base</msg>
+<arg>Vérification de l'option : ${option}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.228714" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.229717" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Base')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.228714" elapsed="0.012308"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.241022" elapsed="0.046423"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.288512" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Base')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.300543" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.63")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.287445" elapsed="0.014107"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.301552" level="INFO">Option PRIOS A-M Base trouvée.</msg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.301552" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.301552" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.302562" elapsed="0.000000"/>
+</kw>
+<var name="${option}">PRIOS A-M Base</var>
+<status status="PASS" start="2024-10-15T10:40:25.228714" elapsed="0.073848"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.302562" level="INFO">Vérification de l'option : PRIOS A-M Bandes</msg>
+<arg>Vérification de l'option : ${option}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.302562" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.302562" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Bandes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.302562" elapsed="0.013628"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.316190" elapsed="0.040184"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.357387" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Bandes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.371533" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.64")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.356374" elapsed="0.015159"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.372656" level="INFO">Option PRIOS A-M Bandes trouvée.</msg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.372656" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.372656" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.372656" elapsed="0.001115"/>
+</kw>
+<var name="${option}">PRIOS A-M Bandes</var>
+<status status="PASS" start="2024-10-15T10:40:25.302562" elapsed="0.071209"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.373771" level="INFO">Vérification de l'option : PRIOS A-M Achats</msg>
+<arg>Vérification de l'option : ${option}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.373771" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.374879" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Achats')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.373771" elapsed="0.013153"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.386924" elapsed="0.038401"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.426320" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Achats')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.438397" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.65")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.425325" elapsed="0.014194"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.440514" level="INFO">Option PRIOS A-M Achats trouvée.</msg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.439519" elapsed="0.000995"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.439519" elapsed="0.000995"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.440514" elapsed="0.000000"/>
+</kw>
+<var name="${option}">PRIOS A-M Achats</var>
+<status status="PASS" start="2024-10-15T10:40:25.373771" elapsed="0.066743"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.441550" level="INFO">Vérification de l'option : PRIOS A-M Stocks</msg>
+<arg>Vérification de l'option : ${option}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.441550" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.441550" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Stocks')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.441550" elapsed="0.013180"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.454730" elapsed="0.032345"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.488079" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Stocks')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.498401" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.66")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.487075" elapsed="0.011326"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.499409" level="INFO">Option PRIOS A-M Stocks trouvée.</msg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.498401" elapsed="0.001008"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.498401" elapsed="0.001008"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.499409" elapsed="0.000000"/>
+</kw>
+<var name="${option}">PRIOS A-M Stocks</var>
+<status status="PASS" start="2024-10-15T10:40:25.440514" elapsed="0.058895"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.500975" level="INFO">Vérification de l'option : PRIOS A-M Ventes</msg>
+<arg>Vérification de l'option : ${option}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.500975" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.502063" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.500975" elapsed="0.007746"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.509718" elapsed="0.026667"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.537422" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.545170" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.67")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.536385" elapsed="0.008785"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.547092" level="INFO">Option PRIOS A-M Ventes trouvée.</msg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.547092" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.546769" elapsed="0.000323"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.548140" elapsed="0.000121"/>
+</kw>
+<var name="${option}">PRIOS A-M Ventes</var>
+<status status="PASS" start="2024-10-15T10:40:25.500975" elapsed="0.047286"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.548261" level="INFO">Vérification de l'option : PRIOS A-M Céréales</msg>
+<arg>Vérification de l'option : ${option}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.548261" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.549473" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Céréales')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.548261" elapsed="0.011052"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.559313" elapsed="0.027314"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.587649" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Céréales')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.594258" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.68")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.586627" elapsed="0.007631"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.595311" level="INFO">Option PRIOS A-M Céréales trouvée.</msg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.595311" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.595311" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.596317" elapsed="0.000509"/>
+</kw>
+<var name="${option}">PRIOS A-M Céréales</var>
+<status status="PASS" start="2024-10-15T10:40:25.548261" elapsed="0.048565"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.597874" level="INFO">Vérification de l'option : PRIOS A-M Prix de revient</msg>
+<arg>Vérification de l'option : ${option}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.597874" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.597874" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Prix de revient')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.597874" elapsed="0.006544"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.605479" elapsed="0.026130"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.632595" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Prix de revient')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.640891" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.69")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.631609" elapsed="0.009282"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.641878" level="INFO">Option PRIOS A-M Prix de revient trouvée.</msg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.640891" elapsed="0.000987"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.640891" elapsed="0.000987"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.641878" elapsed="0.000000"/>
+</kw>
+<var name="${option}">PRIOS A-M Prix de revient</var>
+<status status="PASS" start="2024-10-15T10:40:25.596826" elapsed="0.045052"/>
+</iter>
+<var>${option}</var>
+<value>@{OPTIONS}</value>
+<status status="PASS" start="2024-10-15T10:39:31.825848" elapsed="53.816030"/>
+</for>
+<doc>Vérifie que les 8 options spécifiées sont présentes dans le menu.</doc>
+<status status="PASS" start="2024-10-15T10:37:51.686743" elapsed="153.955135"/>
+</kw>
+<kw name="Then Les menus de navigation affichent les options suivantes :" owner="01_AM_Vente">
+<for flavor="IN">
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.643871" level="INFO">Vérification de l'option : PRIOS A-M Déclarations</msg>
+<arg>Vérification de l'option : ${option2}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.643871" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.644867" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Déclarations')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.643871" elapsed="0.008577"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option2}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.652448" elapsed="0.027330"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.680766" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Déclarations')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.692340" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.70")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.679778" elapsed="0.012562"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.693339" level="INFO">Option PRIOS A-M Déclarations trouvée.</msg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.693339" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.692340" elapsed="0.001995"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option2} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.694335" elapsed="0.000000"/>
+</kw>
+<var name="${option2}">PRIOS A-M Déclarations</var>
+<status status="PASS" start="2024-10-15T10:40:25.642875" elapsed="0.051460"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.695381" level="INFO">Vérification de l'option : PRIOS A-M Traçabilité</msg>
+<arg>Vérification de l'option : ${option2}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.695381" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.696389" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Traçabilité')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.695381" elapsed="0.021909"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option2}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.717290" elapsed="0.029568"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.747898" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Traçabilité')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.755106" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.71")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.747898" elapsed="0.008787"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.756685" level="INFO">Option PRIOS A-M Traçabilité trouvée.</msg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.756685" elapsed="0.001032"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.756685" elapsed="0.001032"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option2} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.757717" elapsed="0.000000"/>
+</kw>
+<var name="${option2}">PRIOS A-M Traçabilité</var>
+<status status="PASS" start="2024-10-15T10:40:25.694335" elapsed="0.063382"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.757717" level="INFO">Vérification de l'option : PRIOS A-M Evènements</msg>
+<arg>Vérification de l'option : ${option2}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.757717" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.759223" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Evènements')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.759223" elapsed="0.007195"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option2}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.766418" elapsed="0.030202"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.797172" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Evènements')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.810430" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.72")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.797172" elapsed="0.013258"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.811001" level="INFO">Option PRIOS A-M Evènements trouvée.</msg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.811001" elapsed="0.001002"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.811001" elapsed="0.001002"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option2} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.812003" elapsed="0.000000"/>
+</kw>
+<var name="${option2}">PRIOS A-M Evènements</var>
+<status status="PASS" start="2024-10-15T10:40:25.757717" elapsed="0.054286"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.813000" level="INFO">Vérification de l'option : PRIOS A-M Reporting</msg>
+<arg>Vérification de l'option : ${option2}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.813000" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.814036" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Reporting')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.814036" elapsed="0.007194"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option2}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.821230" elapsed="0.027365"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.848595" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Reporting')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.856830" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.73")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.848595" elapsed="0.008235"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.857834" level="INFO">Option PRIOS A-M Reporting trouvée.</msg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.857834" elapsed="0.000830"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.856830" elapsed="0.001834"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option2} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.858664" elapsed="0.000000"/>
+</kw>
+<var name="${option2}">PRIOS A-M Reporting</var>
+<status status="PASS" start="2024-10-15T10:40:25.813000" elapsed="0.045664"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.859671" level="INFO">Vérification de l'option : PRIOS A-M Logistique</msg>
+<arg>Vérification de l'option : ${option2}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.859671" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.860673" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Logistique')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.859671" elapsed="0.008803"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option2}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.868474" elapsed="0.026798"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.896824" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Logistique')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.903856" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.74")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.895272" elapsed="0.008584"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.903856" level="INFO">Option PRIOS A-M Logistique trouvée.</msg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.903856" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.903856" elapsed="0.001551"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option2} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.905407" elapsed="0.000000"/>
+</kw>
+<var name="${option2}">PRIOS A-M Logistique</var>
+<status status="PASS" start="2024-10-15T10:40:25.858664" elapsed="0.047746"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.906917" level="INFO">Vérification de l'option : PRIOS A-M Interfaces externes</msg>
+<arg>Vérification de l'option : ${option2}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.906410" elapsed="0.000507"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.907960" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Interfaces externes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.906917" elapsed="0.007026"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option2}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.913943" elapsed="0.029297"/>
+</kw><<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.944240" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Interfaces externes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:25.951892" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.75")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.943240" elapsed="0.008652"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.952852" level="INFO">Option PRIOS A-M Interfaces externes trouvée.</msg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.952852" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.951892" elapsed="0.000960"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option2} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.953844" elapsed="0.000000"/>
+</kw>
+<var name="${option2}">PRIOS A-M Interfaces externes</var>
+<status status="PASS" start="2024-10-15T10:40:25.906410" elapsed="0.047434"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:25.954841" level="INFO">Vérification de l'option : PRIOS A-M Interface comptable</msg>
+<arg>Vérification de l'option : ${option2}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.953844" elapsed="0.000997"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.955348" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Interface comptable')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.954841" elapsed="0.007962"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option2}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.962803" elapsed="0.030687"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:25.993490" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Interface comptable')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:26.001723" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.76")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:25.993490" elapsed="0.008233"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:26.002738" level="INFO">Option PRIOS A-M Interface comptable trouvée.</msg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.001723" elapsed="0.001015"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.001723" elapsed="0.001015"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option2} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.002738" elapsed="0.000000"/>
+</kw>
+<var name="${option2}">PRIOS A-M Interface comptable</var>
+<status status="PASS" start="2024-10-15T10:40:25.953844" elapsed="0.048894"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:26.003729" level="INFO">Vérification de l'option : PRIOS A-M Partenaires</msg>
+<arg>Vérification de l'option : ${option2}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.002738" elapsed="0.000991"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:26.003729" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Partenaires')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.003729" elapsed="0.007270"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option2}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.011967" elapsed="0.027135"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:26.040661" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'PRIOS A-M Partenaires')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:40:26.048441" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.77")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.039102" elapsed="0.009339"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:40:26.049435" level="INFO">Option PRIOS A-M Partenaires trouvée.</msg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.049435" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option2} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.049435" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option2} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.049435" elapsed="0.000000"/>
+</kw>
+<var name="${option2}">PRIOS A-M Partenaires</var>
+<status status="PASS" start="2024-10-15T10:40:26.002738" elapsed="0.046697"/>
+</iter>
+<var>${option2}</var>
+<value>@{OPTIONS2}</value>
+<status status="PASS" start="2024-10-15T10:40:25.642875" elapsed="0.408109"/>
+</for>
+<status status="PASS" start="2024-10-15T10:40:25.642875" elapsed="0.408109"/>
+</kw>
+<kw name="When L'utilisateur clique sur &quot;PRIOS A-M Ventes&quot;" owner="01_AM_Vente">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:26.050984" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'PRIOS A-M Ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), 'PRIOS A-M Ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.050984" elapsed="0.006766"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>xpath=//*[contains(text(), 'PRIOS A-M Ventes')]</arg>
+<arg>100s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-08-07T12:43:27.823154" elapsed="0.036299"/>
+<status status="PASS" start="2024-10-15T10:40:26.058714" elapsed="0.016844"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:40:26.075558" level="INFO">Clicking element 'xpath=//*[contains(text(), 'PRIOS A-M Ventes')]'.</msg>
+<arg>xpath=//*[contains(text(), 'PRIOS A-M Ventes')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.075558" elapsed="0.096569"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.173509" level="INFO">Slept 1 minute.</msg>
+<arg>60s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.173125" elapsed="60.000384"/>
+</kw>
+<doc>Sélectionne l'option "PRIOS A-M Ventes" sur la page.</doc>
+<status status="PASS" start="2024-10-15T10:40:26.050984" elapsed="60.122525"/>
+</kw>
+<kw name="Then L'affichage de la page présente les fonctions suivantes dans la première partie de la deuxième colonne :" owner="01_AM_Vente">
+<for flavor="IN">
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.175016" level="INFO">Vérification de l'option : Tarifs ventes</msg>
+<arg>Vérification de l'option : ${option3}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.175016" elapsed="0.000995"/>
 </kw>
 <kw name="Execute Javascript" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:43:27.860516" level="INFO">Executing JavaScript:
-document.evaluate("//*[contains(text(), 'PRIOS A-M Ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+<msg time="2024-10-15T10:41:26.177012" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Tarifs ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
 Without any arguments.</msg>
-<arg>document.evaluate("//*[contains(text(), 'PRIOS A-M Ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();</arg>
+<arg>document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
 <doc>Executes the given JavaScript code with possible arguments.</doc>
-<status status="PASS" start="2024-08-07T12:43:27.859453" elapsed="0.016878"/>
-</kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:43:27.984004" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="clicked_element_screenshot.png"&gt;&lt;img src="clicked_element_screenshot.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>clicked_element_screenshot.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2024-08-07T12:43:27.877386" elapsed="0.107550"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2024-08-07T12:43:27.984936" level="INFO">Capture d'écran prise et enregistrée en tant que clicked_element_screenshot.png</msg>
-<arg>Capture d'écran prise et enregistrée en tant que clicked_element_screenshot.png</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-08-07T12:43:27.984936" elapsed="0.000000"/>
-</kw>
-<kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:43:28.013358" level="INFO">Current page contains text 'Ordres de livraison'.</msg>
-<arg>Ordres de livraison</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2024-08-07T12:43:27.985983" elapsed="0.028350"/>
-</kw>
-<kw name="Scroll Element Into View" owner="SeleniumLibrary">
-<arg>xpath=//*[contains(text(), 'Ordres de livraison')]</arg>
-<doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2024-08-07T12:43:28.014333" elapsed="0.294168"/>
+<status status="PASS" start="2024-10-15T10:41:26.176011" elapsed="0.014595"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//*[contains(text(), 'Ordres de livraison')]</arg>
+<arg>xpath=//*[contains(text(), '${option3}')]</arg>
+<arg>timeout=100s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-08-07T12:43:28.309499" elapsed="0.037598"/>
+<status status="PASS" start="2024-10-15T10:41:26.190606" elapsed="0.042506"/>
 </kw>
 <kw name="Execute Javascript" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:43:28.348192" level="INFO">Executing JavaScript:
-document.evaluate("//*[contains(text(), 'Ordres de livraison')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+<msg time="2024-10-15T10:41:26.235163" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Tarifs ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 Without any arguments.</msg>
-<arg>document.evaluate("//*[contains(text(), 'Ordres de livraison')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();</arg>
+<msg time="2024-10-15T10:41:26.245907" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.79")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
 <doc>Executes the given JavaScript code with possible arguments.</doc>
-<status status="PASS" start="2024-08-07T12:43:28.348192" elapsed="0.013896"/>
+<status status="PASS" start="2024-10-15T10:41:26.234168" elapsed="0.011739"/>
 </kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2024-08-07T12:43:28.466201" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>selenium-screenshot-4.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2024-08-07T12:43:28.362088" elapsed="0.105097"/>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.246942" level="INFO">Option Tarifs ventes trouvée.</msg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.245907" elapsed="0.001035"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.245907" elapsed="0.001035"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option3} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.246942" elapsed="0.000559"/>
+</kw>
+<var name="${option3}">Tarifs ventes</var>
+<status status="PASS" start="2024-10-15T10:41:26.174014" elapsed="0.073487"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.248514" level="INFO">Vérification de l'option : Valorisation transports</msg>
+<arg>Vérification de l'option : ${option3}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.248514" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.250526" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Valorisation transports')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.249506" elapsed="0.012489"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option3}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.263171" elapsed="0.041626"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.305534" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Valorisation transports')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:26.320345" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.80")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.304797" elapsed="0.015548"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.321345" level="INFO">Option Valorisation transports trouvée.</msg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.321345" elapsed="0.001093"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.321345" elapsed="0.001093"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option3} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.322438" elapsed="0.000000"/>
+</kw>
+<var name="${option3}">Valorisation transports</var>
+<status status="PASS" start="2024-10-15T10:41:26.247501" elapsed="0.074937"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.323439" level="INFO">Vérification de l'option : Engagements</msg>
+<arg>Vérification de l'option : ${option3}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.322438" elapsed="0.001001"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.323439" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Engagements')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.323439" elapsed="0.016219"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option3}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.339658" elapsed="0.040229"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.381024" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Engagements')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:26.393129" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.81")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.379887" elapsed="0.013242"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.395127" level="INFO">Option Engagements trouvée.</msg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.394131" elapsed="0.000996"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.394131" elapsed="0.000996"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option3} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.395127" elapsed="0.000997"/>
+</kw>
+<var name="${option3}">Engagements</var>
+<status status="PASS" start="2024-10-15T10:41:26.322438" elapsed="0.073686"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.397120" level="INFO">Vérification de l'option : Incorporations</msg>
+<arg>Vérification de l'option : ${option3}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.396124" elapsed="0.000996"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.397624" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Incorporations')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.397120" elapsed="0.014145"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option3}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.411265" elapsed="0.046777"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.459093" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Incorporations')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:26.472496" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.82")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.458042" elapsed="0.015458"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.474444" level="INFO">Option Incorporations trouvée.</msg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.473500" elapsed="0.000944"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.473500" elapsed="0.000944"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option3} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.474444" elapsed="0.000000"/>
+</kw>
+<var name="${option3}">Incorporations</var>
+<status status="PASS" start="2024-10-15T10:41:26.396124" elapsed="0.078320"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.475440" level="INFO">Vérification de l'option : Aliments/Achats Céréales</msg>
+<arg>Vérification de l'option : ${option3}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.475440" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.475440" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Aliments/Achats Céréales')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.475440" elapsed="0.014754"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option3}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.490194" elapsed="0.056544"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.547999" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Aliments/Achats Céréales')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:26.567100" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.83")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.546738" elapsed="0.020362"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.569120" level="INFO">Option Aliments/Achats Céréales trouvée.</msg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.569120" elapsed="0.000996"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.568118" elapsed="0.001998"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option3} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.570116" elapsed="0.001001"/>
+</kw>
+<var name="${option3}">Aliments/Achats Céréales</var>
+<status status="PASS" start="2024-10-15T10:41:26.474444" elapsed="0.096673"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.572108" level="INFO">Vérification de l'option : Ordres de livraison</msg>
+<arg>Vérification de l'option : ${option3}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.572108" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.573104" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Ordres de livraison')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.573104" elapsed="0.016857"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option3}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.590956" elapsed="0.054537"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.647521" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Ordres de livraison')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:26.666191" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.84")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.645493" elapsed="0.020698"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.667133" level="INFO">Option Ordres de livraison trouvée.</msg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.667133" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.666191" elapsed="0.000942"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option3} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.668452" elapsed="0.000000"/>
+</kw>
+<var name="${option3}">Ordres de livraison</var>
+<status status="PASS" start="2024-10-15T10:41:26.571117" elapsed="0.097335"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.669537" level="INFO">Vérification de l'option : Ordonnances</msg>
+<arg>Vérification de l'option : ${option3}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.669537" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.670513" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Ordonnances')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.669537" elapsed="0.018592"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option3}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.688129" elapsed="0.057064"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.746184" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Ordonnances')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:26.759774" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.86")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.745193" elapsed="0.014581"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.760789" level="INFO">Option Ordonnances trouvée.</msg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.760789" elapsed="0.000953"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.759774" elapsed="0.001968"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option3} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.761742" elapsed="0.000565"/>
+</kw>
+<var name="${option3}">Ordonnances</var>
+<status status="PASS" start="2024-10-15T10:41:26.669537" elapsed="0.092770"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.762307" level="INFO">Vérification de l'option : Tournées</msg>
+<arg>Vérification de l'option : ${option3}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.762307" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.763358" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Tournées')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.762307" elapsed="0.016110"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option3}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.778417" elapsed="0.051490"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.830951" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Tournées')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:26.844656" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.87")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.829907" elapsed="0.014749"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.846157" level="INFO">Option Tournées trouvée.</msg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.846157" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option3} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.844656" elapsed="0.001501"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option3} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.847160" elapsed="0.000000"/>
+</kw>
+<var name="${option3}">Tournées</var>
+<status status="PASS" start="2024-10-15T10:41:26.762307" elapsed="0.084853"/>
+</iter>
+<var>${option3}</var>
+<value>@{2emeCOL}</value>
+<status status="PASS" start="2024-10-15T10:41:26.174014" elapsed="0.673146"/>
+</for>
+<status status="PASS" start="2024-10-15T10:41:26.174014" elapsed="0.674170"/>
+</kw>
+<kw name="Then L'affichage de la page présente les fonctions suivantes dans la seconde partie de la deuxième colonne :" owner="01_AM_Vente">
+<for flavor="IN">
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.849186" level="INFO">Vérification de l'option : Bons de livraison</msg>
+<arg>Vérification de l'option : ${option4}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.849186" elapsed="0.000993"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.850179" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Bons de livraison')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.850179" elapsed="0.013206"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option4}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.863953" elapsed="0.042810"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.908287" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Bons de livraison')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:26.922074" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.88")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.907765" elapsed="0.014309"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.923066" level="INFO">Option Bons de livraison trouvée.</msg>
+<arg>Option ${option4} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.923066" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option4} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.922074" elapsed="0.000992"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option4} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.924061" elapsed="0.000000"/>
+</kw>
+<var name="${option4}">Bons de livraison</var>
+<status status="PASS" start="2024-10-15T10:41:26.849186" elapsed="0.074875"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.925057" level="INFO">Vérification de l'option : Facturation</msg>
+<arg>Vérification de l'option : ${option4}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.925057" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.926109" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Facturation')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.925057" elapsed="0.014145"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option4}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.939202" elapsed="0.039308"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.979518" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Facturation')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:26.994241" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.89")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.979518" elapsed="0.014723"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.995282" level="INFO">Option Facturation trouvée.</msg>
+<arg>Option ${option4} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.995282" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option4} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.995282" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option4} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.995282" elapsed="0.000000"/>
+</kw>
+<var name="${option4}">Facturation</var>
+<status status="PASS" start="2024-10-15T10:41:26.924061" elapsed="0.071221"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:26.996786" level="INFO">Vérification de l'option : Prévisions</msg>
+<arg>Vérification de l'option : ${option4}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.996786" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:26.997838" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Prévisions')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:26.996786" elapsed="0.013572"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option4}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.011862" elapsed="0.043691"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:27.057063" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Prévisions')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:27.070395" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.90")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.055553" elapsed="0.014842"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:27.070395" level="INFO">Option Prévisions trouvée.</msg>
+<arg>Option ${option4} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.070395" elapsed="0.001485"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option4} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.070395" elapsed="0.001485"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option4} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.071880" elapsed="0.000000"/>
+</kw>
+<var name="${option4}">Prévisions</var>
+<status status="PASS" start="2024-10-15T10:41:26.996786" elapsed="0.075094"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:27.073218" level="INFO">Vérification de l'option : Commissions / Ventes</msg>
+<arg>Vérification de l'option : ${option4}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.071880" elapsed="0.001338"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:27.073724" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Commissions / Ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.073218" elapsed="0.011564"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option4}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.084782" elapsed="0.037380"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:27.124156" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Commissions / Ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:27.135322" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.91")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.122162" elapsed="0.013160"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:27.137079" level="INFO">Option Commissions / Ventes trouvée.</msg>
+<arg>Option ${option4} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.137079" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option4} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.135322" elapsed="0.002761"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option4} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.138083" elapsed="0.001004"/>
+</kw>
+<var name="${option4}">Commissions / Ventes</var>
+<status status="PASS" start="2024-10-15T10:41:27.071880" elapsed="0.067207"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:27.140073" level="INFO">Vérification de l'option : Ristournes</msg>
+<arg>Vérification de l'option : ${option4}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.140073" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:27.142069" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Ristournes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.141068" elapsed="0.011240"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option4}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.152308" elapsed="0.031025"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:27.185328" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Ristournes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:27.197461" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.92")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.184334" elapsed="0.013127"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:27.200465" level="INFO">Option Ristournes trouvée.</msg>
+<arg>Option ${option4} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.199468" elapsed="0.000997"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option4} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.198474" elapsed="0.001991"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option4} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.201461" elapsed="0.000000"/>
+</kw>
+<var name="${option4}">Ristournes</var>
+<status status="PASS" start="2024-10-15T10:41:27.139087" elapsed="0.062374"/>
+</iter>
+<var>${option4}</var>
+<value>@{2emeCOL2}</value>
+<status status="PASS" start="2024-10-15T10:41:26.848184" elapsed="0.353277"/>
+</for>
+<status status="PASS" start="2024-10-15T10:41:26.848184" elapsed="0.354272"/>
+</kw>
+<kw name="When L'utilisateur sélectionne &quot;Ordres de livraison&quot; dans la deuxième colonne" owner="01_AM_Vente">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:27.205609" level="INFO">Executing JavaScript:
+document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.204572" elapsed="0.015552"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-15T10:41:28.220313" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.220124" elapsed="1.000189"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:28.221839" level="INFO">Executing JavaScript:
+document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()
+Without any arguments.</msg>
+<arg>document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:28.221334" elapsed="0.011182"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.233931" level="INFO">Slept 30 seconds.</msg>
+<arg>30s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-15T10:41:28.233518" elapsed="30.000413"/>
+</kw>
+<doc>Sélectionne l'option "Ordres de livraison" sur la page.</doc>
+<status status="PASS" start="2024-10-15T10:41:27.203568" elapsed="31.030363"/>
+</kw>
+<kw name="Then Les fonctions suivantes apparaissent dans la première partie de la troisième colonne :" owner="01_AM_Vente">
+<for flavor="IN">
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.237491" level="INFO">Vérification de l'option : Ordres de livraison</msg>
+<arg>Vérification de l'option : ${option5}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.236482" elapsed="0.001514"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.239997" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Ordres de livraison')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.237996" elapsed="0.014009"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option5}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.252005" elapsed="0.033227"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.286234" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Ordres de livraison')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.302200" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.84")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.286234" elapsed="0.015966"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.303257" level="INFO">Option Ordres de livraison trouvée.</msg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.303257" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.303257" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option5} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.303257" elapsed="0.000000"/>
+</kw>
+<var name="${option5}">Ordres de livraison</var>
+<status status="PASS" start="2024-10-15T10:41:58.236482" elapsed="0.067810"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.304292" level="INFO">Vérification de l'option : OL par Produit</msg>
+<arg>Vérification de l'option : ${option5}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.304292" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.305298" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'OL par Produit')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.304292" elapsed="0.012787"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option5}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.317632" elapsed="0.041992"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.360655" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'OL par Produit')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.374650" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.94")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.359624" elapsed="0.015026"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.374650" level="INFO">Option OL par Produit trouvée.</msg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.374650" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.374650" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option5} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.374650" elapsed="0.001544"/>
+</kw>
+<var name="${option5}">OL par Produit</var>
+<status status="PASS" start="2024-10-15T10:41:58.304292" elapsed="0.071902"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.376194" level="INFO">Vérification de l'option : OL par Tiers</msg>
+<arg>Vérification de l'option : ${option5}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.376194" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.377245" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'OL par Tiers')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.376194" elapsed="0.012370"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option5}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.388564" elapsed="0.044114"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.433627" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'OL par Tiers')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.448375" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.95")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.432678" elapsed="0.015697"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.449374" level="INFO">Option OL par Tiers trouvée.</msg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.449374" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.448375" elapsed="0.000999"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option5} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.449374" elapsed="0.000000"/>
+</kw>
+<var name="${option5}">OL par Tiers</var>
+<status status="PASS" start="2024-10-15T10:41:58.376194" elapsed="0.073180"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.450370" level="INFO">Vérification de l'option : Contrôle des OL</msg>
+<arg>Vérification de l'option : ${option5}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.450370" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.450370" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Contrôle des OL')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.450370" elapsed="0.012070"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option5}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.462440" elapsed="0.049649"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.513141" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Contrôle des OL')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.525916" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.96")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.512089" elapsed="0.013827"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.527972" level="INFO">Option Contrôle des OL trouvée.</msg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.527972" elapsed="0.001005"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.527457" elapsed="0.001520"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option5} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.528977" elapsed="0.000000"/>
+</kw>
+<var name="${option5}">Contrôle des OL</var>
+<status status="PASS" start="2024-10-15T10:41:58.449374" elapsed="0.080603"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.529977" level="INFO">Vérification de l'option : Export Excel</msg>
+<arg>Vérification de l'option : ${option5}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.529977" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.530973" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Export Excel')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.530973" elapsed="0.012715"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option5}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.543688" elapsed="0.042530"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.587270" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Export Excel')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.595908" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.97")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.587270" elapsed="0.008638"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.597467" level="INFO">Option Export Excel trouvée.</msg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.595908" elapsed="0.001559"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.595908" elapsed="0.001559"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option5} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.598505" elapsed="0.000000"/>
+</kw>
+<var name="${option5}">Export Excel</var>
+<status status="PASS" start="2024-10-15T10:41:58.529977" elapsed="0.068528"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.599541" level="INFO">Vérification de l'option : Besoins par produit</msg>
+<arg>Vérification de l'option : ${option5}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.598505" elapsed="0.001036"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.599541" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Besoins par produit')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.599541" elapsed="0.007642"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option5}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.607183" elapsed="0.028003"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.635186" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Besoins par produit')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.643463" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.98")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.635186" elapsed="0.008277"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.644422" level="INFO">Option Besoins par produit trouvée.</msg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.644422" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.643463" elapsed="0.000959"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option5} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.645380" elapsed="0.000000"/>
+</kw>
+<var name="${option5}">Besoins par produit</var>
+<status status="PASS" start="2024-10-15T10:41:58.598505" elapsed="0.046875"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.645380" level="INFO">Vérification de l'option : Planifications OL</msg>
+<arg>Vérification de l'option : ${option5}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.645380" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.646415" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Planifications OL')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.646415" elapsed="0.008253"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option5}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.654668" elapsed="0.029929"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.685593" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Planifications OL')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.695007" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.99")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.684597" elapsed="0.010410"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.696025" level="INFO">Option Planifications OL trouvée.</msg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.696025" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.696025" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option5} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.696025" elapsed="0.000000"/>
+</kw>
+<var name="${option5}">Planifications OL</var>
+<status status="PASS" start="2024-10-15T10:41:58.645380" elapsed="0.050645"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.696025" level="INFO">Vérification de l'option : Cadencier</msg>
+<arg>Vérification de l'option : ${option5}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.696025" elapsed="0.001552"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.697577" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Cadencier')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.697577" elapsed="0.008707"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option5}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.707279" elapsed="0.051073"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.759392" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Cadencier')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.772111" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.100")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.759392" elapsed="0.012719"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.773114" level="INFO">Option Cadencier trouvée.</msg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.773114" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option5} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.773114" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option5} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.773114" elapsed="0.000997"/>
+</kw>
+<var name="${option5}">Cadencier</var>
+<status status="PASS" start="2024-10-15T10:41:58.696025" elapsed="0.078086"/>
+</iter>
+<var>${option5}</var>
+<value>@{3emeCOL}</value>
+<status status="PASS" start="2024-10-15T10:41:58.234974" elapsed="0.539137"/>
+</for>
+<status status="PASS" start="2024-10-15T10:41:58.234974" elapsed="0.539137"/>
+</kw>
+<kw name="Then Les fonctions suivantes apparaissent dans la seconde partie de la troisième colonne :" owner="01_AM_Vente">
+<for flavor="IN">
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.775108" level="INFO">Vérification de l'option : Livraison sur OL</msg>
+<arg>Vérification de l'option : ${option6}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.774111" elapsed="0.000997"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.775108" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Livraison sur OL')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option6}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.775108" elapsed="0.014742"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option6}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.789850" elapsed="0.038482"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.829735" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Livraison sur OL')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.842168" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.101")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option6}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.828332" elapsed="0.013836"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.843218" level="INFO">Option Livraison sur OL trouvée.</msg>
+<arg>Option ${option6} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.843218" elapsed="0.001013"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option6} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.843218" elapsed="0.001013"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option6} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.844231" elapsed="0.000000"/>
+</kw>
+<var name="${option6}">Livraison sur OL</var>
+<status status="PASS" start="2024-10-15T10:41:58.774111" elapsed="0.070120"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.845233" level="INFO">Vérification de l'option : Visual Planning</msg>
+<arg>Vérification de l'option : ${option6}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.845233" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.846171" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Visual Planning')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option6}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.845233" elapsed="0.014215"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option6}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.859448" elapsed="0.047693"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.908187" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Visual Planning')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.921507" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.102")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option6}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.907141" elapsed="0.015408"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.922549" level="INFO">Option Visual Planning trouvée.</msg>
+<arg>Option ${option6} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.922549" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option6} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.922549" elapsed="0.000996"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option6} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.923545" elapsed="0.000000"/>
+</kw>
+<var name="${option6}">Visual Planning</var>
+<status status="PASS" start="2024-10-15T10:41:58.844231" elapsed="0.079314"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.923545" level="INFO">Vérification de l'option : Envoi des OL vers Syst. Ext.</msg>
+<arg>Vérification de l'option : ${option6}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.923545" elapsed="0.000000"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.924541" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Envoi des OL vers Syst. Ext.')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option6}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.924541" elapsed="0.013937"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option6}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.938478" elapsed="0.046566"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:58.986044" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Envoi des OL vers Syst. Ext.')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:58.998417" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.103")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option6}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.985044" elapsed="0.013373"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:58.999455" level="INFO">Option Envoi des OL vers Syst. Ext. trouvée.</msg>
+<arg>Option ${option6} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.999455" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option6} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:58.999455" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option6} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.000468" elapsed="0.000000"/>
+</kw>
+<var name="${option6}">Envoi des OL vers Syst. Ext.</var>
+<status status="PASS" start="2024-10-15T10:41:58.923545" elapsed="0.076923"/>
+</iter>
+<iter>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:59.001410" level="INFO">Vérification de l'option : Rapports</msg>
+<arg>Vérification de l'option : ${option6}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.000468" elapsed="0.000942"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:59.002406" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(), 'Rapports')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(), '${option6}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.001410" elapsed="0.010902"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(text(), '${option6}')]</arg>
+<arg>timeout=100s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.012312" elapsed="0.028746"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:59.042048" level="INFO">Executing JavaScript:
+return document.evaluate("//*[contains(text(), 'Rapports')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+Without any arguments.</msg>
+<msg time="2024-10-15T10:41:59.049332" level="INFO">${element_found} = &lt;selenium.webdriver.remote.webelement.WebElement (session="82683eee327634865e0ba92ac165e760", element="f.1E7B045BB92B6497CC0E47F4940D0CB3.d.0EBEF2255FD26B689208071C7C482659.e.104")&gt;</msg>
+<var>${element_found}</var>
+<arg>return document.evaluate("//*[contains(text(), '${option6}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.041058" elapsed="0.008274"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:41:59.050271" level="INFO">Option Rapports trouvée.</msg>
+<arg>Option ${option6} trouvée.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.050271" elapsed="0.000000"/>
+</kw>
+<arg>'${element_found}' != 'None'</arg>
+<arg>Log</arg>
+<arg>Option ${option6} trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.049332" elapsed="0.000939"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${element_found}' == 'None'</arg>
+<arg>Fail</arg>
+<arg>Option ${option6} non trouvée.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.050271" elapsed="0.000953"/>
+</kw>
+<var name="${option6}">Rapports</var>
+<status status="PASS" start="2024-10-15T10:41:59.000468" elapsed="0.050756"/>
+</iter>
+<var>${option6}</var>
+<value>@{3emeCOL2}</value>
+<status status="PASS" start="2024-10-15T10:41:58.774111" elapsed="0.277113"/>
+</for>
+<status status="PASS" start="2024-10-15T10:41:58.774111" elapsed="0.277113"/>
+</kw>
+<kw name="When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne" owner="01_AM_Vente">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:41:59.052263" level="INFO">Executing JavaScript:
+document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[2]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[2]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.052263" elapsed="0.007356"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-15T10:42:00.060660" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.059619" elapsed="1.001546"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:42:00.062116" level="INFO">Executing JavaScript:
+document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[2]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()
+Without any arguments.</msg>
+<arg>document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[2]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:42:00.061165" elapsed="0.014353"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-15T10:43:00.076007" level="INFO">Slept 1 minute.</msg>
+<arg>60s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-15T10:42:00.075518" elapsed="60.000992"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[contains(@class, 'dijitDialogTitle') and contains(text(), 'Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU')]</arg>
+<arg>timeout=60s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:43:00.076510" elapsed="0.036615"/>
+</kw>
+<doc>Sélectionne l'option "Ordres de livraison troisième colonne " sur la page.</doc>
+<status status="PASS" start="2024-10-15T10:41:59.051224" elapsed="61.061901"/>
+</kw>
+<kw name="Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'ordres de livraison" owner="01_AM_Vente">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU</arg>
+<arg>100s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-10-15T10:43:00.113125" elapsed="0.020668"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-08-07T12:43:28.467185" level="INFO">Capture d'écran prise et enregistrée en tant que selenium-screenshot-4.png</msg>
-<arg>Capture d'écran prise et enregistrée en tant que selenium-screenshot-4.png</arg>
+<msg time="2024-10-15T10:43:00.133793" level="INFO">Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.</msg>
+<arg>Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-08-07T12:43:28.467185" elapsed="0.000000"/>
+<status status="PASS" start="2024-10-15T10:43:00.133793" elapsed="0.000000"/>
 </kw>
-<status status="PASS" start="2024-08-07T12:26:21.199763" elapsed="1027.267422"/>
+<doc>Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.</doc>
+<status status="PASS" start="2024-10-15T10:43:00.113125" elapsed="0.021670"/>
+</kw>
+<kw name="When L'utilisateur clique sur le bouton &quot;+&quot;" owner="01_AM_Vente">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]</arg>
+<arg>timeout=30s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:43:00.134795" elapsed="0.024220"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:43:00.159520" level="INFO">Executing JavaScript:
+document.evaluate("//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+Without any arguments.</msg>
+<arg>document.evaluate("//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-15T10:43:00.159520" elapsed="0.005857"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-15T10:43:30.167238" level="INFO">Slept 30 seconds.</msg>
+<arg>30s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-15T10:43:00.166460" elapsed="30.000778"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:43:30.168244" level="INFO">Clicking element 'xpath=//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]'.</msg>
+<arg>xpath=//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:43:30.167238" elapsed="0.089084"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-15T10:44:30.257397" level="INFO">Slept 1 minute.</msg>
+<arg>60s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-15T10:43:30.256837" elapsed="60.000560"/>
+</kw>
+<doc>Sélectionne l'option "le bouton +" sur la page.</doc>
+<status status="PASS" start="2024-10-15T10:43:00.134795" elapsed="90.122602"/>
+</kw>
+<kw name="Then L'utilisateur est redirigé vers un formulaire pour ajouter un nouvel ordre de livraison" owner="01_AM_Vente">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Ordre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU</arg>
+<arg>100s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.258400" elapsed="0.037922"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:44:30.296322" level="INFO">Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOUOrdre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.</msg>
+<arg>Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOUOrdre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.296322" elapsed="0.000000"/>
+</kw>
+<doc>Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.257397" elapsed="0.038925"/>
+</kw>
+<kw name="And Si une commande a déjà été créée, alors le formulaire récupère les informations précédemment saisies pour le Preneur d'ordre" owner="01_AM_Vente">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${PARENT_XPATH}</arg>
+<arg>timeout=30s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.297319" elapsed="0.033882"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${FIELD_ID}</arg>
+<arg>timeout=60s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.331703" elapsed="0.027984"/>
+</kw>
+<kw name="Get Value" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:30.381346" level="INFO">${field_value} = JVC</msg>
+<var>${field_value}</var>
+<arg>${FIELD_ID}</arg>
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.359687" elapsed="0.021659"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2024-10-15T10:44:30.382345" level="INFO">Length is 3.</msg>
+<arg>${field_value}</arg>
+<arg>msg=Le champ a une valeur.</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.381346" elapsed="0.000999"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:44:30.383852" level="INFO">Le champ a une valeur.</msg>
+<arg>Le champ a une valeur.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.382345" elapsed="0.001507"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:30.404649" level="INFO">${readonly} = true</msg>
+<var>${readonly}</var>
+<arg>${FIELD_ID}</arg>
+<arg>readonly</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.384890" elapsed="0.019759"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${readonly}</arg>
+<arg>true</arg>
+<arg>msg=Le champ est en lecture seule.</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.404649" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:44:30.404649" level="INFO">Le champ est grisé et en mode lecture seule.</msg>
+<arg>Le champ est grisé et en mode lecture seule.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.404649" elapsed="0.001013"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${FIELD_ID2}</arg>
+<arg>timeout=30s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.405662" elapsed="0.030038"/>
+</kw>
+<kw name="Get Value" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:30.457614" level="INFO">${field_value1} = PRIOS Support</msg>
+<var>${field_value1}</var>
+<arg>${FIELD_ID2}</arg>
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.436733" elapsed="0.020881"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2024-10-15T10:44:30.457614" level="INFO">Length is 13.</msg>
+<arg>${field_value1}</arg>
+<arg>msg=Le champ a une valeur.</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.457614" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:44:30.457614" level="INFO">Le champ a une valeur.</msg>
+<arg>Le champ a une valeur.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.457614" elapsed="0.000000"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:30.477138" level="INFO">${readonly} = true</msg>
+<var>${readonly}</var>
+<arg>${FIELD_ID2}</arg>
+<arg>readonly</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.458610" elapsed="0.018528"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${readonly}</arg>
+<arg>true</arg>
+<arg>msg=Le champ est en lecture seule.</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.477138" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:44:30.478448" level="INFO">Le champ est grisé et en mode lecture seule.</msg>
+<arg>Le champ est grisé et en mode lecture seule.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.477138" elapsed="0.001310"/>
+</kw>
+<status status="PASS" start="2024-10-15T10:44:30.297319" elapsed="0.181129"/>
+</kw>
+<kw name=" L'utilisateur sélectionne un type d'ordre de livraison : &quot;OL Standard (STD)&quot;" owner="01_AM_Vente">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input</arg>
+<arg>60s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.478448" elapsed="0.030397"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:30.508845" level="INFO">Clicking element 'xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input'.</msg>
+<arg>xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.508845" elapsed="0.111790"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:30.621629" level="INFO">Clicking element 'xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input'.</msg>
+<arg>xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.620635" elapsed="0.086979"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=(//input[@value='▼ '])[7]</arg>
+<arg>60s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.707614" elapsed="0.041254"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:30.750251" level="INFO">Clicking element 'xpath=(//input[@value='▼ '])[7]'.</msg>
+<arg>xpath=(//input[@value='▼ '])[7]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.748868" elapsed="0.120514"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-15T10:44:50.870987" level="INFO">Slept 20 seconds.</msg>
+<arg>20s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-15T10:44:30.869382" elapsed="20.001605"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:45:51.703720" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-19.png"&gt;&lt;img src="selenium-screenshot-19.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-10-15T10:45:51.705073" level="FAIL">Element 'xpath=//div[@class='dijitPopup dijitComboBoxMenuPopup' and not(contains(@style, 'display: none'))]' not visible after 1 minute.</msg>
+<arg>xpath=//div[@class='dijitPopup dijitComboBoxMenuPopup' and not(contains(@style, 'display: none'))]</arg>
+<arg>60s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2024-10-15T10:44:50.870987" elapsed="60.836088">Element 'xpath=//div[@class='dijitPopup dijitComboBoxMenuPopup' and not(contains(@style, 'display: none'))]' not visible after 1 minute.</status>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='OL Standard (STD)']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-10-15T10:45:51.707075" elapsed="0.000000"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" start="2024-10-15T10:45:51.707075" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2024-10-15T10:44:30.478448" elapsed="81.229620">Element 'xpath=//div[@class='dijitPopup dijitComboBoxMenuPopup' and not(contains(@style, 'display: none'))]' not visible after 1 minute.</status>
+</kw>
+<kw name="Then &quot;OL Standard (STD)&quot; est affiché dans le champ" owner="01_AM_Vente">
+<status status="NOT RUN" start="2024-10-15T10:45:51.708068" elapsed="0.000000"/>
+</kw>
+<kw name="When L'utilisateur sélectionne un Site : &quot;Z COREAL (ZCO)&quot;" owner="01_AM_Vente">
+<status status="NOT RUN" start="2024-10-15T10:45:51.708068" elapsed="0.000000"/>
+</kw>
+<kw name="Then &quot;Z COREAL (ZCO)&quot; est affiché dans le champ" owner="01_AM_Vente">
+<status status="NOT RUN" start="2024-10-15T10:45:51.708068" elapsed="0.000000"/>
+</kw>
+<kw name="When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'" owner="01_AM_Vente">
+<status status="NOT RUN" start="2024-10-15T10:45:51.708068" elapsed="0.000000"/>
+</kw>
+<doc>Connectez-vous et naviguez vers les ordres de livraison</doc>
+<status status="FAIL" start="2024-10-15T10:35:28.809894" elapsed="622.899784">Element 'xpath=//div[@class='dijitPopup dijitComboBoxMenuPopup' and not(contains(@style, 'display: none'))]' not visible after 1 minute.</status>
 </test>
-<status status="PASS" start="2024-08-07T12:26:20.808269" elapsed="1027.659987"/>
+<status status="FAIL" start="2024-10-15T10:35:27.769773" elapsed="623.939905"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Test">Test</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-10-15T10:37:03.817989" level="WARN">The chromedriver version (128.0.6613.86) detected in PATH at C:\Users\EZWAY\Desktop\Nouveau dossier\Prios\Prios\chromedriver-win64\chromedriver.exe might not be compatible with the detected chrome version (129.0.6668.90); currently, chromedriver 129.0.6668.100 is recommended for chrome 129.*, so it is advised to delete the driver in PATH and retry</msg>
+</errors>
+</robot>
+king element 'xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input'.</msg>
+<arg>xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:46.039993" elapsed="0.169776"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:46.211241" level="INFO">Clicking element 'xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input'.</msg>
+<arg>xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:46.209769" elapsed="0.138811"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=(//input[@value='▼ '])[8]</arg>
+<arg>60s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:44:46.349614" elapsed="0.065786"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:46.415400" level="INFO">Clicking element 'xpath=(//input[@value='▼ '])[8]'.</msg>
+<arg>xpath=(//input[@value='▼ '])[8]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:46.415400" elapsed="0.150909"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-10-15T10:44:56.567829" level="INFO">Slept 10 seconds.</msg>
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-10-15T10:44:46.567307" elapsed="10.001027"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:56.568838" level="INFO">Clicking element 'xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='Z COREAL (ZCO)']'.</msg>
+<arg>xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='Z COREAL (ZCO)']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:56.568838" elapsed="0.075680"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:56.907872" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-18.png"&gt;&lt;img src="selenium-screenshot-18.png" width="800px"&gt;&lt;/a&gt;</msg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2024-10-15T10:44:56.644518" elapsed="0.263354"/>
+</kw>
+<status status="PASS" start="2024-10-15T10:44:45.972251" elapsed="10.936619"/>
+</kw>
+<kw name="Then &quot;Z COREAL (ZCO)&quot; est affiché dans le champ" owner="01_AM_Vente">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${FIELD-ID5}</arg>
+<arg>timeout=30s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:44:56.909377" elapsed="0.050845"/>
+</kw>
+<kw name="Get Value" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:57.016739" level="INFO">${field_value} = Z COREAL (ZCO)</msg>
+<var>${field_value}</var>
+<arg>${FIELD-ID5}</arg>
+<doc>Returns the value attribute of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:56.961238" elapsed="0.056497"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2024-10-15T10:44:57.018733" level="INFO">Length is 14.</msg>
+<arg>${field_value}</arg>
+<arg>msg=Le champ Site a une valeur 'Z COREAL (ZCO) '.</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2024-10-15T10:44:57.017735" elapsed="0.000998"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-15T10:44:57.019907" level="INFO">Le champ Site a une valeur 'Z COREAL (ZCO)'.</msg>
+<arg>Le champ Site a une valeur 'Z COREAL (ZCO)'.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-15T10:44:57.018733" elapsed="0.001174"/>
+</kw>
+<status status="PASS" start="2024-10-15T10:44:56.908870" elapsed="0.111541"/>
+</kw>
+<kw name="When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'" owner="01_AM_Vente">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-15T10:44:57.021413" elapsed="0.043134"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-15T10:44:57.064547" level="INFO">Clicking element 'xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]'.</msg>
+<arg>xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-15T10:44:57.064547" elapsed="0.119830"/>
+</kw>
+<status status="PASS" start="2024-10-15T10:44:57.020411" elapsed="0.164962"/>
+</kw>
+<doc>Connectez-vous et naviguez vers les ordres de livraison</doc>
+<status status="PASS" start="2024-10-15T10:36:28.411339" elapsed="508.774034"/>
+</test>
+<status status="PASS" start="2024-10-15T10:36:27.461639" elapsed="509.724731"/>
 </suite>
 <statistics>
 <total>
@@ -162,9 +2945,10 @@ Without any arguments.</msg>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Authentification">Authentification</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test">Test</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2024-10-15T10:37:04.270127" level="WARN">The chromedriver version (128.0.6613.86) detected in PATH at C:\Users\EZWAY\Desktop\Nouveau dossier\Prios\Prios\chromedriver-win64\chromedriver.exe might not be compatible with the detected chrome version (129.0.6668.90); currently, chromedriver 129.0.6668.100 is recommended for chrome 129.*, so it is advised to delete the driver in PATH and retry</msg>
 </errors>
 </robot>
