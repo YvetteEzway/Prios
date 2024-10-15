@@ -5,7 +5,7 @@ Library    Collections
 Resource    login_page.robot
 Resource    am_vente.robot
 Resource    Tarif.robot
-
+Resource    01_AM_Vente.robot
 *** Variables ***
 ${URL}          https://portail-0015.cloud-prios.fr/
 ${USERNAME}     prios.qa1@prios.fr
@@ -35,9 +35,28 @@ Login And Navigate To Ordres De Livraison
     login_page.Input Password    ${PASSWORD}
     Capture Page Screenshot    password.png
     login_page.Click Login Button
-    am_vente.Navigate To PRIOS Ventes
-    Capture Page Screenshot    prios_ventes.png
-    am_vente.Navigate To Ordres De Livraison
-    Capture Page Screenshot    ordres_livraison.png
-    am_vente.Navigate To Ordres De Livraison2
-    Capture Page Screenshot    ordres_livraison2.png
+    01_AM_Vente.Given L'utilisateur se trouve sur la page "Plateformes métier"
+    01_AM_Vente.When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
+    01_AM_Vente.Then Il est redirigé vers une nouvelle page avec les menus de navigation
+    01_AM_Vente.Then Les menus de navigation affichent les options suivantes dans les premières "8" options :
+    01_AM_Vente.Then Les menus de navigation affichent les options suivantes :
+    01_AM_Vente.When L'utilisateur clique sur "PRIOS A-M Ventes"
+    01_AM_Vente.Then L'affichage de la page présente les fonctions suivantes dans la première partie de la deuxième colonne :
+    01_AM_Vente.Then L'affichage de la page présente les fonctions suivantes dans la seconde partie de la deuxième colonne :
+    01_AM_Vente.When L'utilisateur sélectionne "Ordres de livraison" dans la deuxième colonne
+    01_AM_Vente.Then Les fonctions suivantes apparaissent dans la première partie de la troisième colonne :
+    01_AM_Vente.Then Les fonctions suivantes apparaissent dans la seconde partie de la troisième colonne :
+    01_AM_Vente.When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
+    01_AM_Vente.Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'ordres de livraison
+    01_AM_Vente.When L'utilisateur clique sur le bouton "+"
+    01_AM_Vente.Then L'utilisateur est redirigé vers un formulaire pour ajouter un nouvel ordre de livraison
+    01_AM_Vente.And Si une commande a déjà été créée, alors le formulaire récupère les informations précédemment saisies pour le Preneur d'ordre
+    01_AM_Vente.L'utilisateur sélectionne un type d'ordre de livraison : "OL Standard (STD)"
+    01_AM_Vente.Then "OL Standard (STD)" est affiché dans le champ
+    01_AM_Vente.When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
+    01_AM_Vente.Then "Z COREAL (ZCO)" est affiché dans le champ
+    01_AM_Vente.When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'
+
+
+
+
