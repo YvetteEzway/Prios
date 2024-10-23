@@ -33,7 +33,7 @@ ${OPTION_TEXT}        xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]
 ${FIELD_ID3}          xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]
 ${FIELD-ID4}         xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[3]/input
 ${FIELD-ID5}         xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[3]/input
-
+${code_donneur_ordre}         84_TEST13
 
 
 *** Keywords ***
@@ -242,7 +242,7 @@ And Si une commande a déjà été créée, alors le formulaire récupère les i
 
     Wait Until Element Is Visible    xpath=(//input[@value='▼ '])[7]    60s
     Click Element                    xpath=(//input[@value='▼ '])[7]
-    Sleep    20s
+    Sleep    30s
 
     # Attendre que la liste déroulante soit visible
     Wait Until Element Is Visible    xpath=//div[@class='dijitPopup dijitComboBoxMenuPopup' and not(contains(@style, 'display: none'))]    60s
@@ -266,18 +266,18 @@ When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
 
      Wait Until Element Is Visible    xpath=(//input[@value='▼ '])[8]    60s
      Click Element                    xpath=(//input[@value='▼ '])[8]
-     Sleep    10s
+     Sleep    20s
 
      # Attendre que la liste déroulante soit visible
      #Wait Until Element Is Visible    xpath=//div[@id='widget_a_4ik_id' and contains(@class, 'dijitComboBox') and not(contains(@style, 'visibility: hidden'))]     60s
 
-# Cliquer sur l'élément OL Standard (STD)
+# Cliquer sur l'élément
     Click Element    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='Z COREAL (ZCO)']
     Capture Page Screenshot
 
 Then "Z COREAL (ZCO)" est affiché dans le champ
 
-     Wait Until Element Is Visible    ${FIELD-ID5}    timeout=30s
+     Wait Until Element Is Visible    ${FIELD-ID5}    timeout=60s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID5}
@@ -288,3 +288,8 @@ When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouto
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]
 
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]
+    Sleep    10s
+And L'utilisateur saisit le nom "dp_test" et effectue la recherche
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div
+    Click Element       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div
+    Input Text          xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div/input    ${code_donneur_ordre}
