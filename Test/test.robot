@@ -2,10 +2,9 @@
 Library    SeleniumLibrary    run_on_failure=Capture Page Screenshot
 Library    OperatingSystem
 Library    Collections
-Resource    login_page.robot
-Resource    am_vente.robot
-Resource    Tarif.robot
-Resource    01_AM_Vente.robot
+Resource    Authentification/login_page.robot
+Resource    01.PRIOS_A-M_Ventes/01_AM_Vente.robot
+
 *** Variables ***
 ${URL}          https://portail-0015.cloud-prios.fr/
 ${USERNAME}     prios.qa1@prios.fr
@@ -56,6 +55,7 @@ Login And Navigate To Ordres De Livraison
     01_AM_Vente.When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
     01_AM_Vente.Then "Z COREAL (ZCO)" est affiché dans le champ
     01_AM_Vente.When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'
+    01_AM_Vente.And L'utilisateur saisit le nom "dp_test" et effectue la recherche
 
 
 
