@@ -28,4 +28,4 @@ Click Login Button
 Click Button2
     Wait Until Element Is Visible    xpath=//*[@id="idSIButton9"]
     Click Element    xpath=//*[@id="idSIButton9"]
-    Sleep    60S
+    Sleep    20S
