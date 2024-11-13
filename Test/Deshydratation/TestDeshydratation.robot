@@ -14,15 +14,7 @@ ${BROWSER}        Chrome
 ${BASE_URL}    http://portail-rec-0072.cloud-prios.fr
 ${USERNAME}    prios.support@deshyouest.fr
 ${PASSWORD}    Pr10s44@
-${Ent_Type_tiers}     106757
-${Ent_code_tiers}     106757 / BRIANTAIS
-${Ent_code_commune}     35264
-${Ent_code_Recolte}     2024
-${COMBOBOX}    xpath=//mat-select[@id='mat-select-8']
-${YEAR}        2024
-${SELECT_XPATH}    xpath=//mat-select[@id='mat-select-2']
-${OPTION_XPATH}    xpath=//mat-option[contains(text(), '106757 / BRIANTAIS')]
-${SELECTED_VALUE_XPATH}    xpath=//span[contains(@class, 'mat-select-value-text')]
+
 ${TEST SETUP}    Setup Test Environment
 ${TEST TEARDOWN}    Teardown Test Environment
 
@@ -61,12 +53,21 @@ Login et navigation vers Déshydratation
        Deshy_01_Creation_parcelle.When l'utilisateur choisit une récolte dans le champ "Récolte"
        Deshy_01_Creation_parcelle.When l'utilisateur sélectionne une dans le champ "Espèces"
        Deshy_01_Creation_parcelle.When l'utilisateur sélectionne un site prévisionnel dans le champ "Site prévisionnel"
-       Deshy_01_Creation_parcelle.When l'utilisateur sélectionne un processus de transport dans le champ "Processus de transport"
-       Deshy_01_Creation_parcelle.When l'utilisateur sélectionne un type de mouvement dans la partie "Coupe"
-       Deshy_01_Creation_parcelle.When l'utilisateur sélectionne une présentation dans le champ "Présentation"
+       Deshy_01_Creation_parcelle.When l'utilisateur sélectionne un processus de transport dans le champ "Type de mouvement"
+       Deshy_01_Creation_parcelle.When l'utilisateur sélectionne un type de mouvement dans la partie "Présentation"
+       Deshy_01_Creation_parcelle.When l'utilisateur sélectionne une présentation dans le champ "Processus de transport"
        Deshy_01_Creation_parcelle.When l'utilisateur sélectionne un type de déchargement dans le champ "Type de déchargement"
        Deshy_01_Creation_parcelle.When l'utilisateur sélectionne un lieu de livraison dans le champ "Lieu de livraison"
+       Capture Page Screenshot    livraison.png
        Deshy_01_Creation_parcelle.When l'utilisateur clique sur le bouton "Enregistrer"
+       Deshy_01_Creation_parcelle.When l'utilisateur clique sur le bouton Confirmer dans le pop up de confirmation
+       Deshy_01_Creation_parcelle.Then la parcelle est enregistrée et l'utilisateur est redirigé vers la liste des parcelles
+       Deshy_01_Creation_parcelle.When l'utilisateur saisit la référence dans la colonne "Référence parcelle chez le tiers"
+       Deshy_01_Creation_parcelle.Then la liste se met à jour et affiche uniquement la valeur de la parcelle créée précédemment
+       Deshy_01_Creation_parcelle.When l'utilisateur clique sur la ligne correspondant à la parcelle
+
+
+
 
 
 
