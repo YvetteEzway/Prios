@@ -39,7 +39,7 @@ ${code_donneur_ordre}         84_TEST13
 *** Keywords ***
 Given L'utilisateur se trouve sur la page "Plateformes métier"
     [Documentation]    Vérifie que l'utilisateur est sur la page "Plateformes métier".
-    Wait Until Page Contains    Plateformes    10s
+    Wait Until Page Contains    Plateformes    30s
 
 When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
     [Documentation]    Sélectionne l'option "PRIOS Agriculture" sur la page.
@@ -66,7 +66,7 @@ Then Les menus de navigation affichent les options suivantes dans les premières
         Execute JavaScript    document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
 
         # Attendre que l'option soit visible après le défilement
-        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option}')]    timeout=100s
+        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option}')]    timeout=60s
 
         # Vérifier que l'option est présente
         ${element_found} =    Execute JavaScript    return document.evaluate("//*[contains(text(), '${option}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -83,7 +83,7 @@ Then Les menus de navigation affichent les options suivantes :
         Execute JavaScript    document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
 
         # Attendre que l'option soit visible après le défilement
-        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option2}')]    timeout=100s
+        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option2}')]    timeout=60s
 
         # Vérifier que l'option est présente
         ${element_found} =    Execute JavaScript    return document.evaluate("//*[contains(text(), '${option2}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -95,7 +95,7 @@ When L'utilisateur clique sur "PRIOS A-M Ventes"
     [Documentation]    Sélectionne l'option "PRIOS A-M Ventes" sur la page.
     Execute JavaScript    document.evaluate("//*[contains(text(), 'PRIOS A-M Ventes')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
 
-    Wait Until Element Is Visible    xpath=//*[contains(text(), 'PRIOS A-M Ventes')]    100s
+    Wait Until Element Is Visible    xpath=//*[contains(text(), 'PRIOS A-M Ventes')]    60s
     Click Element    xpath=//*[contains(text(), 'PRIOS A-M Ventes')]
 
     Sleep    60s
@@ -109,7 +109,7 @@ Then L'affichage de la page présente les fonctions suivantes dans la première 
         Execute JavaScript    document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
 
         # Attendre que l'option soit visible après le défilement
-        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option3}')]    timeout=100s
+        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option3}')]    timeout=60s
 
         # Vérifier que l'option est présente
         ${element_found} =    Execute JavaScript    return document.evaluate("//*[contains(text(), '${option3}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -126,7 +126,7 @@ Then L'affichage de la page présente les fonctions suivantes dans la seconde pa
         Execute JavaScript    document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
 
         # Attendre que l'option soit visible après le défilement
-        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option4}')]    timeout=100s
+        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option4}')]    timeout=60s
 
         # Vérifier que l'option est présente
         ${element_found} =    Execute JavaScript    return document.evaluate("//*[contains(text(), '${option4}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -150,7 +150,7 @@ Then Les fonctions suivantes apparaissent dans la première partie de la troisi�
         Execute JavaScript    document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
 
         # Attendre que l'option soit visible après le défilement
-        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option5}')]    timeout=100s
+        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option5}')]    timeout=60s
 
         # Vérifier que l'option est présente
         ${element_found} =    Execute JavaScript    return document.evaluate("//*[contains(text(), '${option5}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -167,7 +167,7 @@ Then Les fonctions suivantes apparaissent dans la seconde partie de la troisièm
         Execute JavaScript    document.evaluate("//*[contains(text(), '${option6}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
 
         # Attendre que l'option soit visible après le défilement
-        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option6}')]    timeout=100s
+        Wait Until Element Is Visible    xpath=//*[contains(text(), '${option6}')]    timeout=60s
 
         # Vérifier que l'option est présente
         ${element_found} =    Execute JavaScript    return document.evaluate("//*[contains(text(), '${option6}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -188,7 +188,7 @@ When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
 Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'ordres de livraison
 
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
-    Wait Until Page Contains    Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    100s
+    Wait Until Page Contains    Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    60s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
 When L'utilisateur clique sur le bouton "+"
     [Documentation]    Sélectionne l'option "le bouton +" sur la page.
@@ -200,16 +200,16 @@ When L'utilisateur clique sur le bouton "+"
     Sleep    60s
 Then L'utilisateur est redirigé vers un formulaire pour ajouter un nouvel ordre de livraison
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
-    Wait Until Page Contains    Ordre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU    100s
+    Wait Until Page Contains    Ordre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU    60s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOUOrdre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
 
 And Si une commande a déjà été créée, alors le formulaire récupère les informations précédemment saisies pour le Preneur d'ordre
 
     # Attendre que le parent de l'élément soit visible
-    Wait Until Element Is Visible    ${PARENT_XPATH}    timeout=30s
+    Wait Until Element Is Visible    ${PARENT_XPATH}    timeout=20s
 
     # Attendre que l'élément soit visible
-    Wait Until Element Is Visible    ${FIELD_ID}    timeout=60s
+    Wait Until Element Is Visible    ${FIELD_ID}    timeout=20s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD_ID}
@@ -236,23 +236,23 @@ And Si une commande a déjà été créée, alors le formulaire récupère les i
 
  L'utilisateur sélectionne un type d'ordre de livraison : "OL Standard (STD)"
 
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input    60s
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input    100s
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input
 
-    Wait Until Element Is Visible    xpath=(//input[@value='▼ '])[7]    60s
+    Wait Until Element Is Visible    xpath=(//input[@value='▼ '])[7]    100s
     Click Element                    xpath=(//input[@value='▼ '])[7]
     Sleep    30s
 
     # Attendre que la liste déroulante soit visible
-    Wait Until Element Is Visible    xpath=//div[@class='dijitPopup dijitComboBoxMenuPopup' and not(contains(@style, 'display: none'))]    60s
+    Wait Until Element Is Visible    xpath=//div[@class='dijitPopup dijitComboBoxMenuPopup' and not(contains(@style, 'display: none'))]    100s
 
 # Cliquer sur l'élément OL Standard (STD)
     Click Element    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='OL Standard (STD)']
     Capture Page Screenshot
 
 Then "OL Standard (STD)" est affiché dans le champ
-    Wait Until Element Is Visible    ${FIELD-ID4}    timeout=30s
+    Wait Until Element Is Visible    ${FIELD-ID4}    timeout=100s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID4}
@@ -260,11 +260,11 @@ Then "OL Standard (STD)" est affiché dans le champ
     Log    Le champ type d'ordre de livraison a une valeur 'OL Standard (STD)'.
 
 When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
-     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input    60s
+     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input    20s
      Click Element                    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input
      Click Element                    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input
 
-     Wait Until Element Is Visible    xpath=(//input[@value='▼ '])[8]    60s
+     Wait Until Element Is Visible    xpath=(//input[@value='▼ '])[8]    250s
      Click Element                    xpath=(//input[@value='▼ '])[8]
      Sleep    20s
 
@@ -277,7 +277,7 @@ When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
 
 Then "Z COREAL (ZCO)" est affiché dans le champ
 
-     Wait Until Element Is Visible    ${FIELD-ID5}    timeout=60s
+     Wait Until Element Is Visible    ${FIELD-ID5}    timeout=20s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID5}

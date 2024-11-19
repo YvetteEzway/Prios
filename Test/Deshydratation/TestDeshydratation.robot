@@ -45,11 +45,12 @@ Login et navigation vers Déshydratation
        Deshy_01_Creation_parcelle.Given L'utilisateur se trouve sur la page "Plateformes métier"
        Deshy_01_Creation_parcelle.When l'utilisateur clique sur le module "Déshydratation"
        Deshy_01_Creation_parcelle.Then Il est redirigé vers une nouvelle page avec les menus de navigation
+       Deshy_01_Creation_parcelle.Suppresion de la dernière ligne avant de créer une parcelle
        Deshy_01_Creation_parcelle.When l'utilisateur clique sur le bouton "Créer parcelle"
        Deshy_01_Creation_parcelle.When l'utilisateur saisit au moin 3 caractères dans le champ "Tiers" et sélectionne le type de tiers
        Deshy_01_Creation_parcelle.When l'utilisateur saisit les 3 premiers caractères dans le champ "Commune" et sélectionne la commune
        Deshy_01_Creation_parcelle.When l'utilisateur saisit le surface
-       Deshy_01_Creation_parcelle.When l'utilisateur saisit la référence chez le tiers avec la date du jour au format AAMMJJHHMM
+       Deshy_01_Creation_parcelle.When l'utilisateur saisit la référence chez le tiers
        Deshy_01_Creation_parcelle.When l'utilisateur choisit une récolte dans le champ "Récolte"
        Deshy_01_Creation_parcelle.When l'utilisateur sélectionne une dans le champ "Espèces"
        Deshy_01_Creation_parcelle.When l'utilisateur sélectionne un site prévisionnel dans le champ "Site prévisionnel"
