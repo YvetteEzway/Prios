@@ -11,6 +11,8 @@ Library    String
 ${Ent_Type_tiers}     106757
 ${Ent_code_tiers}     106757 / BRIANTAIS
 ${Ent_code_commune}    35264 / ST DIDIER
+${Ref-tiers}          Ref_tiers
+${TABLE_XPATH}       xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div
 ${XPATH_SELECTOR}      xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div/div[2]/div[2]/div[6]/div[1]
 ${TABLE_COLUMN_XPATH}    xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div/div[2]/div[2]/div[1]/div[2]/div/div[1]/div
 ${HORIZONTAL_SCROLL_ELEMENT_XPATH}    xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div/div[2]/div[2]/div[6]/div[2]/div
@@ -19,6 +21,9 @@ ${REFERENCE_VALUE}    24110513
 
 ${TABLE_CELLS_XPATH}             xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div/div[2]/div[2]/div[3]/div[1]/div/div[2]/div/div/div/div
 ${HORIZONTAL_SCROLL_AMOUNT}     100
+
+
+${DELETE_BTN_PARENT}        xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div/div[2]/div[2]/div[3]/div[1]/div/div[3]
 *** Keywords ***
 Verify Home Page
     Wait Until Page Contains   Applications    10s
@@ -46,6 +51,14 @@ Then Il est redirigé vers une nouvelle page avec les menus de navigation
     Switch Window    ${handles}[-1]
     Sleep    5s
     Wait Until Page Contains    Culture
+
+Suppresion de la dernière ligne avant de créer une parcelle
+
+    Wait Until Element Is Visible    ${DELETE_BTN_PARENT}
+    Click Element    ${DELETE_BTN_PARENT}/div[last()]
+    Wait Until Element Is Visible    css:.cancel_button    10s
+    Click Element    css:.cancel_button
+    Sleep    30s
 
 When l'utilisateur clique sur le bouton "Créer parcelle"
     Wait Until Element Is Visible    xpath=//span[normalize-space()='Création parcelle']
@@ -86,12 +99,14 @@ When l'utilisateur saisit le surface
     Wait Until Element Is Visible    xpath=//input[@id='mat-input-0']
     Input Text   xpath=//input[@id='mat-input-0']    25
 
-When l'utilisateur saisit la référence chez le tiers avec la date du jour au format AAMMJJHHMM
+When l'utilisateur saisit la référence chez le tiers
     Wait Until Element Is Visible    xpath=//*[@id="mat-input-1"]
-    Input Text    xpath=//*[@id="mat-input-1"]    24110513
+    Input Text    xpath=//*[@id="mat-input-1"]    ${Ref-tiers}
+    Sleep   30s
+
 When l'utilisateur choisit une récolte dans le champ "Récolte"
-    Wait Until Element Is Visible    xpath=//*[@id="mat-dialog-0"]/pr-farming-cut-create/pr-farming-cut-main/div/mat-dialog-content/div/div/div/div[1]/div[2]/div[2]/mat-grid-list/div/mat-grid-tile[5]/div/pr-common-form-main/div/div[2]     10s
-    Wait Until Element Is Visible    xpath=//*[@id="mat-select-8"]/div  10s
+    #Wait Until Element Is Visible    xpath=//*[@id="mat-dialog-0"]/pr-farming-cut-create/pr-farming-cut-main/div/mat-dialog-content/div/div/div/div[1]/div[2]/div[2]/mat-grid-list/div/mat-grid-tile[5]/div/pr-common-form-main/div/div[2]     30s
+    Wait Until Element Is Visible    xpath=//*[@id="mat-select-8"]/div  20s
     Wait Until Element Is Enabled    xpath=//*[@id="mat-select-8"]/div
     Execute JavaScript  document.querySelector('#mat-select-8 > div').click(); setTimeout(() => { const options = document.querySelectorAll('mat-option'); options.forEach(option => { if (option.innerText.includes('2024')) { option.click(); document.activeElement.blur(); } }); }, 1000);
 
@@ -180,7 +195,7 @@ When l'utilisateur saisit la référence dans la colonne "Référence parcelle c
         Wait Until Element Is Visible    xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div[4]/div[1]/div/div/div[2]/input  10s
         Wait Until Element Is Enabled    xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div[4]/div[1]/div/div/div[2]/input
         Click Element    xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div[4]/div[1]/div/div/div[2]/input
-        Input Text    xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div[4]/div[1]/div/div/div[2]/input    24110513
+        Input Text    xpath=/html/body/pr-root/div[2]/pr-farming-main/div/div[2]/ag-grid-angular/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div[4]/div[1]/div/div/div[2]/input    ${Ref-tiers}
         Sleep   3s
         Execute JavaScript    document.querySelector('.ag-body-horizontal-scroll-viewport').scrollLeft = 0
         Sleep  0.3s
@@ -218,7 +233,7 @@ Then la liste se met à jour et affiche uniquement la valeur de la parcelle cré
     Should Not Be Empty    ${donnees_par_ligne}
 
 When l'utilisateur clique sur la ligne correspondant à la parcelle
-        Execute Javascript    var updatedRow = document.evaluate("//*[contains(text(), '${REFERENCE_VALUE}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        Execute Javascript    var updatedRow = document.evaluate("//*[contains(text(), '${Ref-tiers}')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
     ...    if (updatedRow) { updatedRow.click(); } else { console.log('Ligne non trouvée'); }
 
 #Then les coupes s'affichent sous la première ligne et vérifiez que : les 5 lignes sont affichées avec les valeurs ajoutée précédemment.
