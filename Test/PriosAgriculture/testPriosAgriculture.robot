@@ -56,6 +56,9 @@ Login And Navigate To Ordres De Livraison
     01_AM_Vente.Then "Z COREAL (ZCO)" est affiché dans le champ
     01_AM_Vente.When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'
     01_AM_Vente.And L'utilisateur saisit le nom "dp_test" et effectue la recherche
+    01_AM_Vente.And l'utilusateur clique sur le bouton 'Loupe'
+
+
 
 
 
