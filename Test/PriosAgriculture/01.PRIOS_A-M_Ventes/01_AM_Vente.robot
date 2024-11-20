@@ -269,7 +269,7 @@ When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
      Sleep    20s
 
      # Attendre que la liste déroulante soit visible
-     #Wait Until Element Is Visible    xpath=//div[@id='widget_a_4ik_id' and contains(@class, 'dijitComboBox') and not(contains(@style, 'visibility: hidden'))]     60s
+     #cdWait Until Element Is Visible    xpath=//div[@id='widget_a_4ik_id' and contains(@class, 'dijitComboBox') and not(contains(@style, 'visibility: hidden'))]     60s
 
 # Cliquer sur l'élément
     Click Element    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='Z COREAL (ZCO)']
@@ -293,3 +293,7 @@ And L'utilisateur saisit le nom "dp_test" et effectue la recherche
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div
     Click Element       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div
     Input Text          xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div/input    ${code_donneur_ordre}
+
+And l'utilusateur clique sur le bouton 'Loupe'
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[2]/div
+    Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[2]/div
