@@ -105,7 +105,6 @@ When l'utilisateur saisit la référence chez le tiers
     Sleep   30s
 
 When l'utilisateur choisit une récolte dans le champ "Récolte"
-    #Wait Until Element Is Visible    xpath=//*[@id="mat-dialog-0"]/pr-farming-cut-create/pr-farming-cut-main/div/mat-dialog-content/div/div/div/div[1]/div[2]/div[2]/mat-grid-list/div/mat-grid-tile[5]/div/pr-common-form-main/div/div[2]     30s
     Wait Until Element Is Visible    xpath=//*[@id="mat-select-8"]/div  20s
     Wait Until Element Is Enabled    xpath=//*[@id="mat-select-8"]/div
     Execute JavaScript  document.querySelector('#mat-select-8 > div').click(); setTimeout(() => { const options = document.querySelectorAll('mat-option'); options.forEach(option => { if (option.innerText.includes('2024')) { option.click(); document.activeElement.blur(); } }); }, 1000);

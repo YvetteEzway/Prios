@@ -54,9 +54,44 @@ Login And Navigate To Ordres De Livraison
     01_AM_Vente.Then "OL Standard (STD)" est affiché dans le champ
     01_AM_Vente.When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
     01_AM_Vente.Then "Z COREAL (ZCO)" est affiché dans le champ
-    01_AM_Vente.When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'
-    01_AM_Vente.And L'utilisateur saisit le nom "dp_test" et effectue la recherche
-    01_AM_Vente.And l'utilusateur clique sur le bouton 'Loupe'
+    #01_AM_Vente.When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'
+    #01_AM_Vente.And L'utilisateur saisit le nom "dp_test" et effectue la recherche
+    #01_AM_Vente.And l'utilusateur clique sur le bouton 'Loupe'
+    #01_AM_Vente.And la liste dans le tableau se met ajour
+    #01_AM_Vente.And l'utilisateur effectue un double-clic sur un résultat avec "DP_TEST TIERS 13"
+    01_AM_Vente.And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
+    01_AM_Vente.And l'utilisateur click sur le bouton enregisterer
+    01_AM_Vente.Then L'utilisateur est redirigeé vers les details des ordres de livraison
+    01_AM_Vente.When l'utilisateur clique sur le bouton + pour ajouter un produit
+    01_AM_Vente.Then Un formulaire de sélection de produit s'affiche dans une fenêtre pop-up
+    01_AM_Vente.And L'utilisateur saisit le nom Produit dans le champ Produit
+    01_AM_Vente.Given l'utilisateur saisit la quantité à livrer dans le champ Quantité
+    01_AM_Vente.When L'utilisateur saisit le Silo dans le champ Silo
+    01_AM_Vente.When l'utilisateur clique sur le bouton enregistrer
+    01_AM_Vente.And l'utiloisateur ajoute un autre produit
+    01_AM_Vente.Given l'utilisateur saisit la quantité à livrer2 dans le champ Quantité
+    01_AM_Vente.When L'utilisateur saisit le Silo2 dans le champ Silo
+    01_AM_Vente.When l'utilisateur clique sur le bouton enregistrer1
+    01_AM_Vente.When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bouton Fermer
+    01_AM_Vente.Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
+    01_AM_Vente.And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
+    01_AM_Vente.When L'utilisateur clique sur le bouton 'Valider'
+    01_AM_Vente.Then Une fenêtre de confirmation affiche les informations suivantes
+    01_AM_Vente.And cliquer sur enregistrer pour enregistrer les informations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

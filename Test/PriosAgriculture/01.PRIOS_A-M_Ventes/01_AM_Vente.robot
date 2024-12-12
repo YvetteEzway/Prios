@@ -2,6 +2,10 @@
 Library    SeleniumLibrary    run_on_failure=Capture Page Screenshot
 Library    OperatingSystem
 Library    RequestsLibrary
+Library    BuiltIn
+Library    String
+Library    BuiltIn
+
 
 
 *** Variables ***
@@ -35,6 +39,18 @@ ${FIELD-ID4}         xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/
 ${FIELD-ID5}         xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[3]/input
 ${code_donneur_ordre}         84_TEST13
 
+${TABLE_HADERS_XPATH}     xpath=//div[contains(@class, 'dijitDialog')][last()]//th[contains(@class, 'dgrid-cell')]//div[contains(@class, 'dgrid-resize-header-container')]
+
+${TABLE_CELLS_XPATH}    xpath=//div[contains(@class, 'dijitDialog')][last()]//table/tr/td
+${TABLE_CELLS_XPATH1}    xpath=//div[contains(@class, 'dijitDialog')][last()]//table/tr/td[first()]
+
+${TABLE_HADERS_ENTETE}  xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[4]/div[1]/table/tr
+
+
+${TABLE_CELLS_DET}       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[4]/div[2]/div/div[2]/table/tr[position()=1 or position()=2]/td
+
+
+${HORIZONTAL_SCROLL_ELEMENT_XPATH}     xpath=//*[@id="a_a5s_id"]
 
 *** Keywords ***
 Given L'utilisateur se trouve sur la page "Plateformes métier"
@@ -272,6 +288,7 @@ When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
      #cdWait Until Element Is Visible    xpath=//div[@id='widget_a_4ik_id' and contains(@class, 'dijitComboBox') and not(contains(@style, 'visibility: hidden'))]     60s
 
 # Cliquer sur l'élément
+    Wait Until Element Is Visible    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='Z COREAL (ZCO)']      30s
     Click Element    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='Z COREAL (ZCO)']
     Capture Page Screenshot
 
@@ -284,16 +301,235 @@ Then "Z COREAL (ZCO)" est affiché dans le champ
     Should Not Be Empty    ${field_value}    msg=Le champ Site a une valeur 'Z COREAL (ZCO) '.
     Log    Le champ Site a une valeur 'Z COREAL (ZCO)'.
 
-When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]
+#When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'
+    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]
 
-    Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]
-    Sleep    10s
-And L'utilisateur saisit le nom "dp_test" et effectue la recherche
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div
-    Click Element       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div
-    Input Text          xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div/input    ${code_donneur_ordre}
+    #Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]
+    #Sleep    10s
+#And L'utilisateur saisit le nom "dp_test" et effectue la recherche
+    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div
+    #Click Element       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div
+    #Input Text          xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div/input    ${code_donneur_ordre}
 
-And l'utilusateur clique sur le bouton 'Loupe'
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[2]/div
-    Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[2]/div
+#And l'utilusateur clique sur le bouton 'Loupe'
+    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[2]/div
+    #Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[2]/div
+    #Sleep    20s
+
+#And la liste dans le tableau se met ajour
+       #${donnees_premier_ligne}=    Create Dictionary
+
+         #${entetes_colonne}=    Get WebElements    ${TABLE_HADERS_XPATH}
+         #${cellules}=    Get WebElements    ${TABLE_CELLS_XPATH}
+
+        # FOR    ${index}   ${entete}    IN ENUMERATE   @{entetes_colonne}
+            #${texte_entete_brut}=    Get Text    ${entete}
+            #Log    Entête brut ${index}: '${texte_entete_brut}'
+            #${texte_entete}=    Replace String    ${texte_entete_brut}    \n    ' '
+            #${texte_entete}=    Strip String    ${texte_entete}
+            #Log    Entête nettoyé ${index}: '${texte_entete}'
+
+            #${texte_cellule}=    Get Text    ${cellules}[${index}]
+            #${texte_cellule}=    Replace String    ${texte_cellule}    \n    ' '
+            #${texte_cellule}=    Strip String    ${texte_cellule}
+
+            #Set To Dictionary    ${donnees_premier_ligne}    ${index}${texte_entete}=${texte_cellule}
+         #END
+
+        #Log    ${donnees_premier_ligne}
+        #Should Not Be Empty    ${donnees_premier_ligne}
+
+
+#And l'utilisateur effectue un double-clic sur un résultat avec "DP_TEST TIERS 13"
+
+   # Wait Until Element Is Visible    ${TABLE_CELLS_XPATH1}    timeout=10s
+
+   # ${elements}    Get WebElements    ${TABLE_CELLS_XPATH1}
+    #Length Should Be    ${elements}    1    The XPath must match exactly one element.
+
+
+    #Execute Javascript    arguments[0].dispatchEv
+    #${element}    Get WebElement    ${TABLE_CELLS_XPATH1}
+    #Log To Console    WebElement: ${element}ent(new MouseEvent('dblclick', {bubbles: true, cancelable: true, view: window}));    ${element}
+
+    # Vérification après le double clic
+    #Log    Double click performed successfully.
+
+And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
+   
+   # D'abord saisir le code donneur d'ordre
+   Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[13]/div/input
+   Input Text    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[13]/div/input    ${code_donneur_ordre}
+
+   # Utiliser TAB pour passer aux champs suivants et récupérer les données
+   Press Keys    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[13]/div/input    TAB
+
+   # Attendre que les autres champs soient remplis automatiquement
+   Sleep    2s
+
+And l'utilisateur click sur le bouton enregisterer
+    # Réduire le zoom de la page à 80%
+    Execute JavaScript    document.body.style.zoom = '80%'
+    Sleep    1s
+
+    # Faire défiler jusqu'au bouton d'enregistrement avec un offset vertical
+    Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[8]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
+    Sleep    2s
+
+    # Attendre et cliquer sur le bouton
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[12]    10s
+    Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[12]
+
+Then L'utilisateur est redirigeé vers les details des ordres de livraison
+     Execute JavaScript    document.body.style.zoom = '80%'
+
+    [Documentation]    Vérifie que la page affiche le titre des détails des ordres de livraison
+    Wait Until Page Contains    Détails ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    60s
+    Log    Le titre "Détails ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page
+
+When l'utilisateur clique sur le bouton + pour ajouter un produit
+
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[3]/div[1]/div[1]/div[1]/table/tbody/tr[1]/td/img
+    Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[3]/div[1]/div[1]/div[1]/table/tbody/tr[1]/td/img
+    Sleep    2s
+
+Then Un formulaire de sélection de produit s'affiche dans une fenêtre pop-up
+
+    [Documentation]
+    Wait Until Page Contains    Détail ordre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU    60s
+    Log    Le titre "Détail ordre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page
+
+And L'utilisateur saisit le nom Produit dans le champ Produit 
+
+   Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[3]/div/input
+   Input Text    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[3]/div/input    DPT1
+   Press Keys    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[3]/div/input   TAB
+   Sleep    2s
+
+Given l'utilisateur saisit la quantité à livrer dans le champ Quantité
+
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[25]/div/input
+    Input Text    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[25]/div/input    1.500
+    Sleep   2s
+When L'utilisateur saisit le Silo dans le champ Silo
+
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[76]/div/input
+    Input Text    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[76]/div/input     S1
+
+    # Utiliser TAB pour passer aux champs suivants et récupérer les données
+    Press Keys    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[76]/div/input     TAB
+    Sleep   2s
+    
+When l'utilisateur clique sur le bouton enregistrer
+   # Réduire le zoom de la page à 80%
+    Execute JavaScript    document.body.style.zoom = '67%'
+    Sleep    1s
+
+   Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
+   Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
+   Sleep    2s
+
+And l'utiloisateur ajoute un autre produit
+   Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[3]/div/input
+   Input Text    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[3]/div/input    DPT2
+   Press Keys    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[3]/div/input   TAB
+   Sleep    2s
+
+Given l'utilisateur saisit la quantité à livrer2 dans le champ Quantité
+
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[25]/div/input
+    Input Text    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[25]/div/input    3.000
+    Sleep   2s
+When L'utilisateur saisit le Silo2 dans le champ Silo
+
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[76]/div/input
+    Input Text    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[76]/div/input     S1
+
+    # Utiliser TAB pour passer aux champs suivants et récupérer les données
+    Press Keys    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[76]/div/input     TAB
+    Sleep   2s
+
+When l'utilisateur clique sur le bouton enregistrer1
+
+   Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
+   Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
+   Sleep    1s
+   Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
+   Sleep    10s
+
+
+When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bouton Fermer
+  #a_3rx4_id  /html/body/div[2]/div[1]/div[10]/div[1]/table/tbody/tr/td[3]/div/span[5]   /html/body/div[2]/div[1]/div[10]/div[1]/table/tbody/tr/td[3]/div/span[5]/span
+    Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
+    Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
+    Sleep  10s
+
+Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
+    Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
+    Sleep    1s
+    Wait Until Page Contains    Détail(s) de l'ordre de livraison    60s
+    Log  Détail(s) de l'ordre de livraison
+
+And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
+    Execute JavaScript    document.body.style.zoom = '80%'
+    Sleep    1s
+    ${donnees_tableau}=    Create List
+
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dgrid-content')]    timeout=20s
+
+    # Récupérer les en-têtes
+    ${entetes}=    Get WebElements    ${TABLE_HADERS_ENTETE}
+    ${noms_entetes}=    Create List
+    FOR    ${entete}    IN    @{entetes}
+        ${texte_entete}=    Get Text    ${entete}
+        Append To List    ${noms_entetes}    ${texte_entete}
+    END
+    Log    En-têtes du tableau: ${noms_entetes}
+
+    # Récupérer les données
+    ${lignes}=    Get WebElements    xpath=//div[contains(@class, 'dgrid-row')]
+
+    FOR    ${ligne}    IN    @{lignes}
+        ${ligne_id}=    Get Element Attribute    ${ligne}    id
+        ${cellules}=    Get WebElements    ${TABLE_CELLS_DET}
+
+        ${ligne_donnees}=    Create Dictionary
+        ${textes_cellules}=    Create List
+
+        FOR    ${index}    ${cellule}    IN ENUMERATE    @{cellules}
+            ${texte}=    Get Text    ${cellule}
+            # Associer chaque valeur avec son en-tête
+            Set To Dictionary    ${ligne_donnees}    ${texte_entete}[${index}]=${texte}
+        END
+
+        Append To List    ${donnees_tableau}    ${ligne_donnees}
+    END
+
+    Log    Données complètes: ${donnees_tableau}
+    Should Not Be Empty    ${donnees_tableau}
+    Sleep    2s
+
+When L'utilisateur clique sur le bouton 'Valider'
+
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=30s
+    Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
+    Sleep    2s
+
+Then Une fenêtre de confirmation affiche les informations suivantes
+
+    Wait Until Element Is Visible        xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[33]/div[3]
+    Wait Until Element Is Visible         xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[33]/div[3]/input
+    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[33]/div[3]/input
+    ${texte_a_saisir}    Set Variable    5 - JOURNEE (105)
+    Input Text    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[33]/div[3]/input    ${texte_a_saisir}
+    Sleep    1s
+#And cliquer sur enregistrer pour enregistrer les informations
+
+   #Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
+   #Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
+
+
+
+
+
+
