@@ -523,13 +523,48 @@ Then Une fenêtre de confirmation affiche les informations suivantes
     ${texte_a_saisir}    Set Variable    5 - JOURNEE (105)
     Input Text    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[33]/div[3]/input    ${texte_a_saisir}
     Sleep    1s
-#And cliquer sur enregistrer pour enregistrer les informations
+    Click Element   xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[33]/div[1]/input
+    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[33]/div[1]/input
+    Sleep    3s
+    Click Element    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='5 - JOURNEE (105)']
 
-   #Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
-   #Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
+And cliquer sur enregistrer pour enregistrer les informations
 
+   Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
+   Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
+    Sleep  30s
 
+Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvre dans un nouvel onglet avec le statut validé
+    # Get all window handles
+    ${handles}=    Get Window Handles
 
+    # Switch to the new tab (last handle in the list)
+    Switch Window    ${handles}[-1]
 
+    # Verify we are on the PDF tab
+    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
 
+    # Optional: Switch back to main window if needed
+    Switch Window    ${handles}[1]
+    log  L'utilisateur est redirigé vers un formulaire contenant une liste des 'Ordres de livraison'
+    Sleep    3s
+                                ##Transformation d'une commande OL en BL #
 
+#When L'utilisateur clique sur le bouton 'Loupe'
+   #Wait Until Element Is Visible     xpath=/html/body/div[2]/div[1]/div[7]/div[4]/div[49]/div[1]/div/div[1]
+  # Click Element    xptah=//*[@id="a_96l_id"]/div[1]/div/div[1]/table/tbody/tr[1]/td
+
+When l'utilisateur double-clique sur la ligne
+    Sleep    2s
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dgrid-content')]//td    timeout=30s
+    Execute Javascript
+    ...    var cells = document.evaluate("//div[contains(@class, 'dgrid-content')]//td[contains(text(), 'EARL DP_TEST TIERS 13')]", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+    ...    if (cells.snapshotLength > 0) {
+    ...        var event = new MouseEvent('dblclick', {
+    ...            'view': window,
+    ...            'bubbles': true,
+    ...            'cancelable': true
+    ...        });
+    ...        cells.snapshotItem(0).dispatchEvent(event);
+    ...    }
+    Sleep    2s
