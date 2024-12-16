@@ -54,7 +54,6 @@ Login And Navigate To Ordres De Livraison
     01_AM_Vente.Then "OL Standard (STD)" est affiché dans le champ
     01_AM_Vente.When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
     01_AM_Vente.Then "Z COREAL (ZCO)" est affiché dans le champ
-    #01_AM_Vente.When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'
     #01_AM_Vente.And L'utilisateur saisit le nom "dp_test" et effectue la recherche
     #01_AM_Vente.And l'utilusateur clique sur le bouton 'Loupe'
     #01_AM_Vente.And la liste dans le tableau se met ajour
@@ -78,6 +77,9 @@ Login And Navigate To Ordres De Livraison
     01_AM_Vente.When L'utilisateur clique sur le bouton 'Valider'
     01_AM_Vente.Then Une fenêtre de confirmation affiche les informations suivantes
     01_AM_Vente.And cliquer sur enregistrer pour enregistrer les informations
+    01_AM_Vente.Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvre dans un nouvel onglet avec le statut validé
+
+
 
 
 
