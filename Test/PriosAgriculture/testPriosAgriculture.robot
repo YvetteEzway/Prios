@@ -78,7 +78,6 @@ Login And Navigate To Ordres De Livraison
     01_AM_Vente.Then Une fenêtre de confirmation affiche les informations suivantes
     01_AM_Vente.And cliquer sur enregistrer pour enregistrer les informations
     01_AM_Vente.Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvre dans un nouvel onglet avec le statut validé
-    01_AM_Vente.When l'utilisateur double-clique sur la ligne
 
 
 
