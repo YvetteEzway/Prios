@@ -223,7 +223,6 @@ And Si une commande a déjà été créée, alors le formulaire récupère les i
 
     # Attendre que le parent de l'élément soit visible
     Wait Until Element Is Visible    ${PARENT_XPATH}    timeout=20s
-
     # Attendre que l'élément soit visible
     Wait Until Element Is Visible    ${FIELD_ID}    timeout=20s
 
