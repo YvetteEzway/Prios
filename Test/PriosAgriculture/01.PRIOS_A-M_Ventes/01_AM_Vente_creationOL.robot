@@ -223,7 +223,6 @@ And Si une commande a déjà été créée, alors le formulaire récupère les i
 
     # Attendre que le parent de l'élément soit visible
     Wait Until Element Is Visible    ${PARENT_XPATH}    timeout=20s
-
     # Attendre que l'élément soit visible
     Wait Until Element Is Visible    ${FIELD_ID}    timeout=20s
 
@@ -548,4 +547,5 @@ Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvr
     Switch Window    ${handles}[1]
     log  L'utilisateur est redirigé vers un formulaire contenant une liste des 'Ordres de livraison'
     Sleep    3s
+
                                
