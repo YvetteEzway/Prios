@@ -62,7 +62,6 @@ Then Le formulaire d'ordre de livraison est affiché avec les champs initialisé
     Should Be Equal As Strings    ${readonly}    true    msg=Le champ est en lecture seule.
     Log   Le champ est grisé et en mode lecture seule.
 
-
     # Attendre que l'élément soit visible
     Wait Until Element Is Visible    ${FIELD_ID2}    timeout=30s
 
@@ -98,7 +97,6 @@ Then Le formulaire d'ordre de livraison est affiché avec les champs initialisé
     Should Not Be Empty    ${field_value}    msg=Le champ a une valeur.
     Log    Le champ Date de livraison souhait a une valeur.
 
-
     Wait Until Element Is Visible    ${FIELD-ID7}     timeout=20s
 
     # Vérifier que le champ a une valeur non vide
@@ -124,3 +122,38 @@ When L'utilisateur clique sur "Détails" puis continue
     Wait Until Element Is Visible   xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[11]
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[11]
     Sleep    10s
+Then L'utilisateur est redirigé vers la fenêtre de détails de l'ordre de livraison
+    [Documentation]
+    Wait Until Page Contains    Détail(s) de l'ordre de livraison    timeout=20s
+    Log    L'utilisateur est redirigé vers la fenêtre de détails de l'ordre de livraison.
+
+When L'utilisateur clique sur "Validation Particulière"
+    Wait Until Element Is Visible   xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[10]
+    Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[10]
+    Sleep    2s
+
+Then Un pop-up de validation particulière s'affiche avec les cases à cocher:
+    [Documentation]    Vérification de plusieurs éléments sur la page
+    Wait Until Page Contains    En attente    timeout=20s
+    Wait Until Page Contains    En attente de validation du responsable    timeout=20s
+    Wait Until Page Contains    En attente d'ordonnance    timeout=20s
+    Wait Until Page Contains    En attente pour cause de litige    timeout=20s
+    Wait Until Page Contains    Validée et BL généré    timeout=20s
+    Log    L'utilisateur est redirigé vers la fenêtre de détails de l'ordre de livraison.
+    Log    Les cases à cocher suivants ont été vérifiés avec succès:
+    Log    - En attente
+    Log    - En attente de validation du responsable
+    Log    - En attente d'ordonnance
+    Log    - En attente pour cause de litige
+    Log    - Validée et BL généré
+
+When L'utilisateur coche la case 'Validée et BL généré'
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[9]/div/div[1]/input
+    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[9]/div/div[1]/input
+    Sleep    2s
+
+
+And l'utilisateur clique sur "Enregistrer"
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[6]    10s
+    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[6]
+

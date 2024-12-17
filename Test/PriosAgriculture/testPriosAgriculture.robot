@@ -36,7 +36,6 @@ Login And Navigate To Ordres De Livraison
     login_page.Input Password    ${PASSWORD}
     Capture Page Screenshot    password.png
     login_page.Click Login Button
-<<<<<<< HEAD
     01_AM_Vente_creationOL.Given L'utilisateur se trouve sur la page "Plateformes métier"
     01_AM_Vente_creationOL.When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
     01_AM_Vente_creationOL.Then Il est redirigé vers une nouvelle page avec les menus de navigation
@@ -81,51 +80,11 @@ Login And Navigate To Ordres De Livraison
     02_AM_Vente_Transformation_OL_en_BL.When l'utilisateur double-clique sur la ligne
     02_AM_Vente_Transformation_OL_en_BL.Then Le formulaire d'ordre de livraison est affiché avec les champs initialisés: Preneur d'ordre,Type d'ordre de livraison, Site,Date de livraison souhait,Date de départ,Date de l'ordre de livraison, Moment
     02_AM_Vente_Transformation_OL_en_BL.When L'utilisateur clique sur "Détails" puis continue
-=======
-    01_AM_Vente.Given L'utilisateur se trouve sur la page "Plateformes métier"
-    01_AM_Vente.When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
-    01_AM_Vente.Then Il est redirigé vers une nouvelle page avec les menus de navigation
-    01_AM_Vente.Then Les menus de navigation affichent les options suivantes dans les premières "8" options :
-    01_AM_Vente.Then Les menus de navigation affichent les options suivantes :
-    01_AM_Vente.When L'utilisateur clique sur "PRIOS A-M Ventes"
-    01_AM_Vente.Then L'affichage de la page présente les fonctions suivantes dans la première partie de la deuxième colonne :
-    01_AM_Vente.Then L'affichage de la page présente les fonctions suivantes dans la seconde partie de la deuxième colonne :
-    01_AM_Vente.When L'utilisateur sélectionne "Ordres de livraison" dans la deuxième colonne
-    01_AM_Vente.Then Les fonctions suivantes apparaissent dans la première partie de la troisième colonne :
-    01_AM_Vente.Then Les fonctions suivantes apparaissent dans la seconde partie de la troisième colonne :
-    01_AM_Vente.When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
-    01_AM_Vente.Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'ordres de livraison
-    01_AM_Vente.When L'utilisateur clique sur le bouton "+"
-    01_AM_Vente.Then L'utilisateur est redirigé vers un formulaire pour ajouter un nouvel ordre de livraison
-    01_AM_Vente.And Si une commande a déjà été créée, alors le formulaire récupère les informations précédemment saisies pour le Preneur d'ordre
-    01_AM_Vente.L'utilisateur sélectionne un type d'ordre de livraison : "OL Standard (STD)"
-    01_AM_Vente.Then "OL Standard (STD)" est affiché dans le champ
-    01_AM_Vente.When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
-    01_AM_Vente.Then "Z COREAL (ZCO)" est affiché dans le champ
-    #01_AM_Vente.And L'utilisateur saisit le nom "dp_test" et effectue la recherche
-    #01_AM_Vente.And l'utilusateur clique sur le bouton 'Loupe'
-    #01_AM_Vente.And la liste dans le tableau se met ajour
-    #01_AM_Vente.And l'utilisateur effectue un double-clic sur un résultat avec "DP_TEST TIERS 13"
-    01_AM_Vente.And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
-    01_AM_Vente.And l'utilisateur click sur le bouton enregisterer
-    01_AM_Vente.Then L'utilisateur est redirigeé vers les details des ordres de livraison
-    01_AM_Vente.When l'utilisateur clique sur le bouton + pour ajouter un produit
-    01_AM_Vente.Then Un formulaire de sélection de produit s'affiche dans une fenêtre pop-up
-    01_AM_Vente.And L'utilisateur saisit le nom Produit dans le champ Produit
-    01_AM_Vente.Given l'utilisateur saisit la quantité à livrer dans le champ Quantité
-    01_AM_Vente.When L'utilisateur saisit le Silo dans le champ Silo
-    01_AM_Vente.When l'utilisateur clique sur le bouton enregistrer
-    01_AM_Vente.And l'utiloisateur ajoute un autre produit
-    01_AM_Vente.Given l'utilisateur saisit la quantité à livrer2 dans le champ Quantité
-    01_AM_Vente.When L'utilisateur saisit le Silo2 dans le champ Silo
-    01_AM_Vente.When l'utilisateur clique sur le bouton enregistrer1
-    01_AM_Vente.When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bouton Fermer
-    01_AM_Vente.Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
-    01_AM_Vente.And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
-    01_AM_Vente.When L'utilisateur clique sur le bouton 'Valider'
-    01_AM_Vente.Then Une fenêtre de confirmation affiche les informations suivantes
-    01_AM_Vente.And cliquer sur enregistrer pour enregistrer les informations
-    01_AM_Vente.Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvre dans un nouvel onglet avec le statut validé
+    02_AM_Vente_Transformation_OL_en_BL.Then L'utilisateur est redirigé vers la fenêtre de détails de l'ordre de livraison
+    02_AM_Vente_Transformation_OL_en_BL.When L'utilisateur clique sur "Validation Particulière"
+    02_AM_Vente_Transformation_OL_en_BL.Then Un pop-up de validation particulière s'affiche avec les cases à cocher:
+    02_AM_Vente_Transformation_OL_en_BL.When L'utilisateur coche la case 'Validée et BL généré'
+    02_AM_Vente_Transformation_OL_en_BL.And l'utilisateur clique sur "Enregistrer"
 
 
 
@@ -143,7 +102,8 @@ Login And Navigate To Ordres De Livraison
 
 
 
->>>>>>> 83b06cc0f115e08b40660efbdd9baa397dfca00f
+
+
 
 
 

@@ -547,7 +547,5 @@ Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvr
     Switch Window    ${handles}[1]
     log  L'utilisateur est redirigé vers un formulaire contenant une liste des 'Ordres de livraison'
     Sleep    3s
-<<<<<<< HEAD:Test/PriosAgriculture/01.PRIOS_A-M_Ventes/01_AM_Vente_creationOL.robot
-=======
+
                                
->>>>>>> 83b06cc0f115e08b40660efbdd9baa397dfca00f:Test/PriosAgriculture/01.PRIOS_A-M_Ventes/01_AM_Vente.robot
