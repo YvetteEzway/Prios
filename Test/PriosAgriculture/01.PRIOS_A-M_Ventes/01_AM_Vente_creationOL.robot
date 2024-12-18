@@ -284,7 +284,6 @@ When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
      Sleep    20s
 
      # Attendre que la liste déroulante soit visible
-     #cdWait Until Element Is Visible    xpath=//div[@id='widget_a_4ik_id' and contains(@class, 'dijitComboBox') and not(contains(@style, 'visibility: hidden'))]     60s
 
 # Cliquer sur l'élément
     Wait Until Element Is Visible    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='Z COREAL (ZCO)']      30s
@@ -299,60 +298,6 @@ Then "Z COREAL (ZCO)" est affiché dans le champ
     ${field_value}=    Get Value    ${FIELD-ID5}
     Should Not Be Empty    ${field_value}    msg=Le champ Site a une valeur 'Z COREAL (ZCO) '.
     Log    Le champ Site a une valeur 'Z COREAL (ZCO)'.
-
-#When L'utilisateur recherche le 'Tiers donneur d'ordre' en cliquant sur le bouton 'loupe'
-    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]
-
-    #Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/button[2]
-    #Sleep    5s
-#And L'utilisateur saisit le nom "dp_test" et effectue la recherche
-    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div
-    #Click Element       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div
-    #Input Text          xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[14]/div/input    ${code_donneur_ordre}
-
-#And l'utilusateur clique sur le bouton 'Loupe'
-    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[2]/div
-    #Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[2]/div
-    #Sleep    10s
-
-#And la liste dans le tableau se met ajour
-       #${donnees_premier_ligne}=    Create Dictionary
-
-         #${entetes_colonne}=    Get WebElements    ${TABLE_HADERS_XPATH}
-         #${cellules}=    Get WebElements    ${TABLE_CELLS_XPATH}
-
-        # FOR    ${index}   ${entete}    IN ENUMERATE   @{entetes_colonne}
-            #${texte_entete_brut}=    Get Text    ${entete}
-            #Log    Entête brut ${index}: '${texte_entete_brut}'
-            #${texte_entete}=    Replace String    ${texte_entete_brut}    \n    ' '
-            #${texte_entete}=    Strip String    ${texte_entete}
-            #Log    Entête nettoyé ${index}: '${texte_entete}'
-
-            #${texte_cellule}=    Get Text    ${cellules}[${index}]
-            #${texte_cellule}=    Replace String    ${texte_cellule}    \n    ' '
-            #${texte_cellule}=    Strip String    ${texte_cellule}
-
-            #Set To Dictionary    ${donnees_premier_ligne}    ${index}${texte_entete}=${texte_cellule}
-         #END
-
-        #Log    ${donnees_premier_ligne}
-        #Should Not Be Empty    ${donnees_premier_ligne}
-
-
-#And l'utilisateur effectue un double-clic sur un résultat avec "DP_TEST TIERS 13"
-
-   # Wait Until Element Is Visible    ${TABLE_CELLS_XPATH1}    timeout=10s
-
-   # ${elements}    Get WebElements    ${TABLE_CELLS_XPATH1}
-    #Length Should Be    ${elements}    1    The XPath must match exactly one element.
-
-
-    #Execute Javascript    arguments[0].dispatchEv
-    #${element}    Get WebElement    ${TABLE_CELLS_XPATH1}
-    #Log To Console    WebElement: ${element}ent(new MouseEvent('dblclick', {bubbles: true, cancelable: true, view: window}));    ${element}
-
-    # Vérification après le double clic
-    #Log    Double click performed successfully.
 
 And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
    
