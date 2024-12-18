@@ -26,9 +26,9 @@ When L'utilisateur clique sur le bouton 'Loupe'
     Wait Until Element Is Visible    xpath=//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]      timeout=30s
 
     Execute JavaScript    document.evaluate("//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
-    Sleep    30s
+    Sleep    10s
     Click Element    xpath=//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]
-    Sleep    60s
+    Sleep    20s
 
 
 When l'utilisateur double-clique sur la ligne
@@ -75,14 +75,14 @@ Then Le formulaire d'ordre de livraison est affiché avec les champs initialisé
     Should Be Equal As Strings    ${readonly}    true    msg=Le champ est en lecture seule.
     Log   Le champ est grisé et en mode lecture seule.
 
-     Wait Until Element Is Visible    ${FIELD-ID4}    timeout=60s
+     Wait Until Element Is Visible    ${FIELD-ID4}    timeout=20s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID4}
     Should Not Be Empty    ${field_value}    msg=Le champ type d'ordre de livraison a une valeur 'OL Standard (STD)' '.
     Log    Le champ type d'ordre de livraison a une valeur 'OL Standard (STD)'.
 
-    Wait Until Element Is Visible    ${FIELD-ID5}    timeout=10s
+    Wait Until Element Is Visible    ${FIELD-ID5}    timeout=5s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID5}
@@ -90,28 +90,28 @@ Then Le formulaire d'ordre de livraison est affiché avec les champs initialisé
     Log    Le champ Site a une valeur 'Z COREAL (ZCO)'.
 
  # Attendre que l'élément soit visible
-    Wait Until Element Is Visible    ${FIELD-ID6}     timeout=10s
+    Wait Until Element Is Visible    ${FIELD-ID6}     timeout=5s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID6}
     Should Not Be Empty    ${field_value}    msg=Le champ a une valeur.
     Log    Le champ Date de livraison souhait a une valeur.
 
-    Wait Until Element Is Visible    ${FIELD-ID7}     timeout=10s
+    Wait Until Element Is Visible    ${FIELD-ID7}     timeout=5s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID7}
     Should Not Be Empty    ${field_value}    msg=Le champ a une valeur.
     Log    Le champ Date de départ a une valeur.
 
-    Wait Until Element Is Visible    ${FIELD-ID8}     timeout=10s
+    Wait Until Element Is Visible    ${FIELD-ID8}     timeout=5s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID8}
     Should Not Be Empty    ${field_value}    msg=Le champ a une valeur.
     Log    Le champ Date de l'ordre de livraison a une valeur.
 
-     Wait Until Element Is Visible    ${FIELD-ID9}     timeout=10s
+     Wait Until Element Is Visible    ${FIELD-ID9}     timeout=5s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID9}
@@ -121,10 +121,10 @@ Then Le formulaire d'ordre de livraison est affiché avec les champs initialisé
 When L'utilisateur clique sur "Détails" puis continue
     Wait Until Element Is Visible   xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[11]
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[11]
-    Sleep    10s
+    Sleep    5s
 Then L'utilisateur est redirigé vers la fenêtre de détails de l'ordre de livraison
     [Documentation]
-    Wait Until Page Contains    Détail(s) de l'ordre de livraison    timeout=20s
+    Wait Until Page Contains    Détail(s) de l'ordre de livraison    timeout=10s
     Log    L'utilisateur est redirigé vers la fenêtre de détails de l'ordre de livraison.
 
 When L'utilisateur clique sur "Validation Particulière"
@@ -134,11 +134,11 @@ When L'utilisateur clique sur "Validation Particulière"
 
 Then Un pop-up de validation particulière s'affiche avec les cases à cocher:
     [Documentation]    Vérification de plusieurs éléments sur la page
-    Wait Until Page Contains    En attente    timeout=10s
+    Wait Until Page Contains    En attente    timeout=5s
     Wait Until Page Contains    En attente de validation du responsable    timeout=10s
     Wait Until Page Contains    En attente d'ordonnance    timeout=10s
-    Wait Until Page Contains    En attente pour cause de litige    timeout=10s
-    Wait Until Page Contains    Validée et BL généré    timeout=10s
+    Wait Until Page Contains    En attente pour cause de litige    timeout=5s
+    Wait Until Page Contains    Validée et BL généré    timeout=5s
     Log    L'utilisateur est redirigé vers la fenêtre de détails de l'ordre de livraison.
     Log    Les cases à cocher suivants ont été vérifiés avec succès:
     Log    - En attente
