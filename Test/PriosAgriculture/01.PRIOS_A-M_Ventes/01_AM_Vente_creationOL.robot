@@ -64,7 +64,7 @@ When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Pl
 
 Then Il est redirigé vers une nouvelle page avec les menus de navigation
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
-    Wait Until Page Contains    Prios    100s
+    Wait Until Page Contains    Prios    60s
 
 Then Les menus de navigation affichent les options suivantes dans les premières "8" options :
 
@@ -72,7 +72,7 @@ Then Les menus de navigation affichent les options suivantes dans les premières
     # Ouvrir l'onglet contenant les options (assurez-vous que vous êtes dans le bon onglet)
     ${handles} =    Get Window Handles
     Switch Window    ${handles}[-1]
-    Sleep    100s
+    Sleep    60s
 
     # Vérifier chaque option avec un défilement si nécessaire
     FOR    ${option}    IN    @{OPTIONS}
