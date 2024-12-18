@@ -367,10 +367,6 @@ And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
    Sleep    2s
 
 And l'utilisateur click sur le bouton enregisterer
-    # Réduire le zoom de la page à 80%
-    Execute JavaScript    document.body.style.zoom = '80%'
-    Sleep    1s
-
     # Faire défiler jusqu'au bouton d'enregistrement avec un offset vertical
     Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[8]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
     Sleep    2s
@@ -419,7 +415,6 @@ When L'utilisateur saisit le Silo dans le champ Silo
     Sleep   2s
     
 When l'utilisateur clique sur le bouton enregistrer
-   # Réduire le zoom de la page à 80%
     Execute JavaScript    document.body.style.zoom = '67%'
     Sleep    1s
 
