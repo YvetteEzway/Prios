@@ -64,7 +64,7 @@ When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Pl
 
 Then Il est redirigé vers une nouvelle page avec les menus de navigation
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
-    Wait Until Page Contains    Prios    60s
+    Wait Until Page Contains    Prios    30s
 
 Then Les menus de navigation affichent les options suivantes dans les premières "8" options :
 
@@ -259,13 +259,6 @@ And Si une commande a déjà été créée, alors le formulaire récupère les i
     Click Element                    xpath=(//input[@value='▼ '])[7]
     Sleep    20s
 
-    # Attendre que la liste déroulante soit visible
-    Wait Until Element Is Visible    xpath=//div[@class='dijitPopup dijitComboBoxMenuPopup' and not(contains(@style, 'display: none'))]    100s
-
-# Cliquer sur l'élément OL Standard (STD)
-    Click Element    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='OL Standard (STD)']
-    Capture Page Screenshot
-
 Then "OL Standard (STD)" est affiché dans le champ
     Wait Until Element Is Visible    ${FIELD-ID4}    timeout=60s
 
@@ -312,6 +305,7 @@ And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
    Sleep    2s
 
 And l'utilisateur click sur le bouton enregisterer
+     Execute JavaScript    document.body.style.zoom = '80%'
     # Faire défiler jusqu'au bouton d'enregistrement avec un offset vertical
     Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[8]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
     Sleep    2s
@@ -360,7 +354,7 @@ When L'utilisateur saisit le Silo dans le champ Silo
     Sleep   2s
     
 When l'utilisateur clique sur le bouton enregistrer
-    Execute JavaScript    document.body.style.zoom = '67%'
+    #Execute JavaScript    document.body.style.zoom = '67%'
     Sleep    1s
 
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
