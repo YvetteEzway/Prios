@@ -116,6 +116,8 @@ Login And Navigate To Ordres De Livraison
     03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.Then Le motif de forçage du prix Forcage BL (FBL) est sélectionné
     03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur clique sur "Enregistrer"
     03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.Then Les détails du bon de livraison s'affichent, avec le prix correctement appliqué
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.And l'utilisateur ferme le 1er pop up
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.And l'utilisateur ferme le 2eme pop up
     04_AM_Vente_Facturation_dun_BL.And L'utilisateur se trouve sur le menu principal de l'application
     04_AM_Vente_Facturation_dun_BL.When L'utilisateur clique sur "PRIOS A-M Ventes"
     04_AM_Vente_Facturation_dun_BL.When L'utilisateur choisit "Facturation" dans la deuxième colonne

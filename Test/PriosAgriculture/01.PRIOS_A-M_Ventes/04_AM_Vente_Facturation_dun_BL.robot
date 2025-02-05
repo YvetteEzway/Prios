@@ -8,8 +8,6 @@ Library    String
 Library    DateTime
 
 
-
-
 *** Variables ***
 ${FIELD-ID4}        15/01/2025
 ${CALENDAR_BUTTON}     xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div[1]/div/button[1]/div
@@ -25,6 +23,7 @@ ${MENU_OPTION_XPATH}    xpath=//ul[@class='context-menu']//li[contains(text(), '
 
 
 *** Keywords ***
+
 And L'utilisateur se trouve sur le menu principal de l'application
 
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[7]/div[1]/table/tbody/tr/td[3]/div/span[5]      10s
@@ -74,22 +73,37 @@ when L'utilisateur saisit la date du jour dans le champ 'Date de facturation'
     ${current_day} =    Get Current Date    result_format=%d
     ${current_day} =    Evaluate    str(int('${current_day}'))    # Supprimer le zéro devant si nécessaire
     Log    Date du jour : ${current_day}
-# Ouvrir le calendrier
+
+# 1️⃣ Ouvrir le calendrier
     Click Element    ${CALENDAR_BUTTON}
-    Sleep    3s
-    ${date_xpath} =  Set Variable  //span[@class='dijitCalendarDateLabel' and text()='${current_day}']
+    Sleep    3s  # Laisser le temps au calendrier de s'afficher
 
-    Wait Until Element Is Visible    ${date_xpath}    timeout=10s
+# 2️⃣ Vérifier que le calendrier est bien ouvert avant d'aller plus loin
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dijitCalendarContainer')]    timeout=10s
+    Log    Le calendrier est bien affiché
+
+# 3️⃣ Définir le XPath de la date
+    ${date_xpath} =  Set Variable  //span[contains(@class, 'dijitCalendarDateLabel') and normalize-space(text())='${current_day}']
+    Log    XPath généré : ${date_xpath}
+
+# 4️⃣ Vérifier que l'élément est bien présent dans le DOM avant d'aller plus loin
+    ${is_present} =  Run Keyword And Return Status    Page Should Contain Element    ${date_xpath}
+    Log    L'élément est-il présent dans le DOM ? ${is_present}
+
+# 5️⃣ Si l'élément n'est pas immédiatement visible, scroller jusqu'à lui
+    Run Keyword If  '${is_present}' == 'True'
+    ...  Execute JavaScript    return document.evaluate("${date_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+    Sleep    5s
+
+# 6️⃣ Attendre que l'élément soit visible
+    Wait Until Element Is Visible    ${date_xpath}    timeout=20s
     Wait Until Element Is Enabled    ${date_xpath}    timeout=10s
-    Sleep    2s
 
-    # Faire défiler jusqu'à l'élément
-    Execute JavaScript    return document.evaluate("${date_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
-
-    # Double-cliquer sur la date
+# 7️⃣ Double-cliquer sur la date
     Double Click Element    ${date_xpath}
     Sleep    10s
-    Capture Page Screenshot    datefacture.png
+
+    Capture Page Screenshot     debug_calendar_2.png
 
 Then La date du jour s'affiche dans le champ 'Date de facturation'
     ${current_date}=    Get Current Date    result_format=%d/%m/%Y

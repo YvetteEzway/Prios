@@ -187,3 +187,11 @@ Then Les détails du bon de livraison s'affichent, avec le prix correctement app
     Wait Until Page Contains    Détail(s) de bon de livraison
     Log     La page contient bien "Détail(s) de bon de livraison avec le prix correctement appliqué"
 
+And l'utilisateur ferme le 1er pop up
+    Wait Until Element Is Visible   xpath=/html/body/div[2]/div[1]/div[9]/div[1]/table/tbody/tr/td[3]/div/span[5]
+    Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[1]/table/tbody/tr/td[3]/div/span[5]
+    Sleep    3s
+And l'utilisateur ferme le 2eme pop up
+    Wait Until Element Is Visible   xpath=/html/body/div[2]/div[1]/div[8]/div[1]/table/tbody/tr/td[3]/div/span[5]
+    Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[1]/table/tbody/tr/td[3]/div/span[5]
+    Sleep    3s
