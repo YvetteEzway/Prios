@@ -27,14 +27,16 @@ When L'utilisateur clique sur le bouton 'Loupe'
     Wait Until Element Is Visible    xpath=//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]      timeout=30s
 
     Execute JavaScript    document.evaluate("//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
-    Sleep    1s
-    Click Element    xpath=//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]
+
     Sleep    10s
+    Click Element    xpath=//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]
+    Sleep    20s
 
 
 When l'utilisateur double-clique sur la ligne
+    Sleep    2s
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dgrid-content')][last()]//table/tr/td    timeout=10s
 
-    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dgrid-content')][last()]//table/tr/td    timeout=20s
     Execute Javascript
     ...    var element = document.evaluate("//div[contains(@class, 'dgrid-content')][last()]//table/tr/td", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
     ...    var dblClickEvent = new MouseEvent('dblclick', {
@@ -49,10 +51,11 @@ When l'utilisateur double-clique sur la ligne
 
 Then Le formulaire d'ordre de livraison est affiché avec les champs initialisés: Preneur d'ordre,Type d'ordre de livraison, Site,Date de livraison souhait,Date de départ,Date de l'ordre de livraison, Moment
  # Attendre que le parent de l'élément soit visible
-    Wait Until Element Is Visible    ${PARENT_XPATH}    timeout=20s
+    Wait Until Element Is Visible    ${PARENT_XPATH}    timeout=10s
 
     # Attendre que l'élément soit visible
     Wait Until Element Is Visible    ${FIELD_ID}    timeout=40s
+
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD_ID}
@@ -64,7 +67,7 @@ Then Le formulaire d'ordre de livraison est affiché avec les champs initialisé
     Log   Le champ est grisé et en mode lecture seule.
 
     # Attendre que l'élément soit visible
-    Wait Until Element Is Visible    ${FIELD_ID2}    timeout=30s
+    Wait Until Element Is Visible    ${FIELD_ID2}    timeout=10s
 
     # Obtenir la valeur du champ
     ${field_value1}=    Get Value   ${FIELD_ID2}
@@ -76,14 +79,14 @@ Then Le formulaire d'ordre de livraison est affiché avec les champs initialisé
     Should Be Equal As Strings    ${readonly}    true    msg=Le champ est en lecture seule.
     Log   Le champ est grisé et en mode lecture seule.
 
-     Wait Until Element Is Visible    ${FIELD-ID4}    timeout=100s
+     Wait Until Element Is Visible    ${FIELD-ID4}    timeout=20s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID4}
     Should Not Be Empty    ${field_value}    msg=Le champ type d'ordre de livraison a une valeur 'OL Standard (STD)' '.
     Log    Le champ type d'ordre de livraison a une valeur 'OL Standard (STD)'.
 
-    Wait Until Element Is Visible    ${FIELD-ID5}    timeout=20s
+    Wait Until Element Is Visible    ${FIELD-ID5}    timeout=5s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID5}
@@ -91,28 +94,28 @@ Then Le formulaire d'ordre de livraison est affiché avec les champs initialisé
     Log    Le champ Site a une valeur 'Z COREAL (ZCO)'.
 
  # Attendre que l'élément soit visible
-    Wait Until Element Is Visible    ${FIELD-ID6}     timeout=20s
+    Wait Until Element Is Visible    ${FIELD-ID6}     timeout=5s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID6}
     Should Not Be Empty    ${field_value}    msg=Le champ a une valeur.
     Log    Le champ Date de livraison souhait a une valeur.
 
-    Wait Until Element Is Visible    ${FIELD-ID7}     timeout=20s
+    Wait Until Element Is Visible    ${FIELD-ID7}     timeout=5s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID7}
     Should Not Be Empty    ${field_value}    msg=Le champ a une valeur.
     Log    Le champ Date de départ a une valeur.
 
-    Wait Until Element Is Visible    ${FIELD-ID8}     timeout=20s
+    Wait Until Element Is Visible    ${FIELD-ID8}     timeout=5s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID8}
     Should Not Be Empty    ${field_value}    msg=Le champ a une valeur.
     Log    Le champ Date de l'ordre de livraison a une valeur.
 
-     Wait Until Element Is Visible    ${FIELD-ID9}     timeout=20s
+     Wait Until Element Is Visible    ${FIELD-ID9}     timeout=5s
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID9}
@@ -135,11 +138,11 @@ When L'utilisateur clique sur "Validation Particulière"
 
 Then Un pop-up de validation particulière s'affiche avec les cases à cocher:
     [Documentation]    Vérification de plusieurs éléments sur la page
-    Wait Until Page Contains    En attente    timeout=20s
-    Wait Until Page Contains    En attente de validation du responsable    timeout=20s
-    Wait Until Page Contains    En attente d'ordonnance    timeout=20s
-    Wait Until Page Contains    En attente pour cause de litige    timeout=20s
-    Wait Until Page Contains    Validée et BL généré    timeout=20s
+    Wait Until Page Contains    En attente    timeout=5s
+    Wait Until Page Contains    En attente de validation du responsable    timeout=10s
+    Wait Until Page Contains    En attente d'ordonnance    timeout=10s
+    Wait Until Page Contains    En attente pour cause de litige    timeout=5s
+    Wait Until Page Contains    Validée et BL généré    timeout=5s
     Log    L'utilisateur est redirigé vers la fenêtre de détails de l'ordre de livraison.
     Log    Les cases à cocher suivants ont été vérifiés avec succès:
     Log    - En attente
@@ -155,7 +158,7 @@ When L'utilisateur coche la case 'Validée et BL généré'
 
 
 And l'utilisateur clique sur "Enregistrer"
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[6]    10s
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[6]    5s
     Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[6]
     Sleep    30s
 Then Deux documents PDF (OL et BL) sont affichés contenant les informations pour l'ordre de livraison et le Bon de livraison
