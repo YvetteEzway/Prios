@@ -1,10 +1,17 @@
 *** Settings ***
 Library    SeleniumLibrary    run_on_failure=Capture Page Screenshot
-Library    OperatingSystem
 Library    Collections
+Library    OperatingSystem
+Library    Process
+Library    String
+Library    BuiltIn
+
 Resource    Authentification/login_page.robot
 Resource    01.PRIOS_A-M_Ventes/01_AM_Vente_creationOL.robot
 Resource    01.PRIOS_A-M_Ventes/02_AM_Vente_Transformation_OL_en_BL.robot
+Resource    01.PRIOS_A-M_Ventes/03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.robot
+Resource    01.PRIOS_A-M_Ventes/03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.robot
+Resource    01.PRIOS_A-M_Ventes/04_AM_Vente_Facturation_dun_BL.robot
 
 
 *** Variables ***
@@ -85,6 +92,49 @@ Login And Navigate To Ordres De Livraison
     02_AM_Vente_Transformation_OL_en_BL.Then Un pop-up de validation particulière s'affiche avec les cases à cocher:
     02_AM_Vente_Transformation_OL_en_BL.When L'utilisateur coche la case 'Validée et BL généré'
     02_AM_Vente_Transformation_OL_en_BL.And l'utilisateur clique sur "Enregistrer"
+    02_AM_Vente_Transformation_OL_en_BL.Then Deux documents PDF (OL et BL) sont affichés contenant les informations pour l'ordre de livraison et le Bon de livraison
+    #02_AM_Vente_Transformation_OL_en_BL.When L'utilisateur vérifie le statut dans la liste des OL
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.And L'utilisateur se trouve sur le menu principal de l'application
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur clique sur "PRIOS A-M Ventes"
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur sélectionne "Bons de livraison" dans la deuxième colonne
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur sélectionne Bons de livraison dans la troisième colonne
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.Then L'utilisateur L'utilisateur est redirigé vers un formulaire contenant une liste des bons de livraison, avec un bouton pour ajouter, un lien pour modifier les données, ainsi que des filtres pour effectuer des recherches selon différents critères.
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When l'utilisateur clique sur le bouton "Loupe"
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.Then La liste des bons de livraison se met à jour avec les données de chaque BL
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.And Les BL en rouge sont facturés
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur sélectionne un BL non facturé dans la liste, par exemple : EARL DP_TEST TIERS 13
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.Then Le formulaire de BL s'affiche
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur clique sur le bouton "détail"
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.Then L'utilisateur est redirigé vers la fenêtre de détails du bon de livraison
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur sélectionne le produit qui n'a pas de prix net appliqué
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.Then Le formulaire de détails du BL s'ouvre
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur sélectionne l'onglet "Tarification"
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.Then Les informations suivantes s'affichent : Dates appliquées,Tarifs appliqués,Dates proposées,Tarifs proposés,TVA appliquée
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur saisit un prix sur le champ prix brut unitaire forcé sur "Tarifs appliqués"
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When La valeur '100' s'affiche dans le champ "Prix brut unitaire forcé"
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur sélectionne 'Forçage BL (FBL)' sur la liste déroulante : Motif de forçage du prix
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.Then Le motif de forçage du prix Forcage BL (FBL) est sélectionné
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur clique sur "Enregistrer"
+    03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.Then Les détails du bon de livraison s'affichent, avec le prix correctement appliqué
+    04_AM_Vente_Facturation_dun_BL.And L'utilisateur se trouve sur le menu principal de l'application
+    04_AM_Vente_Facturation_dun_BL.When L'utilisateur clique sur "PRIOS A-M Ventes"
+    04_AM_Vente_Facturation_dun_BL.When L'utilisateur choisit "Facturation" dans la deuxième colonne
+    04_AM_Vente_Facturation_dun_BL.When L'utilisateur sélectionne "Traitement de factures" dans la troisième colonne
+    04_AM_Vente_Facturation_dun_BL.Then L'utilisateur est redirigé vers un formulaire contenant une liste des traitements de factures de vente
+    04_AM_Vente_Facturation_dun_BL.When L'utilisateur clique sur le bouton '+'
+    04_AM_Vente_Facturation_dun_BL.Then L'utilisateur est redirigé vers un formulaire pour ajouter un nouveau traitement de facturation.
+    04_AM_Vente_Facturation_dun_BL.when L'utilisateur saisit la date du jour dans le champ 'Date de facturation'
+    04_AM_Vente_Facturation_dun_BL.Then La date du jour s'affiche dans le champ 'Date de facturation'
+    04_AM_Vente_Facturation_dun_BL.When L'utilisateur saisit la date du jour dans le champ 'Fin d'extraction des mouvements'
+    04_AM_Vente_Facturation_dun_BL.Then La date de fin d'extraction des mouvements est correctement saisie
+    04_AM_Vente_Facturation_dun_BL.When L'utilisateur saisit le numéro du BL dans le champ 'Bon de livraison'
+    04_AM_Vente_Facturation_dun_BL.Then Le numéro du BL est correctement ajouté dans le champ 'Bon de livraison'
+    04_AM_Vente_Facturation_dun_BL.Then L'utilisateur clique sur "Enregistrer"
+    04_AM_Vente_Facturation_dun_BL.Then Un traitement de facturation de vente est ajouté à la liste des traitements de factures
+    04_AM_Vente_Facturation_dun_BL.When L'utilisateur fait un clic droit sur le traitement de facture dans la liste créé précédemment, puis clique sur "Simulation"
+    04_AM_Vente_Facturation_dun_BL.Then Une popup de demande de confirmation du lancement de la simulation s'affiche, et l'utilisateur Clique sur ok pour lancer le traitement de simulation.
+    04_AM_Vente_Facturation_dun_BL.And La liste des BL traités par la simulation s'affiche en PDF dans un autre onglet
+
 
 
 
