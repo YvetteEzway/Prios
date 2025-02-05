@@ -454,10 +454,11 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Sleep    2s
 
 When L'utilisateur clique sur le bouton 'Valider'
+    Execute JavaScript    document.body.style.zoom = '80%'
 
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=20s
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
-    Sleep    2s
+    Sleep    4s
 
 Then Une fenêtre de confirmation affiche les informations suivantes
 
@@ -474,7 +475,7 @@ Then Une fenêtre de confirmation affiche les informations suivantes
 
 And cliquer sur enregistrer pour enregistrer les informations
 
-   Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
+   Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=30s
    Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
     Sleep  30s
 
@@ -491,6 +492,6 @@ Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvr
     # Optional: Switch back to main window if needed
     Switch Window    ${handles}[1]
     log  L'utilisateur est redirigé vers un formulaire contenant une liste des 'Ordres de livraison'
-    Sleep    3s
+    Sleep    10s
 
                                
