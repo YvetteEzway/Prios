@@ -9,7 +9,7 @@ Resource   Deshy_01_Creation_parcelle.robot
 
 
 *** Variables ***
-${DRIVER_PATH}   chromedriver-win64 (1)/chromedriver.exe
+${DRIVER_PATH}   chromedriver-win64 (2)/chromedriver.exe
 ${BROWSER}        Chrome
 ${BASE_URL}    http://portail-rec-0072.cloud-prios.fr
 ${USERNAME}    prios.support@deshyouest.fr

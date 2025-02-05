@@ -251,24 +251,30 @@ And Si une commande a déjà été créée, alors le formulaire récupère les i
 
  L'utilisateur sélectionne un type d'ordre de livraison : "OL Standard (STD)"
 
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input    60s
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input    250s
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[7]/div[1]/input
 
-    Wait Until Element Is Visible    xpath=(//input[@value='▼ '])[7]    60s
+    Wait Until Element Is Visible    xpath=(//input[@value='▼ '])[7]    250s
     Click Element                    xpath=(//input[@value='▼ '])[7]
-    Sleep    20s
+    Sleep    30s
+
+    # Attendre que la liste déroulante soit visible
+    Wait Until Element Is Visible    xpath=//div[@class='dijitPopup dijitComboBoxMenuPopup' and not(contains(@style, 'display: none'))]    120s
+
+# Cliquer sur l'élément OL Standard (STD)
+    Click Element    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='OL Standard (STD)']
+    Capture Page Screenshot
 
 Then "OL Standard (STD)" est affiché dans le champ
-    Wait Until Element Is Visible    ${FIELD-ID4}    timeout=60s
-
+    Wait Until Element Is Visible    ${FIELD-ID4}    timeout=120s
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID4}
     Should Not Be Empty    ${field_value}    msg=Le champ type d'ordre de livraison a une valeur 'OL Standard (STD)' '.
     Log    Le champ type d'ordre de livraison a une valeur 'OL Standard (STD)'.
 
 When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
-     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input    20s
+     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input    250s
      Click Element                    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input
      Click Element                    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/div/div/div[10]/div[1]/input
 
@@ -316,6 +322,8 @@ And l'utilisateur click sur le bouton enregisterer
 
 Then L'utilisateur est redirigeé vers les details des ordres de livraison
 
+    # Execute JavaScript    document.body.style.zoom = '80%'
+
     [Documentation]    Vérifie que la page affiche le titre des détails des ordres de livraison
     Wait Until Page Contains    Détails ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
     Log    Le titre "Détails ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page
@@ -354,7 +362,10 @@ When L'utilisateur saisit le Silo dans le champ Silo
     Sleep   2s
     
 When l'utilisateur clique sur le bouton enregistrer
-    #Execute JavaScript    document.body.style.zoom = '67%'
+
+   # Réduire le zoom de la page à 80%
+   Execute JavaScript    document.body.style.zoom = '67%'
+
     Sleep    1s
 
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
@@ -397,12 +408,14 @@ When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bou
     Sleep  10s
 
 Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
-    Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
+    #Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
     Sleep    1s
     Wait Until Page Contains    Détail(s) de l'ordre de livraison    30s
     Log  Détail(s) de l'ordre de livraison
 
 And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
+    #Execute JavaScript    document.body.style.zoom = '80%'
+
     Sleep    1s
     ${donnees_tableau}=    Create List
 

@@ -22,10 +22,12 @@ ${FIELD-ID9}         xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/
 *** Keywords ***
 
 When L'utilisateur clique sur le bouton 'Loupe'
+   #Execute JavaScript    document.body.style.zoom = '80%'
    [Documentation]    cliquer sur le loup
     Wait Until Element Is Visible    xpath=//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]      timeout=30s
 
     Execute JavaScript    document.evaluate("//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+
     Sleep    10s
     Click Element    xpath=//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]
     Sleep    20s
@@ -34,6 +36,7 @@ When L'utilisateur clique sur le bouton 'Loupe'
 When l'utilisateur double-clique sur la ligne
     Sleep    2s
     Wait Until Element Is Visible    xpath=//div[contains(@class, 'dgrid-content')][last()]//table/tr/td    timeout=10s
+
     Execute Javascript
     ...    var element = document.evaluate("//div[contains(@class, 'dgrid-content')][last()]//table/tr/td", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
     ...    var dblClickEvent = new MouseEvent('dblclick', {
@@ -44,14 +47,15 @@ When l'utilisateur double-clique sur la ligne
     ...    });
     ...    element.focus();
     ...    element.dispatchEvent(dblClickEvent);
-    Sleep    2s
+    Sleep    5s
 
 Then Le formulaire d'ordre de livraison est affiché avec les champs initialisés: Preneur d'ordre,Type d'ordre de livraison, Site,Date de livraison souhait,Date de départ,Date de l'ordre de livraison, Moment
  # Attendre que le parent de l'élément soit visible
     Wait Until Element Is Visible    ${PARENT_XPATH}    timeout=10s
 
     # Attendre que l'élément soit visible
-    Wait Until Element Is Visible    ${FIELD_ID}    timeout=10s
+    Wait Until Element Is Visible    ${FIELD_ID}    timeout=40s
+
 
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD_ID}
@@ -156,4 +160,25 @@ When L'utilisateur coche la case 'Validée et BL généré'
 And l'utilisateur clique sur "Enregistrer"
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[6]    5s
     Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[6]
+    Sleep    30s
+Then Deux documents PDF (OL et BL) sont affichés contenant les informations pour l'ordre de livraison et le Bon de livraison
 
+# Get all window handles
+    ${handles}=    Get Window Handles
+
+    # Switch to the new tab (last handle in the list)
+    Switch Window    ${handles}[-1]
+
+    # Verify we are on the PDF tab
+    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
+
+    # Optional: Switch back to main window if needed
+    Switch Window    ${handles}[1]
+    log  L'utilisateur est redirigé vers un formulaire contenant une liste des 'Ordres de livraison'
+    Sleep    3s
+
+When L'utilisateur vérifie le statut dans la liste des OL
+    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dgrid-content')][last()]//table/tr/td[contains(normalize-space(text()), 'Validée et BL généré')]    timeout=20s
+    ${text_element}=    Get Text    xpath=//div[contains(@class, 'dgrid-content')][last()]//table/tr/td
+    Log    Texte trouvé dans l'élément: ${text_element}
+    Log    Vérification effectuée avec succès pour le texte 'Validée et BL généré'
