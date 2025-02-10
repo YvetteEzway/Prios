@@ -457,7 +457,8 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Log    Données complètes: ${donnees_tableau}
     Should Not Be Empty    ${donnees_tableau}
     Sleep    2s
-
+    Execute JavaScript    document.body.style.zoom = '100%'
+        Sleep    2s
 When L'utilisateur clique sur le bouton 'Valider'
     Execute JavaScript    document.body.style.zoom = '70%'
 
