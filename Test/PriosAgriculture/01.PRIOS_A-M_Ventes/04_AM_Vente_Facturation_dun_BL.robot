@@ -206,6 +206,8 @@ Then Le numéro du BL est correctement ajouté dans le champ 'Bon de livraison'
     Log    Le numéro du BL est correctement ajouté dans le champ 'Bon de livraison'.
     Sleep    1s
 Then L'utilisateur clique sur "Enregistrer"
+    Execute JavaScript    document.body.style.zoom = '75%'
+
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[7]
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[7]
     Sleep    10s
