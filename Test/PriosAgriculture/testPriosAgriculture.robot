@@ -93,7 +93,6 @@ Login And Navigate To Ordres De Livraison
     02_AM_Vente_Transformation_OL_en_BL.When L'utilisateur coche la case 'Validée et BL généré'
     02_AM_Vente_Transformation_OL_en_BL.And l'utilisateur clique sur "Enregistrer"
     02_AM_Vente_Transformation_OL_en_BL.Then Deux documents PDF (OL et BL) sont affichés contenant les informations pour l'ordre de livraison et le Bon de livraison
-    #02_AM_Vente_Transformation_OL_en_BL.When L'utilisateur vérifie le statut dans la liste des OL
     03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.And L'utilisateur se trouve sur le menu principal de l'application
     03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur clique sur "PRIOS A-M Ventes"
     03_AM_Vente_Modification_des_prix_des_produits__BL_avant_facturation.When L'utilisateur sélectionne "Bons de livraison" dans la deuxième colonne

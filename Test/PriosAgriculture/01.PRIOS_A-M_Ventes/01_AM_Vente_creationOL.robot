@@ -207,6 +207,8 @@ Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'o
     Wait Until Page Contains    Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
 When L'utilisateur clique sur le bouton "+"
+    Execute JavaScript    document.body.style.zoom = '70%'
+
     [Documentation]    Sélectionne l'option "le bouton +" sur la page.
     Wait Until Element Is Visible    xpath=//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]    timeout=30s
 
@@ -364,7 +366,7 @@ When L'utilisateur saisit le Silo dans le champ Silo
 When l'utilisateur clique sur le bouton enregistrer
 
    # Réduire le zoom de la page à 80%
-   Execute JavaScript    document.body.style.zoom = '67%'
+   Execute JavaScript    document.body.style.zoom = '70%'
 
     Sleep    1s
 
@@ -393,6 +395,7 @@ When L'utilisateur saisit le Silo2 dans le champ Silo
     Sleep   2s
 
 When l'utilisateur clique sur le bouton enregistrer1
+    Execute JavaScript    document.body.style.zoom = '60%'
 
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
@@ -402,6 +405,8 @@ When l'utilisateur clique sur le bouton enregistrer1
 
 
 When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bouton Fermer
+      #Execute JavaScript    document.body.style.zoom = '60%'
+       Sleep    1s
   #a_3rx4_id  /html/body/div[2]/div[1]/div[10]/div[1]/table/tbody/tr/td[3]/div/span[5]   /html/body/div[2]/div[1]/div[10]/div[1]/table/tbody/tr/td[3]/div/span[5]/span
     Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
     Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
