@@ -459,6 +459,7 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Sleep    2s
 When L'utilisateur clique sur le bouton 'Valider'
     Execute JavaScript    document.body.style.zoom = '100%'
+    Execute JavaScript    document.body.style.zoom = '60%'
 
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
