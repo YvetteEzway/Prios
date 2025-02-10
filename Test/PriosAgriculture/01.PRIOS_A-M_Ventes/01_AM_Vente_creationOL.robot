@@ -54,6 +54,7 @@ ${HORIZONTAL_SCROLL_ELEMENT_XPATH}     xpath=//*[@id="a_a5s_id"]
 
 *** Keywords ***
 Given L'utilisateur se trouve sur la page "Plateformes métier"
+    Execute JavaScript    document.body.style.zoom = '75%'
     [Documentation]    Vérifie que l'utilisateur est sur la page "Plateformes métier".
     Wait Until Page Contains    Plateformes    30s
 
