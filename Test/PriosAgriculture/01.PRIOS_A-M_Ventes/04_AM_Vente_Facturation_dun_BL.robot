@@ -70,39 +70,60 @@ Then L'utilisateur est redirigé vers un formulaire pour ajouter un nouveau trai
 
 when L'utilisateur saisit la date du jour dans le champ 'Date de facturation'
 
-    ${current_day} =    Get Current Date    result_format=%d
+    ${current_day} =    Get Current Date    result_format=%#d
     ${current_day} =    Evaluate    str(int('${current_day}'))    # Supprimer le zéro devant si nécessaire
     Log    Date du jour : ${current_day}
 
-# 1️⃣ Ouvrir le calendrier
+#  Ouvrir le calendrier
     Click Element    ${CALENDAR_BUTTON}
-    Sleep    3s  # Laisser le temps au calendrier de s'afficher
+    Sleep    5s  # Laisser le temps au calendrier de s'afficher
 
-# 2️⃣ Vérifier que le calendrier est bien ouvert avant d'aller plus loin
-    Wait Until Element Is Visible    xpath=//div[contains(@class, 'dijitCalendarContainer')]    timeout=10s
-    Log    Le calendrier est bien affiché
+# Vérifier que le calendrier est bien ouvert avant d'aller plus loin
+    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div    timeout=20s
+    #Log    Le calendrier est bien affiché
 
-# 3️⃣ Définir le XPath de la date
-    ${date_xpath} =  Set Variable  //span[contains(@class, 'dijitCalendarDateLabel') and normalize-space(text())='${current_day}']
-    Log    XPath généré : ${date_xpath}
+#  Définir le XPath de la date
+    #${date_xpath} =  Set Variable  //span[contains(@class, 'dijitCalendarDateLabel') and normalize-space(text())='${current_day}']
+    #${date_xpath} =    Set Variable    xpath=//span[@class='dijitCalendarDateLabel' and text()='${current_day}']
+    #${date_xpath} =    Set Variable    xpath=//span[@class='dijitCalendarDateLabel' and text()='${current_day}']
+    #Log    XPath généré : ${date_xpath}
 
-# 4️⃣ Vérifier que l'élément est bien présent dans le DOM avant d'aller plus loin
-    ${is_present} =  Run Keyword And Return Status    Page Should Contain Element    ${date_xpath}
-    Log    L'élément est-il présent dans le DOM ? ${is_present}
+#  Vérifier que l'élément est bien présent dans le DOM avant d'aller plus loin
+    #${is_present} =  Run Keyword And Return Status    Page Should Contain Element    ${date_xpath}
+    #Log    L'élément est-il présent dans le DOM ? ${is_present}
 
-# 5️⃣ Si l'élément n'est pas immédiatement visible, scroller jusqu'à lui
-    Run Keyword If  '${is_present}' == 'True'
-    ...  Execute JavaScript    return document.evaluate("${date_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
-    Sleep    5s
+# Si l'élément n'est pas immédiatement visible, scroller jusqu'à lui
+    #Run Keyword If    '${is_present}' == 'True'    Scroll Element Into View    ${date_xpath}
+    #...  Execute JavaScript    return document.evaluate("${date_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
+    #Sleep    5s
 
-# 6️⃣ Attendre que l'élément soit visible
-    Wait Until Element Is Visible    ${date_xpath}    timeout=20s
-    Wait Until Element Is Enabled    ${date_xpath}    timeout=10s
+#  Attendre que l'élément soit visible
+    #Wait Until Element Is Visible    ${date_xpath}    timeout=20s
+    #Wait Until Element Is Enabled    ${date_xpath}    timeout=10s
 
-# 7️⃣ Double-cliquer sur la date
-    Double Click Element    ${date_xpath}
+#  Double-cliquer sur la date
+    #Double Click Element    ${date_xpath}
+    #Execute JavaScript    document.evaluate("${date_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();
+
+    #Sleep    10s
+
+    # Attente forcée pour laisser le calendrier s'initialiser complètement
+#Sleep    5s
+
+# Utiliser un sélecteur plus précis
+    # Définir le sélecteur pour la date
+
+# Utiliser une séquence d'actions plus précise
+    ${date_cell_xpath} =    Set Variable    xpath=//td[contains(@class, 'dijitCalendarCurrentMonth')]//span[@class='dijitCalendarDateLabel' and text()='${current_day}']/parent::*
+
+# Attendre et effectuer plusieurs actions
+    Wait Until Element Is Visible    ${date_cell_xpath}    timeout=20s
+    Mouse Over    ${date_cell_xpath}
+    Sleep    1s
+    Click Element    ${date_cell_xpath}
+    Sleep    1s
+    Double Click Element    ${date_cell_xpath}
     Sleep    10s
-
     Capture Page Screenshot     debug_calendar_2.png
 
 Then La date du jour s'affiche dans le champ 'Date de facturation'
@@ -139,17 +160,15 @@ When L'utilisateur saisit la date du jour dans le champ 'Fin d'extraction des mo
 # Ouvrir le calendrier
     Click Element    ${CALENDAR_BUTTON2}
     Sleep    3s
-    ${date_xpath} =  Set Variable  //span[@class='dijitCalendarDateLabel' and text()='${current_day}']
+     ${date_cell_xpath} =    Set Variable    xpath=//td[contains(@class, 'dijitCalendarCurrentMonth')]//span[@class='dijitCalendarDateLabel' and text()='${current_day}']/parent::*
 
-    Wait Until Element Is Visible    ${date_xpath}    timeout=10s
-    Wait Until Element Is Enabled    ${date_xpath}    timeout=10s
-    Sleep    2s
-
-    # Faire défiler jusqu'à l'élément
-    Execute JavaScript    return document.evaluate("${date_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
-
-    # Double-cliquer sur la date
-    Double Click Element    ${date_xpath}
+# Attendre et effectuer plusieurs actions
+    Wait Until Element Is Visible    ${date_cell_xpath}    timeout=20s
+    Mouse Over    ${date_cell_xpath}
+    Sleep    1s
+    Click Element    ${date_cell_xpath}
+    Sleep    1s
+    Double Click Element    ${date_cell_xpath}
     Sleep    10s
     Capture Page Screenshot    datefacture2.png
 
@@ -252,21 +271,47 @@ When L'utilisateur fait un clic droit sur le traitement de facture dans la liste
 Then Une popup de demande de confirmation du lancement de la simulation s'affiche, et l'utilisateur Clique sur ok pour lancer le traitement de simulation.
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[2]/div[2]/div/button[1]     timeout=10s
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[2]/div[2]/div/button[1]
-
     Sleep    10s
 
 And La liste des BL traités par la simulation s'affiche en PDF dans un autre onglet
-     ${handles}=    Get Window Handles
+     # Récupérer les handles avant l'ouverture du PDF
+    ${handles}=    Get Window Handles
 
     # Switch to the new tab (last handle in the list)
     Switch Window    ${handles}[-1]
 
-    # Attendre que le PDF s'affiche
-    Wait Until Element Is Visible    //embed[@type='application/pdf']    timeout=10s
-    Capture Page Screenshot    pdf_screenshot.png
-    Close Window
+    # Verify we are on the PDF tab
+    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
 
-# Revenir à l'onglet principal
+    # Optional: Switch back to main window if needed
     Switch Window    ${handles}[1]
     log  L'utilisateur est redirigé vers un formulaire contenant une liste des 'Ordres de livraison'
     Sleep    3s
+When L'utilisateur clique sur "Validation"
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[7]/div[4]/button[5]
+    Wait Until Element Is Enabled    xpath=/html/body/div[2]/div[1]/div[7]/div[4]/button[5]
+    Click Element    xpath=/html/body/div[2]/div[1]/div[7]/div[4]/button[5]
+    Sleep    10s
+Then Une popup de demande de confirmation du lancement de la validation s'affiche et cliquer sur le bouton "OK"
+    Wait Until Element Is Visible  xpath=/html/body/div[2]/div[1]/div[8]/div[2]/div[2]/div/button[1]
+    Wait Until Element Is Enabled    xpath=/html/body/div[2]/div[1]/div[8]/div[2]/div[2]/div/button[1]
+    Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[2]/div[2]/div/button[1]
+
+    Sleep    10s
+And La facture s'affiche en PDF dans un autre onglet du navigateur avec les informations de facturation et le numéro de la facture.
+    ${handles}=    Get Window Handles
+
+    # Switch to the new tab (last handle in the list)
+    Switch Window    ${handles}[-1]
+
+    # Verify we are on the PDF tab
+    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
+
+    # Optional: Switch back to main window if needed
+    Switch Window    ${handles}[1]
+    log  L'utilisateur est redirigé vers un formulaire contenant une liste des 'Ordres de livraison'
+    Sleep    5s
+
+
+
+
