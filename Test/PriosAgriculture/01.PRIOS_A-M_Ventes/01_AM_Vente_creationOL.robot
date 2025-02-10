@@ -395,7 +395,7 @@ When L'utilisateur saisit le Silo2 dans le champ Silo
     Sleep   2s
 
 When l'utilisateur clique sur le bouton enregistrer1
-    Execute JavaScript    document.body.style.zoom = '60%'
+    Execute JavaScript    document.body.style.zoom = '70%'
 
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
@@ -459,7 +459,7 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Sleep    2s
 When L'utilisateur clique sur le bouton 'Valider'
     Execute JavaScript    document.body.style.zoom = '100%'
-    Execute JavaScript    document.body.style.zoom = '60%'
+    Execute JavaScript    document.body.style.zoom = '80%'
 
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
