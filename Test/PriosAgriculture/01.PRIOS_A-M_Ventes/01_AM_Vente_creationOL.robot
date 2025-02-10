@@ -419,7 +419,7 @@ Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de liv
     Log  Détail(s) de l'ordre de livraison
 
 And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
-    Execute JavaScript    document.body.style.zoom = '80%'
+    #Execute JavaScript    document.body.style.zoom = '80%'
 
     Sleep    1s
     ${donnees_tableau}=    Create List
@@ -457,10 +457,8 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Log    Données complètes: ${donnees_tableau}
     Should Not Be Empty    ${donnees_tableau}
     Sleep    2s
-    Execute JavaScript    document.body.style.zoom = '100%'
-        Sleep    2s
 When L'utilisateur clique sur le bouton 'Valider'
-    Execute JavaScript    document.body.style.zoom = '70%'
+    Execute JavaScript    document.body.style.zoom = '100%'
 
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
