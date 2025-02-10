@@ -365,7 +365,7 @@ When L'utilisateur saisit le Silo dans le champ Silo
     
 When l'utilisateur clique sur le bouton enregistrer
 
-   # Réduire le zoom de la page à 80%
+   # Réduire le zoom de la page à 70%
    Execute JavaScript    document.body.style.zoom = '70%'
 
     Sleep    1s
@@ -460,8 +460,6 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
 
 When L'utilisateur clique sur le bouton 'Valider'
     Execute JavaScript    document.body.style.zoom = '100%'
-
-    Execute JavaScript    document.body.style.zoom = '80%'
 
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
