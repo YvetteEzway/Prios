@@ -313,7 +313,7 @@ And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
    Sleep    2s
 
 And l'utilisateur click sur le bouton enregisterer
-     Execute JavaScript    document.body.style.zoom = '60%'
+     Execute JavaScript    document.body.style.zoom = '70%'
     # Faire défiler jusqu'au bouton d'enregistrement avec un offset vertical
     Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[8]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
     Sleep    2s
@@ -419,7 +419,7 @@ Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de liv
     Log  Détail(s) de l'ordre de livraison
 
 And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
-    #Execute JavaScript    document.body.style.zoom = '80%'
+    Execute JavaScript    document.body.style.zoom = '80%'
 
     Sleep    1s
     ${donnees_tableau}=    Create List
@@ -459,7 +459,7 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Sleep    2s
 
 When L'utilisateur clique sur le bouton 'Valider'
-    Execute JavaScript    document.body.style.zoom = '60%'
+    Execute JavaScript    document.body.style.zoom = '70%'
 
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
