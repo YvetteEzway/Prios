@@ -203,8 +203,8 @@ When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
     Wait Until Element Is Visible    xpath=//*[contains(@class, 'dijitDialogTitle') and contains(text(), 'Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU')]    timeout=30s
 
 Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'ordres de livraison
-
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
+    Execute JavaScript    document.body.style.zoom = '75%'
     Wait Until Page Contains    Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
 When L'utilisateur clique sur le bouton "+"
