@@ -207,8 +207,6 @@ Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'o
     Wait Until Page Contains    Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
 When L'utilisateur clique sur le bouton "+"
-    Execute JavaScript    document.body.style.zoom = '70%'
-
     [Documentation]    Sélectionne l'option "le bouton +" sur la page.
     Wait Until Element Is Visible    xpath=//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]    timeout=30s
 
@@ -324,7 +322,7 @@ And l'utilisateur click sur le bouton enregisterer
 
 Then L'utilisateur est redirigeé vers les details des ordres de livraison
 
-    # Execute JavaScript    document.body.style.zoom = '80%'
+     Execute JavaScript    document.body.style.zoom = '80%'
 
     [Documentation]    Vérifie que la page affiche le titre des détails des ordres de livraison
     Wait Until Page Contains    Détails ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
