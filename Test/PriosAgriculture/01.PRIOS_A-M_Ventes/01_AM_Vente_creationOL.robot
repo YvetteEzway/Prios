@@ -418,8 +418,10 @@ Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de liv
     Log  Détail(s) de l'ordre de livraison
 
 And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
-    document.body.style.transform = `scale(${window.devicePixelRatio})`;
-    document.body.style.transformOrigin = "top left";
+    Execute JavaScript
+    ...    window.screen.width = 1920;
+    ...    window.screen.height = 1080;
+    ...    window.devicePixelRatio = 0.8;
 
     Sleep    1s
     ${donnees_tableau}=    Create List
