@@ -401,8 +401,6 @@ When l'utilisateur clique sur le bouton enregistrer1
 
 
 When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bouton Fermer
-      #Execute JavaScript    document.body.style.zoom = '60%'
-       Sleep    1s
   #a_3rx4_id  /html/body/div[2]/div[1]/div[10]/div[1]/table/tbody/tr/td[3]/div/span[5]   /html/body/div[2]/div[1]/div[10]/div[1]/table/tbody/tr/td[3]/div/span[5]/span
     Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
     Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
@@ -415,12 +413,7 @@ Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de liv
     Log  Détail(s) de l'ordre de livraison
 
 And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
-    Execute JavaScript
-    ...    window.screen.width = 1920;
-    ...    window.screen.height = 1080;
-    ...    window.devicePixelRatio = 0.8;
-
-    Sleep    1s
+    
     ${donnees_tableau}=    Create List
 
     Wait Until Element Is Visible    xpath=//div[contains(@class, 'dgrid-content')]    timeout=20s
@@ -457,9 +450,8 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Should Not Be Empty    ${donnees_tableau}
     Sleep    2s
 When L'utilisateur clique sur le bouton 'Valider'
-    Execute JavaScript    arguments[0].scrollIntoView(true);    ${element}
-
-    Wait Until Element Is Visible    ${element}     timeout=40s
+    Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[9]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Sleep    4s
 
