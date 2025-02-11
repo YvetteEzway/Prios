@@ -407,7 +407,7 @@ When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bou
     Sleep  10s
 
 Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
-    Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
+    #Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
     Sleep    1s
     Wait Until Page Contains    Détail(s) de l'ordre de livraison    30s
     Log  Détail(s) de l'ordre de livraison
@@ -450,10 +450,11 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Should Not Be Empty    ${donnees_tableau}
     Sleep    2s
 When L'utilisateur clique sur le bouton 'Valider'
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[1]/div[4]/div/div
-    Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[1]/div[4]/div/div
-    Execute JavaScript    document.body.style.zoom = '75%'
-    Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[9]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
+    Execute JavaScript    document.querySelector(".dijitDialogMaximized").style.width = "80%";
+    Execute JavaScript    document.querySelector(".dijitDialogMaximized").style.height = "80%";
+    Execute JavaScript    document.querySelector(".dijitDialogMaximized").style.transform = "scale(0.9)";
+    Execute JavaScript    document.querySelector(".dijitDialogMaximized").style.transformOrigin = "top left";
+
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Sleep    4s
