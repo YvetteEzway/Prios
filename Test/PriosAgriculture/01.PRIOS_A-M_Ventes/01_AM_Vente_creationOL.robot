@@ -362,7 +362,7 @@ When L'utilisateur saisit le Silo dans le champ Silo
 When l'utilisateur clique sur le bouton enregistrer
 
    # Réduire le zoom de la page à 70%
-   Execute JavaScript    document.body.style.zoom = '70%'
+   #Execute JavaScript    document.body.style.zoom = '70%'
 
     Sleep    1s
 
@@ -391,7 +391,7 @@ When L'utilisateur saisit le Silo2 dans le champ Silo
     Sleep   2s
 
 When l'utilisateur clique sur le bouton enregistrer1
-    Execute JavaScript    document.body.style.zoom = '70%'
+    #Execute JavaScript    document.body.style.zoom = '70%'
 
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
@@ -452,9 +452,6 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
 When L'utilisateur clique sur le bouton 'Valider'
     Execute JavaScript    let popup = document.querySelector(".dijitDialogMaximized"); if (popup) { popup.style.width = "100vw"; popup.style.height = "100vh"; popup.style.top = "0px"; popup.style.left = "0px"; popup.style.overflow = "visible"; }
     Sleep    2s
-    Execute JavaScript    document.body.style.zoom = '75%'
-    Sleep    2s
-
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Sleep    4s
