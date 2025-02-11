@@ -450,6 +450,9 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Should Not Be Empty    ${donnees_tableau}
     Sleep    2s
 When L'utilisateur clique sur le bouton 'Valider'
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[1]/div[4]/div/div
+    Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[1]/div[4]/div/div
+    Execute JavaScript    document.body.style.zoom = '75%'
     Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[9]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
