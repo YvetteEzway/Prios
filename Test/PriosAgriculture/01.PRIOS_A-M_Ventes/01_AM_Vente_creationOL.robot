@@ -51,7 +51,6 @@ ${element}               xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
 
 *** Keywords ***
 Given L'utilisateur se trouve sur la page "Plateformes métier"
-    Execute JavaScript    document.body.style.zoom = '75%'
     [Documentation]    Vérifie que l'utilisateur est sur la page "Plateformes métier".
     Wait Until Page Contains    Plateformes    30s
 
@@ -62,6 +61,7 @@ When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Pl
 
 Then Il est redirigé vers une nouvelle page avec les menus de navigation
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
+    Execute JavaScript    document.body.style.zoom = '75%'
     Wait Until Page Contains    Prios    30s
 
 Then Les menus de navigation affichent les options suivantes dans les premières "8" options :
