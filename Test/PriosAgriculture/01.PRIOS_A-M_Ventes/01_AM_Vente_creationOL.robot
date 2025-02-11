@@ -451,8 +451,7 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Sleep    2s
 
 When L'utilisateur clique sur le bouton 'Valider'
-    Execute JavaScript    document.body.style.zoom = '100%'
-    Execute JavaScript    document.body.style.zoom = '65%'
+    Execute JavaScript    document.body.style.zoom = '75%'
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]    timeout=10s
     Execute JavaScript    let popup = document.querySelector(".dijitDialogMaximized"); if (popup) { popup.style.overflow = "auto"; popup.style.maxHeight = "90vh"; popup.style.maxWidth = "90vw"; }
     Sleep    2s
