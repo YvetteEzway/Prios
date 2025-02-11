@@ -45,12 +45,9 @@ ${TABLE_CELLS_XPATH}    xpath=//div[contains(@class, 'dijitDialog')][last()]//ta
 ${TABLE_CELLS_XPATH1}    xpath=//div[contains(@class, 'dijitDialog')][last()]//table/tr/td[first()]
 
 ${TABLE_HADERS_ENTETE}  xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[4]/div[1]/table/tr
-
-
 ${TABLE_CELLS_DET}       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[4]/div[2]/div/div[2]/table/tr[position()=1 or position()=2]/td
-
-
 ${HORIZONTAL_SCROLL_ELEMENT_XPATH}     xpath=//*[@id="a_a5s_id"]
+${element}               xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12] 
 
 *** Keywords ***
 Given L'utilisateur se trouve sur la page "Plateformes métier"
@@ -460,10 +457,9 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Should Not Be Empty    ${donnees_tableau}
     Sleep    2s
 When L'utilisateur clique sur le bouton 'Valider'
-    document.body.style.transform = `scale(${window.devicePixelRatio})`;
-    document.body.style.transformOrigin = "top left";
+    Execute JavaScript    arguments[0].scrollIntoView(true);    ${element}
 
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
+    Wait Until Element Is Visible    ${element}     timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Sleep    4s
 
