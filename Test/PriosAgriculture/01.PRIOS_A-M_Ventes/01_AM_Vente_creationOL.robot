@@ -450,7 +450,8 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Should Not Be Empty    ${donnees_tableau}
     Sleep    2s
 When L'utilisateur clique sur le bouton 'Valider'
-    Execute JavaScript    let popup = document.querySelector(".dijitDialogMaximized"); if (popup) { popup.style.width = "100vw"; popup.style.height = "100vh"; popup.style.top = "0px"; popup.style.left = "0px"; popup.style.overflow = "visible"; }
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]    timeout=10s
+    Execute JavaScript    let btn = document.querySelector(".dijitDialogMaximized button:last-of-type"); if (btn) { btn.style.position = 'absolute'; btn.style.top = '10px'; btn.style.left = '10px'; }
     Sleep    2s
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=40s
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
