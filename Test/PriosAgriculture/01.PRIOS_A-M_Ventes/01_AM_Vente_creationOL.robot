@@ -8,6 +8,7 @@ Library    BuiltIn
 
 
 
+
 *** Variables ***
 ${ORDRES_LIVRAISON_BUTTON}    xpath=(//*[contains(text(), 'Ordres de livraison')])[1]
 ${ORDRES_LIVRAISON2_BUTTON}   xpath=(//*[contains(text(), 'Ordres de livraison')])[2]
@@ -56,6 +57,7 @@ ${HORIZONTAL_SCROLL_ELEMENT_XPATH}     xpath=//*[@id="a_a5s_id"]
 Given L'utilisateur se trouve sur la page "Plateformes métier"
     [Documentation]    Vérifie que l'utilisateur est sur la page "Plateformes métier".
     Wait Until Page Contains    Plateformes    30s
+    #Execute Javascript    document.body.style.zoom='70%'
 
 When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
     [Documentation]    Sélectionne l'option "PRIOS Agriculture" sur la page.
@@ -89,6 +91,8 @@ Then Les menus de navigation affichent les options suivantes dans les premières
         Run Keyword If    '${element_found}' != 'None'    Log    Option ${option} trouvée.
         Run Keyword If    '${element_found}' == 'None'    Fail    Option ${option} non trouvée.
     END
+    #Execute Javascript    document.body.style.zoom='80%'
+
 
 Then Les menus de navigation affichent les options suivantes :
 
@@ -150,6 +154,7 @@ Then L'affichage de la page présente les fonctions suivantes dans la seconde pa
         Run Keyword If    '${element_found}' == 'None'    Fail    Option ${option4} non trouvée.
    END
 When L'utilisateur sélectionne "Ordres de livraison" dans la deuxième colonne
+
     [Documentation]    Sélectionne l'option "Ordres de livraison" sur la page.
     Execute JavaScript    document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
     Sleep    1s
@@ -202,13 +207,11 @@ When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
     Wait Until Element Is Visible    xpath=//*[contains(@class, 'dijitDialogTitle') and contains(text(), 'Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU')]    timeout=30s
 
 Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'ordres de livraison
-
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
     Wait Until Page Contains    Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
-When L'utilisateur clique sur le bouton "+"
-    Execute JavaScript    document.body.style.zoom = '70%'
 
+When L'utilisateur clique sur le bouton "+"
     [Documentation]    Sélectionne l'option "le bouton +" sur la page.
     Wait Until Element Is Visible    xpath=//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]    timeout=30s
 
@@ -216,13 +219,13 @@ When L'utilisateur clique sur le bouton "+"
     Sleep    10s
     Click Element    xpath=//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]
     Sleep    30s
+
 Then L'utilisateur est redirigé vers un formulaire pour ajouter un nouvel ordre de livraison
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
     Wait Until Page Contains    Ordre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU    30s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOUOrdre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
 
 And Si une commande a déjà été créée, alors le formulaire récupère les informations précédemment saisies pour le Preneur d'ordre
-
     # Attendre que le parent de l'élément soit visible
     Wait Until Element Is Visible    ${PARENT_XPATH}    timeout=20s
     # Attendre que l'élément soit visible
@@ -284,8 +287,6 @@ When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
      Click Element                    xpath=(//input[@value='▼ '])[8]
      Sleep    20s
 
-     # Attendre que la liste déroulante soit visible
-
 # Cliquer sur l'élément
     Wait Until Element Is Visible    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='Z COREAL (ZCO)']      30s
     Click Element    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='Z COREAL (ZCO)']
@@ -294,7 +295,6 @@ When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
 Then "Z COREAL (ZCO)" est affiché dans le champ
 
      Wait Until Element Is Visible    ${FIELD-ID5}    timeout=20s
-
     # Vérifier que le champ a une valeur non vide
     ${field_value}=    Get Value    ${FIELD-ID5}
     Should Not Be Empty    ${field_value}    msg=Le champ Site a une valeur 'Z COREAL (ZCO) '.
@@ -313,7 +313,7 @@ And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
    Sleep    2s
 
 And l'utilisateur click sur le bouton enregisterer
-     Execute JavaScript    document.body.style.zoom = '80%'
+    #Execute JavaScript    document.body.style.zoom = '80%'
     # Faire défiler jusqu'au bouton d'enregistrement avec un offset vertical
     Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[8]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
     Sleep    2s
@@ -323,8 +323,6 @@ And l'utilisateur click sur le bouton enregisterer
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[12]
 
 Then L'utilisateur est redirigeé vers les details des ordres de livraison
-
-    # Execute JavaScript    document.body.style.zoom = '80%'
 
     [Documentation]    Vérifie que la page affiche le titre des détails des ordres de livraison
     Wait Until Page Contains    Détails ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
@@ -365,9 +363,8 @@ When L'utilisateur saisit le Silo dans le champ Silo
     
 When l'utilisateur clique sur le bouton enregistrer
 
-   # Réduire le zoom de la page à 80%
-   Execute JavaScript    document.body.style.zoom = '70%'
-
+   # Réduire le zoom de la page
+   #Execute JavaScript    document.body.style.zoom = '70%'
     Sleep    1s
 
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
@@ -395,7 +392,6 @@ When L'utilisateur saisit le Silo2 dans le champ Silo
     Sleep   2s
 
 When l'utilisateur clique sur le bouton enregistrer1
-    Execute JavaScript    document.body.style.zoom = '60%'
 
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
@@ -405,23 +401,17 @@ When l'utilisateur clique sur le bouton enregistrer1
 
 
 When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bouton Fermer
-      #Execute JavaScript    document.body.style.zoom = '60%'
-       Sleep    1s
-  #a_3rx4_id  /html/body/div[2]/div[1]/div[10]/div[1]/table/tbody/tr/td[3]/div/span[5]   /html/body/div[2]/div[1]/div[10]/div[1]/table/tbody/tr/td[3]/div/span[5]/span
     Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
     Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
     Sleep  10s
 
 Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
-    Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
+   # Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
     Sleep    1s
     Wait Until Page Contains    Détail(s) de l'ordre de livraison    30s
     Log  Détail(s) de l'ordre de livraison
 
 And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
-    #Execute JavaScript    document.body.style.zoom = '80%'
-
-    Sleep    1s
     ${donnees_tableau}=    Create List
 
     Wait Until Element Is Visible    xpath=//div[contains(@class, 'dgrid-content')]    timeout=20s
@@ -459,11 +449,9 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Sleep    2s
 
 When L'utilisateur clique sur le bouton 'Valider'
-    Execute JavaScript    document.body.style.zoom = '100%'
-
-    Execute JavaScript    document.body.style.zoom = '80%'
-
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=20s
+    ${element}=    Get WebElement    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
+    Execute JavaScript    arguments[0].scrollIntoView(true);    ARGUMENTS    ${element}    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=20s
+    Wait Until Element Is Enabled    xpath=xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Sleep    2s
 

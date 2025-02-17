@@ -50,8 +50,6 @@ When L'utilisateur sélectionne Bons de livraison dans la troisième colonne
     Execute JavaScript    document.evaluate("(//*[contains(text(), 'Bons de livraison')])[2]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()
 
     Sleep    60s
-   # Wait Until Element Is Visible    xpath=//*[contains(@class, 'dijitDialogTitle') and contains(text(), 'Bons de livraison - Sté PRIOS - Etablissement CARQUEFOU')]    timeout=60s
-
 Then L'utilisateur L'utilisateur est redirigé vers un formulaire contenant une liste des bons de livraison, avec un bouton pour ajouter, un lien pour modifier les données, ainsi que des filtres pour effectuer des recherches selon différents critères.
 
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.

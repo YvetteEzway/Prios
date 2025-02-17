@@ -223,9 +223,7 @@ When L'utilisateur fait un clic droit sur le traitement de facture dans la liste
     Open Context Menu  ${TABLE_ROW_XPATH}
     Log     L'utilisateur a fait un clic droit sur le traitement de facturedans la liste.
 
-    #Execute JavaScript  let element = document.evaluate("//ul[@class='context-menu']//li[normalize-space(text())='Simulation'][1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;  if (element) {  element.click();} else {console.log("Element not found");}
     Sleep    5s
- # Afficher tous les menus disponibles pour debug
     # Affichons la structure exacte du menu
     ${menu_item}=    Execute JavaScript
     ...    return Array.from(document.getElementsByClassName('dijitMenuItemLabel')).find(el => el.textContent.trim() === 'Simulation');
