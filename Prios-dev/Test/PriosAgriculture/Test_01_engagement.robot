@@ -26,6 +26,8 @@ Open Browser With Options
     Create Webdriver    Chrome    options=${options}
     Go To    ${url}
     Maximize Browser Window
+Maintenir Niveau Zoom Navigateur
+    Execute JavaScript    document.querySelector('html').style.transform = 'scale(0.9)'; document.querySelector('html').style.transformOrigin = '0 0';
 
 *** Test Cases ***
 Login And Navigate to engagement
@@ -49,4 +51,42 @@ Login And Navigate to engagement
     01_Engagement_vente.When L'utilisateur clique sur le bouton '+' ou clique droit dans la liste et sélectionne "Nouveau"
     01_Engagement_vente.Then L'utilisateur est redirigé vers l'entête engagement avec le formulaire
     01_Engagement_vente.When L'utilisateur sélectionne type engagement dans la liste déroulante depuis la section 'Informations générales puis Classification'
+    01_Engagement_vente.Then Le type d'engagement est affiché dans la liste déroulante
+    01_Engagement_vente.When L'utilisateur saisit dans le champ "Engagé par" depuis la section 'Informations générales puis Compléments'
+    01_Engagement_vente.Then La valeur "ABBAYE61" est affichée dans le champ "Engagé par"
+    01_Engagement_vente.When L'utilisateur saisit la date du jour dans le champ "Date d'engagement" depuis la section 'Informations générales puis Compléments'
+    01_Engagement_vente.Then La date du jour est affichée dans le champ "Date d'engagement"
+    01_Engagement_vente.When L'utilisateur clique sur le bouton "Enregistrer"
+    01_Engagement_vente.Then Un engagement est créé avec les détails
+    01_Engagement_vente.When L'utilisateur clique sur le bouton loupe à côté du champ 'Produit' dans la section 'Informations générales'
+    01_Engagement_vente.Then La liste de produits est affichée
+    01_Engagement_vente.When L'utilisateur saisit le code du produit dans le champ 'Produit' et clique sur la loupe
+    01_Engagement_vente.Then Le produit correspondant est affiché dans la liste
+    01_Engagement_vente.When L'utilisateur double-clique sur le produit ou sélectionne la ligne de produit et clique sur 'Sélectionner'
+    01_Engagement_vente.Then Le détail de l'engagement est affiché avec le code de produit renseigné
+    01_Engagement_vente.When L'utilisateur saisit la quantité engagée T dans le champ 'Engagée'
+    01_Engagement_vente.Then La quantité engagée est affichée dans le champ
+    01_Engagement_vente.When L'utilisateur navigue vers l'onglet 'Livraison'
+    01_Engagement_vente.Then Le formulaire de livraison est affiché avec les détails partiellement remplis
+    01_Engagement_vente.When L'utilisateur saisit la date de période de livraison avec le début de mois et la fin de livraison = dernier jour du mois suivant
+    #01_Engagement_vente.Then Les dates sont affichées dans les champs correspondants
+    01_Engagement_vente.When L'utilisateur navigue vers l'onglet 'Tarification'
+    01_Engagement_vente.Then Le formulaire de tarification est affiché avec les détails partiellement remplis
+    01_Engagement_vente.When L'utilisateur saisit le prix brut unitaire forcé
+    01_Engagement_vente.Then Le prix brut unitaire forcé est affiché dans le champ
+    01_Engagement_vente.When L'utilisateur sélectionne le niveau de prix d'application dans la liste déroulante
+    01_Engagement_vente.Then Le niveau de prix d'application est sélectionné
+    01_Engagement_vente.When L'utilisateur coche la case "Forcé"
+    01_Engagement_vente.When L'utilisateur sélectionne le motif de forçage du prix dans la liste déroulante
+    01_Engagement_vente.Then Le motif de forçage du prix est sélectionné
+    01_Engagement_vente.When L'utilisateur clique sur le bouton "Enregistrer1"
+    01_Engagement_vente.Then La liste des lignes de l'engagement est affichée avec les détails mis à jour
+    01_Engagement_vente.When L'utilisateur ferme la fenêtre de détail de l'engagement
+    01_Engagement_vente.Then L'engagement est affiché dans la liste des engagements en tête
+    01_Engagement_vente.When L'utilisateur revient à la liste des engagements et effectue une recherche en utilisant la date et le numéro de l'engagement
+    01_Engagement_vente.And l'utilisateur bascule vers l'onglet détails engagement
+    01_Engagement_vente.Then La liste des détails de l'engagement est correctement mise à jour
+
+
+
 

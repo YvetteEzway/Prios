@@ -32,13 +32,13 @@ Open Browser With Options
     ${prefs} =    Evaluate    {'profile.default_content_setting_values.geolocation': 1, 'profile.default_content_setting_values.notifications': 2}
     Call Method    ${options}    add_experimental_option    prefs    ${prefs}
     Create Webdriver    Chrome    options=${options}
+    Set Window Size    1920    1080
     Go To    ${url}
     Maximize Browser Window
-Maintenir Niveau Zoom Navigateur
-    Execute JavaScript    document.querySelector('html').style.transform = 'scale(1.0)'; document.querySelector('html').style.transformOrigin = '0 0';
 
-Simuler Ctrl Moins
-    Press Keys    CTRL+MINUS
+Maintenir Niveau Zoom Navigateur
+    Execute JavaScript    document.querySelector('html').style.transform = 'scale(0.9)'; document.querySelector('html').style.transformOrigin = '0 0';
+
 
 *** Test Cases ***
 Login And Navigate To Ordres De Livraison
@@ -54,7 +54,7 @@ Login And Navigate To Ordres De Livraison
     01_AM_Vente_creationOL.When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
     01_AM_Vente_creationOL.Then Il est redirigé vers une nouvelle page avec les menus de navigation
     01_AM_Vente_creationOL.Then Les menus de navigation affichent les options suivantes dans les premières "8" options :
-    Maintenir Niveau Zoom Navigateur
+    #Maintenir Niveau Zoom Navigateur
     01_AM_Vente_creationOL.Then Les menus de navigation affichent les options suivantes :
     01_AM_Vente_creationOL.When L'utilisateur clique sur "PRIOS A-M Ventes"
     01_AM_Vente_creationOL.Then L'affichage de la page présente les fonctions suivantes dans la première partie de la deuxième colonne :
@@ -87,8 +87,6 @@ Login And Navigate To Ordres De Livraison
     01_AM_Vente_creationOL.When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bouton Fermer
     01_AM_Vente_creationOL.Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
     01_AM_Vente_creationOL.And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
-    01_AM_Vente_creationOL.Rafraichir la page
-    #01_AM_Vente_creationOL.Simuler Ctrl Moins
     01_AM_Vente_creationOL.When L'utilisateur clique sur le bouton 'Valider'
     01_AM_Vente_creationOL.Then Une fenêtre de confirmation affiche les informations suivantes
     01_AM_Vente_creationOL.And cliquer sur enregistrer pour enregistrer les informations

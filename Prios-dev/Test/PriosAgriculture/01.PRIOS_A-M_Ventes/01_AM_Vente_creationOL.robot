@@ -1,6 +1,5 @@
 *** Settings ***
 Library    SeleniumLibrary    run_on_failure=Capture Page Screenshot
-Library    SeleniumLibrary
 Library    OperatingSystem
 Library    RequestsLibrary
 Library    BuiltIn
@@ -119,7 +118,7 @@ When L'utilisateur clique sur "PRIOS A-M Ventes"
     Wait Until Element Is Visible    xpath=//*[contains(text(), 'PRIOS A-M Ventes')]    30s
     Click Element    xpath=//*[contains(text(), 'PRIOS A-M Ventes')]
 
-    Sleep    60s
+    Sleep    30s
 
 Then L'affichage de la page présente les fonctions suivantes dans la première partie de la deuxième colonne :
 
@@ -209,6 +208,7 @@ When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
 
 Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'ordres de livraison
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
+    Execute Javascript    document.body.style.zoom='75%'
     Wait Until Page Contains    Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
 
@@ -314,7 +314,7 @@ And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
    Sleep    2s
 
 And l'utilisateur click sur le bouton enregisterer
-    #Execute JavaScript    document.body.style.zoom = '80%'
+    Execute JavaScript    document.body.style.zoom = '80%'
     # Faire défiler jusqu'au bouton d'enregistrement avec un offset vertical
     Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[8]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
     Sleep    2s
@@ -365,7 +365,7 @@ When L'utilisateur saisit le Silo dans le champ Silo
 When l'utilisateur clique sur le bouton enregistrer
 
    # Réduire le zoom de la page
-   #Execute JavaScript    document.body.style.zoom = '70%'
+   Execute JavaScript    document.body.style.zoom = '70%'
     Sleep    1s
 
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
@@ -408,6 +408,7 @@ When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bou
 
 Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
    # Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
+    Sleep    1s
     Wait Until Page Contains    Détail(s) de l'ordre de livraison    30s
     Log  Détail(s) de l'ordre de livraison
 
@@ -416,20 +417,16 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
 
     Wait Until Element Is Visible    xpath=//div[contains(@class, 'dgrid-content')]    timeout=20s
 
-# Récupérer les en-têtes
+    # Récupérer les en-têtes
     ${entetes}=    Get WebElements    ${TABLE_HADERS_ENTETE}
     ${noms_entetes}=    Create List
-        FOR    ${entete}    IN    @{entetes}
-            ${texte_entete}=    Get Text    ${entete}
-             Append To List    ${noms_entetes}    ${texte_entete}
-        END
+    FOR    ${entete}    IN    @{entetes}
+        ${texte_entete}=    Get Text    ${entete}
+        Append To List    ${noms_entetes}    ${texte_entete}
+    END
     Log    En-têtes du tableau: ${noms_entetes}
 
-# Vérifier si les en-têtes sont suffisants
-    ${taille_noms_entetes}=    Get Length    ${noms_entetes}
-    Run Keyword If    ${taille_noms_entetes} == 0    Fail    Aucun en-tête trouvé dans le tableau
-
-# Récupérer les données
+    # Récupérer les données
     ${lignes}=    Get WebElements    xpath=//div[contains(@class, 'dgrid-row')]
 
     FOR    ${ligne}    IN    @{lignes}
@@ -441,11 +438,8 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
 
         FOR    ${index}    ${cellule}    IN ENUMERATE    @{cellules}
             ${texte}=    Get Text    ${cellule}
-
-        # Vérifier si l'index est valide avant d'accéder à ${noms_entetes}
-            Run Keyword If    ${index} < ${taille_noms_entetes}    Set To Dictionary    ${ligne_donnees}    ${noms_entetes}[${index}]=${texte}
-            Run Keyword If    ${index} >= ${taille_noms_entetes}    Log    Index ${index} dépasse la taille des en-têtes, valeur ignorée
-
+            # Associer chaque valeur avec son en-tête
+            Set To Dictionary    ${ligne_donnees}    ${texte_entete}[${index}]=${texte}
         END
 
         Append To List    ${donnees_tableau}    ${ligne_donnees}
@@ -455,20 +449,13 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Should Not Be Empty    ${donnees_tableau}
     Sleep    2s
 
-Rafraichir la page
-    Execute JavaScript    window.location.reload(true)
-    Sleep   10s
-    Wait Until Page Contains Element    xpath=//body    timeout=30s
-
-#Simuler Ctrl Moins
-    #Press Keys    CTRL+MINUS
-
 When L'utilisateur clique sur le bouton 'Valider'
     ${element}=    Get WebElement    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Execute JavaScript    arguments[0].scrollIntoView(true);    ARGUMENTS    ${element}    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=20s
     Wait Until Element Is Enabled    xpath=xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Sleep    2s
+
 
 Then Une fenêtre de confirmation affiche les informations suivantes
 
