@@ -34,7 +34,7 @@ Open Browser With Options
     Create Webdriver    Chrome    options=${options}
     Set Window Size    1920    1080
     Go To    ${url}
-    Maximize Browser Window
+    #Maximize Browser Window
 
 Maintenir Niveau Zoom Navigateur
     Execute JavaScript    document.querySelector('html').style.transform = 'scale(0.9)'; document.querySelector('html').style.transformOrigin = '0 0';
