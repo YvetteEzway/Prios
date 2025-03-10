@@ -8,7 +8,6 @@ Library    BuiltIn
 
 
 
-
 *** Variables ***
 ${ORDRES_LIVRAISON_BUTTON}    xpath=(//*[contains(text(), 'Ordres de livraison')])[1]
 ${ORDRES_LIVRAISON2_BUTTON}   xpath=(//*[contains(text(), 'Ordres de livraison')])[2]
@@ -46,18 +45,13 @@ ${TABLE_CELLS_XPATH}    xpath=//div[contains(@class, 'dijitDialog')][last()]//ta
 ${TABLE_CELLS_XPATH1}    xpath=//div[contains(@class, 'dijitDialog')][last()]//table/tr/td[first()]
 
 ${TABLE_HADERS_ENTETE}  xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[4]/div[1]/table/tr
-
-
 ${TABLE_CELLS_DET}       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[4]/div[2]/div/div[2]/table/tr[position()=1 or position()=2]/td
-
-
 ${HORIZONTAL_SCROLL_ELEMENT_XPATH}     xpath=//*[@id="a_a5s_id"]
 
 *** Keywords ***
 Given L'utilisateur se trouve sur la page "Plateformes métier"
     [Documentation]    Vérifie que l'utilisateur est sur la page "Plateformes métier".
     Wait Until Page Contains    Plateformes    30s
-    #Execute Javascript    document.body.style.zoom='70%'
 
 When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
     [Documentation]    Sélectionne l'option "PRIOS Agriculture" sur la page.
@@ -91,8 +85,6 @@ Then Les menus de navigation affichent les options suivantes dans les premières
         Run Keyword If    '${element_found}' != 'None'    Log    Option ${option} trouvée.
         Run Keyword If    '${element_found}' == 'None'    Fail    Option ${option} non trouvée.
     END
-    #Execute Javascript    document.body.style.zoom='80%'
-
 
 Then Les menus de navigation affichent les options suivantes :
 
@@ -118,7 +110,6 @@ When L'utilisateur clique sur "PRIOS A-M Ventes"
     Wait Until Element Is Visible    xpath=//*[contains(text(), 'PRIOS A-M Ventes')]    30s
     Click Element    xpath=//*[contains(text(), 'PRIOS A-M Ventes')]
 
-    Sleep    30s
 
 Then L'affichage de la page présente les fonctions suivantes dans la première partie de la deuxième colonne :
 
@@ -154,7 +145,6 @@ Then L'affichage de la page présente les fonctions suivantes dans la seconde pa
         Run Keyword If    '${element_found}' == 'None'    Fail    Option ${option4} non trouvée.
    END
 When L'utilisateur sélectionne "Ordres de livraison" dans la deuxième colonne
-
     [Documentation]    Sélectionne l'option "Ordres de livraison" sur la page.
     Execute JavaScript    document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[1]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
     Sleep    1s
@@ -208,10 +198,8 @@ When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
 
 Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'ordres de livraison
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
-    Execute Javascript    document.body.style.zoom='75%'
     Wait Until Page Contains    Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
-
 When L'utilisateur clique sur le bouton "+"
     [Documentation]    Sélectionne l'option "le bouton +" sur la page.
     Wait Until Element Is Visible    xpath=//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]    timeout=30s
@@ -220,7 +208,6 @@ When L'utilisateur clique sur le bouton "+"
     Sleep    10s
     Click Element    xpath=//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]
     Sleep    30s
-
 Then L'utilisateur est redirigé vers un formulaire pour ajouter un nouvel ordre de livraison
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
     Wait Until Page Contains    Ordre de livraison [C] - Sté PRIOS - Etablissement CARQUEFOU    30s
@@ -314,7 +301,6 @@ And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
    Sleep    2s
 
 And l'utilisateur click sur le bouton enregisterer
-    Execute JavaScript    document.body.style.zoom = '80%'
     # Faire défiler jusqu'au bouton d'enregistrement avec un offset vertical
     Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[8]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
     Sleep    2s
@@ -364,7 +350,6 @@ When L'utilisateur saisit le Silo dans le champ Silo
     
 When l'utilisateur clique sur le bouton enregistrer
 
-   # Réduire le zoom de la page
    Execute JavaScript    document.body.style.zoom = '70%'
     Sleep    1s
 
@@ -407,7 +392,6 @@ When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bou
     Sleep  10s
 
 Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
-   # Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
     Sleep    1s
     Wait Until Page Contains    Détail(s) de l'ordre de livraison    30s
     Log  Détail(s) de l'ordre de livraison
@@ -450,12 +434,7 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Sleep    2s
 
 When L'utilisateur clique sur le bouton 'Valider'
-    ${element}=    Get WebElement    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
-    Execute JavaScript    arguments[0].scrollIntoView(true);    ARGUMENTS    ${element}    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=20s
-    Wait Until Element Is Enabled    xpath=xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
-    Sleep    2s
-
 
 Then Une fenêtre de confirmation affiche les informations suivantes
 
@@ -472,7 +451,6 @@ Then Une fenêtre de confirmation affiche les informations suivantes
 
 And cliquer sur enregistrer pour enregistrer les informations
 
-   Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
    Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
     Sleep  30s
 
@@ -489,6 +467,5 @@ Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvr
     # Optional: Switch back to main window if needed
     Switch Window    ${handles}[1]
     log  L'utilisateur est redirigé vers un formulaire contenant une liste des 'Ordres de livraison'
-    Sleep    3s
 
                                

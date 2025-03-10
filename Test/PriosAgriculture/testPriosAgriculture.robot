@@ -20,7 +20,6 @@ ${USERNAME}     prios.qa1@prios.fr
 ${PASSWORD}     Ezw@171M
 
 *** Keywords ***
-
 Open Browser With Options
     [Arguments]    ${url}
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
@@ -34,13 +33,9 @@ Open Browser With Options
     Create Webdriver    Chrome    options=${options}
     Go To    ${url}
     Maximize Browser Window
-Maintenir Niveau Zoom Navigateur
-    Execute JavaScript    document.querySelector('html').style.transform = 'scale(0.9)'; document.querySelector('html').style.transformOrigin = '0 0';
-
 
 *** Test Cases ***
 Login And Navigate To Ordres De Livraison
-    [Documentation]
     Open Browser With Options    ${URL}
     login_page.Input Username    ${USERNAME}
     Capture Page Screenshot    user_name.png
@@ -52,7 +47,6 @@ Login And Navigate To Ordres De Livraison
     01_AM_Vente_creationOL.When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
     01_AM_Vente_creationOL.Then Il est redirigé vers une nouvelle page avec les menus de navigation
     01_AM_Vente_creationOL.Then Les menus de navigation affichent les options suivantes dans les premières "8" options :
-    #Maintenir Niveau Zoom Navigateur
     01_AM_Vente_creationOL.Then Les menus de navigation affichent les options suivantes :
     01_AM_Vente_creationOL.When L'utilisateur clique sur "PRIOS A-M Ventes"
     01_AM_Vente_creationOL.Then L'affichage de la page présente les fonctions suivantes dans la première partie de la deuxième colonne :
