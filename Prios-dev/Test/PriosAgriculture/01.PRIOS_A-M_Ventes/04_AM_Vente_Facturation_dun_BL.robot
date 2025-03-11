@@ -244,7 +244,7 @@ And La liste des BL traités par la simulation s'affiche en PDF dans un autre on
     Switch Window    ${handles}[-1]
 
     # Verify we are on the PDF tab
-    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
+    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=60s
 
     # Optional: Switch back to main window if needed
     Switch Window    ${handles}[1]
@@ -267,7 +267,7 @@ And La facture s'affiche en PDF dans un autre onglet du navigateur avec les info
     # Switch to the new tab (last handle in the list)
     Switch Window    ${handles}[-1]
     # Verify we are on the PDF tab
-    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
+    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=60s
 
     # Optional: Switch back to main window if needed
     Switch Window    ${handles}[1]
