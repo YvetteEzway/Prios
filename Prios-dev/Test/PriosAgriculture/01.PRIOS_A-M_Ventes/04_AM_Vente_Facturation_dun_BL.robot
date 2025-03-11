@@ -36,14 +36,14 @@ When L'utilisateur clique sur "PRIOS A-M Ventes"
     Wait Until Element Is Visible    xpath=//*[contains(text(), 'PRIOS A-M Ventes')]    20s
     Click Element    xpath=//*[contains(text(), 'PRIOS A-M Ventes')]
 
-    Sleep    10s
+    Sleep    5s
 When L'utilisateur choisit "Facturation" dans la deuxième colonne
     [Documentation]    Sélectionne l'option "Facturation" sur la page.
     Execute JavaScript    document.evaluate("//*[contains(text(), 'Facturation')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
 
     Wait Until Element Is Visible    xpath=//*[contains(text(), 'Facturation')]    20s
     Click Element    xpath=//*[contains(text(), 'Facturation')]
-    Sleep    10s
+    Sleep    5s
 When L'utilisateur sélectionne "Traitement de factures" dans la troisième colonne
     [Documentation]    Sélectionne l'option "Traitement de factures" sur la page.
     Wait Until Element Is Visible    xpath=//*[contains(text(), 'Traitement factures')]    10s
@@ -134,7 +134,7 @@ When L'utilisateur saisit la date du jour dans le champ 'Fin d'extraction des mo
     Click Element    ${date_cell_xpath}
     Sleep    1s
     Double Click Element    ${date_cell_xpath}
-    Sleep    10s
+    Sleep    5s
     Capture Page Screenshot    datefacture2.png
 
 
@@ -206,11 +206,9 @@ Then Le numéro du BL est correctement ajouté dans le champ 'Bon de livraison'
     Log    Le numéro du BL est correctement ajouté dans le champ 'Bon de livraison'.
     Sleep    1s
 Then L'utilisateur clique sur "Enregistrer"
-    Execute JavaScript    document.body.style.zoom = '75%'
-
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[7]
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[7]
-    Sleep    10s
+    Sleep    5s
 
 Then Un traitement de facturation de vente est ajouté à la liste des traitements de factures
     [Documentation]    Vérifie que la nouvelle page contient Traitement de facturation.
@@ -232,11 +230,11 @@ When L'utilisateur fait un clic droit sur le traitement de facture dans la liste
     ...    arguments[0].click();
     ...    ARGUMENTS    ${menu_item}
 
-    Sleep    10s
+    Sleep    5s
 Then Une popup de demande de confirmation du lancement de la simulation s'affiche, et l'utilisateur Clique sur ok pour lancer le traitement de simulation.
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[8]/div[2]/div[2]/div/button[1]     timeout=10s
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[2]/div[2]/div/button[1]
-    Sleep    10s
+    Sleep    5s
 
 And La liste des BL traités par la simulation s'affiche en PDF dans un autre onglet
      # Récupérer les handles avant l'ouverture du PDF
@@ -256,13 +254,13 @@ When L'utilisateur clique sur "Validation"
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[7]/div[4]/button[5]
     Wait Until Element Is Enabled    xpath=/html/body/div[2]/div[1]/div[7]/div[4]/button[5]
     Click Element    xpath=/html/body/div[2]/div[1]/div[7]/div[4]/button[5]
-    Sleep    10s
+    Sleep    5s
 Then Une popup de demande de confirmation du lancement de la validation s'affiche et cliquer sur le bouton "OK"
     Wait Until Element Is Visible  xpath=/html/body/div[2]/div[1]/div[8]/div[2]/div[2]/div/button[1]
     Wait Until Element Is Enabled    xpath=/html/body/div[2]/div[1]/div[8]/div[2]/div[2]/div/button[1]
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[2]/div[2]/div/button[1]
 
-    Sleep    10s
+    Sleep    5s
 And La facture s'affiche en PDF dans un autre onglet du navigateur avec les informations de facturation et le numéro de la facture.
     ${handles}=    Get Window Handles
 
