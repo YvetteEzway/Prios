@@ -22,7 +22,7 @@ ${FIELD-ID9}         xpath=/html/body/div[2]/div[1]/div[8]/div[4]/div[1]/div[3]/
 *** Keywords ***
 
 When L'utilisateur clique sur le bouton 'Loupe'
-   Execute JavaScript    document.body.style.zoom = '80%'
+   Execute JavaScript    document.body.style.zoom = '75%'
    [Documentation]    cliquer sur le loup
     Wait Until Element Is Visible    xpath=//img[contains(@class, 'a-image') and contains(@src, '540900E90F2F7123BB05B76317E76008')]      timeout=30s
 
