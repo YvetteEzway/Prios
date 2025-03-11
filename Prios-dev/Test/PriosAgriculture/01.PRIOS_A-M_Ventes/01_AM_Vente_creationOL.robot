@@ -47,16 +47,14 @@ ${TABLE_CELLS_XPATH1}    xpath=//div[contains(@class, 'dijitDialog')][last()]//t
 
 ${TABLE_HADERS_ENTETE}  xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[4]/div[1]/table/tr
 
-
 ${TABLE_CELLS_DET}       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[4]/div[2]/div/div[2]/table/tr[position()=1 or position()=2]/td
-
 
 ${HORIZONTAL_SCROLL_ELEMENT_XPATH}     xpath=//*[@id="a_a5s_id"]
 
 *** Keywords ***
 Given L'utilisateur se trouve sur la page "Plateformes métier"
     [Documentation]    Vérifie que l'utilisateur est sur la page "Plateformes métier".
-    Wait Until Page Contains    Plateformes    30s
+    Wait Until Page Contains    Plateformes    20s
 
 When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
     [Documentation]    Sélectionne l'option "PRIOS Agriculture" sur la page.
@@ -65,12 +63,12 @@ When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Pl
 
 Then Il est redirigé vers une nouvelle page avec les menus de navigation
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
-    Wait Until Page Contains    Prios    30s
+    Wait Until Page Contains    Prios    20s
 
 Then Les menus de navigation affichent les options suivantes dans les premières "8" options :
 
     [Documentation]    Vérifie que les 8 options spécifiées sont présentes dans le menu.
-    # Ouvrir l'onglet contenant les options 
+    # Ouvrir l'onglet contenant les options (assurez-vous que vous êtes dans le bon onglet)
     ${handles} =    Get Window Handles
     Switch Window    ${handles}[-1]
     Sleep    60s
@@ -90,7 +88,6 @@ Then Les menus de navigation affichent les options suivantes dans les premières
         Run Keyword If    '${element_found}' != 'None'    Log    Option ${option} trouvée.
         Run Keyword If    '${element_found}' == 'None'    Fail    Option ${option} non trouvée.
     END
-
 
 Then Les menus de navigation affichent les options suivantes :
 
@@ -206,6 +203,7 @@ When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
 
 Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'ordres de livraison
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
+    Execute Javascript    document.body.style.zoom='75%'
     Wait Until Page Contains    Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
 
@@ -216,7 +214,7 @@ When L'utilisateur clique sur le bouton "+"
     Execute JavaScript    document.evaluate("//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
     Sleep    10s
     Click Element    xpath=//img[contains(@class, 'a-image') and contains(@src, 'CB8CF15EBC54179FBC57E708D9C763D9')]
-    Sleep    30s
+    Sleep    20s
 
 Then L'utilisateur est redirigé vers un formulaire pour ajouter un nouvel ordre de livraison
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
@@ -237,7 +235,6 @@ And Si une commande a déjà été créée, alors le formulaire récupère les i
     ${readonly}=    Get Element Attribute    ${FIELD_ID}    readonly
     Should Be Equal As Strings    ${readonly}    true    msg=Le champ est en lecture seule.
     Log   Le champ est grisé et en mode lecture seule.
-
 
     # Attendre que l'élément soit visible
     Wait Until Element Is Visible    ${FIELD_ID2}    timeout=20s
@@ -283,7 +280,7 @@ When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
 
      Wait Until Element Is Visible    xpath=(//input[@value='▼ '])[8]    60s
      Click Element                    xpath=(//input[@value='▼ '])[8]
-     Sleep    20s
+     Sleep    10s
 
 # Cliquer sur l'élément
     Wait Until Element Is Visible    xpath=//div[@class='a-combosimplemenuitem'][normalize-space(text())='Z COREAL (ZCO)']      30s
@@ -360,6 +357,10 @@ When L'utilisateur saisit le Silo dans le champ Silo
     Sleep   2s
     
 When l'utilisateur clique sur le bouton enregistrer
+
+   # Réduire le zoom de la page
+   Execute JavaScript    document.body.style.zoom = '70%'
+    Sleep    1s
 
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
@@ -464,7 +465,7 @@ And cliquer sur enregistrer pour enregistrer les informations
 
    Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
    Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
-    Sleep  10s
+    Sleep  30s
 
 Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvre dans un nouvel onglet avec le statut validé
     # Get all window handles
@@ -474,7 +475,7 @@ Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvr
     Switch Window    ${handles}[-1]
 
     # Verify we are on the PDF tab
-    #Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=60s
+    #Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
 
     # Optional: Switch back to main window if needed
     Switch Window    ${handles}[1]
