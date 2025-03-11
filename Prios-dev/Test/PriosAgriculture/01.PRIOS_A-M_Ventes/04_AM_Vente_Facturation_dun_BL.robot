@@ -268,7 +268,6 @@ And La facture s'affiche en PDF dans un autre onglet du navigateur avec les info
 
     # Switch to the new tab (last handle in the list)
     Switch Window    ${handles}[-1]
-    Set Window Size    1680    1050
     # Verify we are on the PDF tab
     Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
 
