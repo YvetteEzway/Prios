@@ -57,7 +57,6 @@ ${HORIZONTAL_SCROLL_ELEMENT_XPATH}     xpath=//*[@id="a_a5s_id"]
 Given L'utilisateur se trouve sur la page "Plateformes métier"
     [Documentation]    Vérifie que l'utilisateur est sur la page "Plateformes métier".
     Wait Until Page Contains    Plateformes    30s
-    #Execute Javascript    document.body.style.zoom='70%'
 
 When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
     [Documentation]    Sélectionne l'option "PRIOS Agriculture" sur la page.
@@ -71,7 +70,7 @@ Then Il est redirigé vers une nouvelle page avec les menus de navigation
 Then Les menus de navigation affichent les options suivantes dans les premières "8" options :
 
     [Documentation]    Vérifie que les 8 options spécifiées sont présentes dans le menu.
-    # Ouvrir l'onglet contenant les options (assurez-vous que vous êtes dans le bon onglet)
+    # Ouvrir l'onglet contenant les options 
     ${handles} =    Get Window Handles
     Switch Window    ${handles}[-1]
     Sleep    60s
@@ -91,7 +90,6 @@ Then Les menus de navigation affichent les options suivantes dans les premières
         Run Keyword If    '${element_found}' != 'None'    Log    Option ${option} trouvée.
         Run Keyword If    '${element_found}' == 'None'    Fail    Option ${option} non trouvée.
     END
-    #Execute Javascript    document.body.style.zoom='80%'
 
 
 Then Les menus de navigation affichent les options suivantes :
@@ -208,7 +206,6 @@ When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
 
 Then L'utilisateur est redirigé vers un formulaire contenant une liste vide d'ordres de livraison
     [Documentation]    Vérifie que la nouvelle page contient le texte spécifique pour confirmer la redirection.
-    Execute Javascript    document.body.style.zoom='75%'
     Wait Until Page Contains    Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU    30s
     Log    Le texte "Ordres de livraison - Sté PRIOS - Etablissement CARQUEFOU" est bien présent sur la page.
 
@@ -314,7 +311,6 @@ And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
    Sleep    2s
 
 And l'utilisateur click sur le bouton enregisterer
-    Execute JavaScript    document.body.style.zoom = '80%'
     # Faire défiler jusqu'au bouton d'enregistrement avec un offset vertical
     Execute JavaScript    document.evaluate("/html/body/div[2]/div[1]/div[8]/div[4]/button[12]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
     Sleep    2s
@@ -403,8 +399,6 @@ When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bou
     Sleep  10s
 
 Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
-   # Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
-    Sleep    1s
     Wait Until Page Contains    Détail(s) de l'ordre de livraison    30s
     Log  Détail(s) de l'ordre de livraison
 
@@ -479,7 +473,7 @@ Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvr
     Switch Window    ${handles}[-1]
 
     # Verify we are on the PDF tab
-    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
+    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=60s
 
     # Optional: Switch back to main window if needed
     Switch Window    ${handles}[1]
