@@ -354,29 +354,24 @@ When L'utilisateur saisit le Silo dans le champ Silo
 
     # Utiliser TAB pour passer aux champs suivants et récupérer les données
     Press Keys    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[76]/div/input     TAB
-    Sleep   2s
+    Sleep   10s
     
 When l'utilisateur clique sur le bouton enregistrer
-
-   # Réduire le zoom de la page
-   Execute JavaScript    document.body.style.zoom = '70%'
-    Sleep    1s
-
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
-   Sleep    2s
+   Sleep    10s
 
 And l'utiloisateur ajoute un autre produit
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[3]/div/input
    Input Text    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[3]/div/input    DPT2
    Press Keys    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[3]/div/input   TAB
-   Sleep    2s
+   Sleep    5s
 
 Given l'utilisateur saisit la quantité à livrer2 dans le champ Quantité
 
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[25]/div/input
     Input Text    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[25]/div/input    3.000
-    Sleep   2s
+    Sleep   5s
 When L'utilisateur saisit le Silo2 dans le champ Silo
 
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[76]/div/input
@@ -384,13 +379,13 @@ When L'utilisateur saisit le Silo2 dans le champ Silo
 
     # Utiliser TAB pour passer aux champs suivants et récupérer les données
     Press Keys    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/div[1]/div/div[76]/div/input     TAB
-    Sleep   2s
+    Sleep   5s
 
 When l'utilisateur clique sur le bouton enregistrer1
 
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
-   Sleep    1s
+   Sleep    5s
    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
    Sleep    10s
 
