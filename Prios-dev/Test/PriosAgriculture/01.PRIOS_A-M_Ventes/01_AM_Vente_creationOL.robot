@@ -364,10 +364,6 @@ When L'utilisateur saisit le Silo dans le champ Silo
     
 When l'utilisateur clique sur le bouton enregistrer
 
-   # Réduire le zoom de la page
-   Execute JavaScript    document.body.style.zoom = '70%'
-    Sleep    1s
-
    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
    Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
    Sleep    2s
@@ -407,8 +403,7 @@ When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bou
     Sleep  10s
 
 Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
-   # Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
-    Sleep    1s
+
     Wait Until Page Contains    Détail(s) de l'ordre de livraison    30s
     Log  Détail(s) de l'ordre de livraison
 
@@ -450,10 +445,9 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Sleep    2s
 
 When L'utilisateur clique sur le bouton 'Valider'
-    ${element}=    Get WebElement    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
-    Execute JavaScript    arguments[0].scrollIntoView(true);    ARGUMENTS    ${element}    #Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=20s
+    Wait Until Element Is Visible    xpath=xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=20s
     Wait Until Element Is Enabled    xpath=xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
-    Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
+    Click Element    xpath=xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Sleep    2s
 
 
