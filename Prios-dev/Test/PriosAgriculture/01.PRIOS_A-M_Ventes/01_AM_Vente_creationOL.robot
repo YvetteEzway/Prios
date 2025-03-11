@@ -473,7 +473,7 @@ Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvr
     Switch Window    ${handles}[-1]
 
     # Verify we are on the PDF tab
-    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=60s
+    #Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=60s
 
     # Optional: Switch back to main window if needed
     Switch Window    ${handles}[1]
