@@ -144,6 +144,7 @@ Login And Navigate To Ordres De Livraison
     04_AM_Vente_Facturation_dun_BL.And La liste des BL traités par la simulation s'affiche en PDF dans un autre onglet
     04_AM_Vente_Facturation_dun_BL.When L'utilisateur clique sur "Validation"
     04_AM_Vente_Facturation_dun_BL.Then Une popup de demande de confirmation du lancement de la validation s'affiche et cliquer sur le bouton "OK"
+    Set Window Size    1680    1050
     04_AM_Vente_Facturation_dun_BL.And La facture s'affiche en PDF dans un autre onglet du navigateur avec les informations de facturation et le numéro de la facture.
 
 
