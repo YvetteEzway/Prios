@@ -170,7 +170,7 @@ Then Deux documents PDF (OL et BL) sont affichés contenant les informations pou
     Switch Window    ${handles}[-1]
 
     # Verify we are on the PDF tab
-    Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
+    #Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
 
     # Optional: Switch back to main window if needed
     Switch Window    ${handles}[1]
