@@ -403,7 +403,8 @@ When l'utilisateur freme le formulaire d'ajout de produit en cliquand sur le bou
     Sleep  10s
 
 Then Le formulaire d'ajout de produit se ferme et les détails de l'ordre de livraison sont affichés
-
+   # Execute JavaScript    document.body.style.zoom = '100%'  # Réinitialiser le zoom à 100%
+    Sleep    1s
     Wait Until Page Contains    Détail(s) de l'ordre de livraison    30s
     Log  Détail(s) de l'ordre de livraison
 
@@ -445,9 +446,9 @@ And la liste dans le tableau Détail(s) de l'ordre de livraison se met ajour
     Sleep    2s
 
 When L'utilisateur clique sur le bouton 'Valider'
-    Wait Until Element Is Visible    xpath=xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]    timeout=20s
-    Wait Until Element Is Enabled    xpath=xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
-    Click Element    xpath=xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]  timeout=30s
+    Wait Until Element Is Enabled    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
+    Click Element    xpath=/html/body/div[2]/div[1]/div[9]/div[4]/button[12]
     Sleep    2s
 
 
@@ -468,7 +469,7 @@ And cliquer sur enregistrer pour enregistrer les informations
 
    Wait Until Element Is Visible   xpath=(//button[@adelianame='BTN_FERMER'])[4]     timeout=10s
    Click Element    xpath=(//button[@adelianame='BTN_FERMER'])[4]
-    Sleep  30s
+    Sleep  10s
 
 Then Un document PDF contenant les informations pour l'ordre de livraison s'ouvre dans un nouvel onglet avec le statut validé
     # Get all window handles
