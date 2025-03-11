@@ -28,7 +28,7 @@ Open Browser With Options
     Call Method    ${options}    add_argument    --no-default-browser-check
     Call Method    ${options}    add_argument    --disable-default-apps
     Call Method    ${options}    add_argument    --disable-popup-blocking
-
+    Call Method    ${options}    add_argument    --headless
     ${prefs} =    Evaluate    {'profile.default_content_setting_values.geolocation': 1, 'profile.default_content_setting_values.notifications': 2}
     Call Method    ${options}    add_experimental_option    prefs    ${prefs}
     Create Webdriver    Chrome    options=${options}
