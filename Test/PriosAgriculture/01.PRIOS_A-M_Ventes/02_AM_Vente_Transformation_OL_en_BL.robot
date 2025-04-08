@@ -123,6 +123,7 @@ Then Le formulaire d'ordre de livraison est affiché avec les champs initialisé
 When L'utilisateur clique sur "Détails" puis continue
     Wait Until Element Is Visible   xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[11]     timeout=30s
     Click Element    xpath=/html/body/div[2]/div[1]/div[8]/div[4]/button[11]
+    Sleep    5s
 
 Then L'utilisateur est redirigé vers la fenêtre de détails de l'ordre de livraison
     [Documentation]
