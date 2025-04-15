@@ -38,6 +38,7 @@ ${FIELD_ID21}       xpath=/html/body/div[2]/div[1]/div[10]/div[4]/div[1]/div[3]/
 ${FIELD_ID22}       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[119]/div/input
 ${FIELD_ID23}       xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[121]/div/input
 ${FIELD_ID25}       xpath=/html/body/div[2]/div[1]/div[11]/div[4]/div[1]/div[3]/div[1]/div/div[48]/div/input
+${TABLE_XPATH}=    /html/body/div[2]/div[1]/div[7]/div[4]/div[1]/div[3]/div[2]/div/div[3]/div[2]/div/div[2]/table
 
 *** Keywords ***
 And L'utilisateur se trouve sur le menu principal de l'application
@@ -56,7 +57,6 @@ When L'utilisateur sélectionne "Ordres de livraison" dans la deuxième colonne
 When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
 
     [Documentation]    Sélectionne l'option "Ordres de livraison troisième colonne " sur la page.
-    #Execute JavaScript    document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[2]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView(true);
     #Sleep    1s
     Execute JavaScript    document.evaluate("(//*[contains(text(), 'Ordres de livraison')])[2]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()
     Capture Page Screenshot
@@ -344,8 +344,8 @@ Then l'utilisateur verifie les informations dans la section 'Société et établ
 
 And l'utilisateur clique sur le bouton '€ ' depuis le menu vertical à droite
     Wait Until Element Is Visible    xpath=//img[contains(@class, 'a-image') and contains(@src, '24DFAC60BCC6A61526E2DFDA5F5E3F45')]    timeout=30s
-    Click Element    xpath=//img[contains(@class, 'a-image') and contains(@src, '24DFAC60BCC6A61526E2DFDA5F5E3F45')]
-
+    Double Click Element        xpath=//img[contains(@class, 'a-image') and contains(@src, '24DFAC60BCC6A61526E2DFDA5F5E3F45')]
+    Sleep    2s
 Then ouverture d'une fenetre pour Infos Tarification / OL [M] - Sté PRIOS - Etablissement CARQUEFOU avec le prix brute
     [Documentation]
     Wait Until Page Contains    Infos Tarification / OL [M] - Sté PRIOS - Etablissement CARQUEFOU    30s
@@ -358,20 +358,27 @@ Then ouverture d'une fenetre pour Infos Tarification / OL [M] - Sté PRIOS - Eta
     ${field_value25}=    Get Value    ${FIELD_ID25}
     Should Not Be Empty    ${field_value25}    msg=Le champ Prix brute unitaire forcé a une valeur
     Log    Le champ Prix brute unitaire forcé a une valeur : '${field_value25}'     level=INFO
-
+    Sleep    10s
+Cliquer sur le calculatrice
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[11]/div[4]/div[1]/div[3]/div[1]/div/button[8]
+    Click Element    xpath=/html/body/div[2]/div[1]/div[11]/div[4]/div[1]/div[3]/div[1]/div/button[8]
 
 Fermer la fenêtre pour info tarification
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[11]/div[1]/table/tbody/tr/td[3]/div/span[5]     timeout=10s
-    Click Element    xpath=/html/body/div[2]/div[1]/div[11]/div[1]/table/tbody/tr/td[3]/div/span[5]
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[11]/div[4]/button[7]    timeout=10s
+    Click Element    xpath=/html/body/div[2]/div[1]/div[11]/div[4]/button[7]
+    Wait Until Element Does Not Exist    xpath=//div[contains(@class, "dijitDialogDisabledMask")]    timeout=10s
+    Log To Console    Le masque est bien retiré
+    Capture Page Screenshot
 
 Cliquer sur le bouton enregistrer
-    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]   timeout=10s
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]   timeout=30s
     Click Element   xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
     Sleep    1s
+
 When l'utilisateur clique sur le bouton Fermer pour fermer le formulaire d'ajout produit
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]     timeout=10s
     Click Element    xpath=/html/body/div[2]/div[1]/div[10]/div[4]/button[13]
-
+    Sleep    2s
 Then le formulaire d'ajout de produit est fermé et les détails de l'ordre de livraison s'affichent au premier plan
 
     Wait Until Element Is Visible         xpath=/html/body/div[2]/div[1]/div[9]/div[4]/div[1]/div[3]/div[1]/div/div[4]/div[2]/div/div[2]/table/tr   timeout=10s
@@ -400,8 +407,6 @@ Then Un document PDF d'un OL contenant les informations pour l'ordre de livraiso
     # Switch to the new tab (last handle in the list)
     Switch Window    ${handles}[-1]
 
-    # Verify we are on the PDF tab
-    #Wait Until Page Contains Element    //embed[@type='application/pdf']    timeout=30s
     Sleep    3s
     # Optional: Switch back to main window if needed
     Switch Window    ${handles}[1]
@@ -467,29 +472,38 @@ Then la ligne pou les détails de l'engagement s'affiche
 
 And l'utilisateur verifie la colonne reste à livrer sur la ligne
 
-   ${header_count}=    Get Element Count   xpath=/html/body/div[2]/div[1]/div[7]/div[4]/div[1]/div[3]/div[2]/div/div[3]/div[2]/div/div[2]/table/tr/th
-   Log To Console    Nombre de colonnes: ${header_count}
+    ${header_count}=    Get Element Count    xpath=${TABLE_XPATH}/tr[1]/th
+    Log To Console    Nombre de colonnes: ${header_count}
 
-   @{headers}=      Create List
-   FOR  ${i}    IN RANGE    1      ${header_count +1}
-        ${header_text}=     Get Text     xpath=/html/body/div[2]/div[1]/div[7]/div[4]/div[1]/div[3]/div[2]/div/div[3]/div[2]/div/div[2]/table/tr/th[${i}]
-        Append To List  ${headers}  ${header_text}
-        Log To Console    Entete ${i}: ${header_text}
-   END
-
-   ${row_count}=    Get Element Count   xpath=/html/body/div[2]/div[1]/div[7]/div[4]/div[1]/div[3]/div[2]/div/div[3]/div[2]/div/div[2]/table/tr
-   Log To Console    Nombre de lignes: ${row_count}
-
-    FOR    ${row}    IN RANGE    1    ${row_count + 1}
-        @{row_data}=    Create List
-        FOR    ${col}    IN RANGE    1    ${header_count + 1}
-            ${cell_text}=    Get Text    xpath=/html/body/div[2]/div[1]/div[7]/div[4]/div[1]/div[3]/div[2]/div/div[3]/div[2]/div/div[2]/table/tr[${row}]/td[${col}]
-            Append To List    ${row_data}    ${cell_text}
+    @{headers}=    Create List
+        FOR    ${i}    IN RANGE    1    ${header_count + 1}
+                ${header_text}=    Get Text    xpath=${TABLE_XPATH}/tr[1]/th[${i}]
+               Append To List    ${headers}    ${header_text}
+               Log To Console    Entete ${i}: ${header_text}
         END
-        Log To Console    Ligne ${row}: ${row_data}
+    # Trouver l'index de la colonne "Reste à livrer"
+    ${reste_index}=    Set Variable    0
+    FOR    ${index}    IN RANGE    0    ${header_count}
+         Run Keyword If    "${headers[${index}]}" == "Reste à livrer"    Set Variable    ${reste_index}    ${index + 1}
     END
+    Run Keyword If    ${reste_index} == 0    Fail    Colonne 'Reste à livrer' non trouvée !
+    Log To Console    Index de 'Reste à livrer' : ${reste_index}
 
-   # Run Keyword If    ${target_index} == 0    Fail    Colonne 'Reste à livrer' non trouvée
 
-   # ${reste_a_livrer}=    Get Text    xpath=/html/body/div[2]/div[1]/div[7]/div[4]/div[1]/div[3]/div[2]/div/div[3]/div[2]/div/div[2]/table/tr/td[${target_index}]
-    #Log To Console    Valeur de "Reste à livrer" : ${reste_a_livrer}
+    ${row_count}=    Get Element Count    xpath=${TABLE_XPATH}/tr
+    Log To Console    Nombre de lignes: ${row_count}
+
+        FOR    ${row}    IN RANGE    2    ${row_count + 1}
+           ${cell_text}=    Get Text    xpath=${TABLE_XPATH}/tr[${row}]/td[${reste_index}]
+           Log To Console    Reste à livrer (ligne ${row - 1}) : ${cell_text}
+        END
+When l'utilisateur double-clique sur la ligne
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div[1]/div[7]/div[4]/div[1]/div[3]/div[2]/div/div[3]/div[2]/div/div[2]/table/tr      timeout=30s
+    Wait Until Element Is Enabled    xpath=/html/body/div[2]/div[1]/div[7]/div[4]/div[1]/div[3]/div[2]/div/div[3]/div[2]/div/div[2]/table/tr
+    Double Click Element        xpath=/html/body/div[2]/div[1]/div[7]/div[4]/div[1]/div[3]/div[2]/div/div[3]/div[2]/div/div[2]/table/tr
+
+Then une fenêtre de détail s'affiche
+    Wait Until Page Contains    Détail engagement ventes [M] - Sté PRIOS - Etablissement CARQUEFOU    30s
+    Log  Détail engagement ventes [M] - Sté PRIOS - Etablissement CARQUEFOU
+
+

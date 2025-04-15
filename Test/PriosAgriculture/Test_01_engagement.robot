@@ -87,28 +87,6 @@ Login And Navigate to engagement
     01_Engagement_vente.When L'utilisateur revient à la liste des engagements et effectue une recherche en utilisant la date et le numéro de l'engagement
     01_Engagement_vente.And l'utilisateur bascule vers l'onglet détails engagement
     01_Engagement_vente.Then La liste des détails de l'engagement est correctement mise à jour
-    02_Création_OL_sur_Engagement.And L'utilisateur se trouve sur le menu principal de l'application
-    02_Création_OL_sur_Engagement.When L'utilisateur sélectionne "Ordres de livraison" dans la deuxième colonne
-    02_Création_OL_sur_Engagement.When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
-    02_Création_OL_sur_Engagement.Then il est redirigé vers un formulaire affichant une liste vide d'ordres de livraison
-    02_Création_OL_sur_Engagement.When l'utilisateur fait un clic droit sur la liste
-    02_Création_OL_sur_Engagement.Then l'utilisateur voit une liste de choix avec:
-    02_Création_OL_sur_Engagement.When l'utilisateur sélectionne "Nouveau..."
-    02_Création_OL_sur_Engagement.Then l'utilisateur est redirigé vers un formulaire pour ajouter un nouvel "Ordre de livraison"
-    02_Création_OL_sur_Engagement. And si une commande existe déjà, les informations sont récupérées
-    02_Création_OL_sur_Engagement.L'utilisateur sélectionne un type d'ordre de livraison : "OL Standard (STD)"
-    02_Création_OL_sur_Engagement.Then "OL Standard (STD)" est affiché dans le champ
-    02_Création_OL_sur_Engagement.When L'utilisateur sélectionne un Site : "Z COREAL (ZCO)"
-    02_Création_OL_sur_Engagement.Then "Z COREAL (ZCO)" est affiché dans le champ
-    02_Création_OL_sur_Engagement.And l'utilisateur saisit le 'Tiers donneur d'ordre' dans le champ
-    #02_Création_OL_sur_Engagement.And le contenu du champ "Date de livraison souhaitée est automatiquement renseignée avec la date actuelle +2 jours ouvrés
-    02_Création_OL_sur_Engagement.When L'utilisateur saisit la date du jour dans le champ date de départ
-    02_Création_OL_sur_Engagement.And l'utilisateur click sur le bouton enregisterer
-    02_Création_OL_sur_Engagement.Given l'utilisateur est sur le détail de l'ordre de livraison
-    02_Création_OL_sur_Engagement.When l'utilisateur clique sur le bouton + pour ajouter un produit
-    02_Création_OL_sur_Engagement.When il entre les 3 premiers caractères du code produit "IMSFB1"
-    02_Création_OL_sur_Engagement.Then une fenêtre de choix de produits apparaît
-    02_Création_OL_sur_Engagement.When il choisit le produit "IMSFB1"
 
 
 

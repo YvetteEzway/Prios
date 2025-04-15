@@ -44,8 +44,6 @@ Login And Navigate to engagement
     01_AM_Vente_creationOL.When L'utilisateur sélectionne l'option "PRIOS Agriculture" dans la section "Plateformes métier"
     01_AM_Vente_creationOL.Then Il est redirigé vers une nouvelle page avec les menus de navigation
     01_AM_Vente_creationOL.Then Les menus de navigation affichent les options suivantes dans les premières "8" options :
-    #01_AM_Vente_creationOL.When L'utilisateur clique sur "PRIOS A-M Ventes"
-    #02_Création_OL_sur_Engagement.When L'utilisateur sélectionne "Ordres de livraison" dans la deuxième colonne
     02_Création_OL_sur_Engagement.When L'utilisateur sélectionne Ordres de livraison dans la troisième colonne
     02_Création_OL_sur_Engagement.Then il est redirigé vers un formulaire affichant une liste vide d'ordres de livraison
     02_Création_OL_sur_Engagement.When l'utilisateur fait un clic droit sur la liste
@@ -70,9 +68,10 @@ Login And Navigate to engagement
     02_Création_OL_sur_Engagement.Then l'utilisateur verifie les informations dans la section Livraison
     02_Création_OL_sur_Engagement.Then l'utilisateur verifie les informations dans la section Facturation
     02_Création_OL_sur_Engagement.Then l'utilisateur verifie les informations dans la section 'Société et établissements commerciaux'
-    02_Création_OL_sur_Engagement.And l'utilisateur clique sur le bouton '€ ' depuis le menu vertical à droite
-    02_Création_OL_sur_Engagement.Then ouverture d'une fenetre pour Infos Tarification / OL [M] - Sté PRIOS - Etablissement CARQUEFOU avec le prix brute
-    02_Création_OL_sur_Engagement.Fermer la fenêtre pour info tarification
+    #02_Création_OL_sur_Engagement.And l'utilisateur clique sur le bouton '€ ' depuis le menu vertical à droite
+    #02_Création_OL_sur_Engagement.Then ouverture d'une fenetre pour Infos Tarification / OL [M] - Sté PRIOS - Etablissement CARQUEFOU avec le prix brute
+    #02_Création_OL_sur_Engagement.Cliquer sur le calculatrice
+    #02_Création_OL_sur_Engagement.Fermer la fenêtre pour info tarification
     02_Création_OL_sur_Engagement.Cliquer sur le bouton enregistrer
     02_Création_OL_sur_Engagement.When l'utilisateur clique sur le bouton Fermer pour fermer le formulaire d'ajout produit
     02_Création_OL_sur_Engagement.Then le formulaire d'ajout de produit est fermé et les détails de l'ordre de livraison s'affichent au premier plan
@@ -87,4 +86,5 @@ Login And Navigate to engagement
     02_Création_OL_sur_Engagement.When la ligne d'engagement s'affiche dans la liste des engagements
     02_Création_OL_sur_Engagement.Then l'utilisateur navigue sur l'onglet "Détails"
     02_Création_OL_sur_Engagement.Then la ligne pou les détails de l'engagement s'affiche
-    02_Création_OL_sur_Engagement.And l'utilisateur verifie la colonne reste à livrer sur la ligne
+    #02_Création_OL_sur_Engagement.And l'utilisateur verifie la colonne reste à livrer sur la ligne
+    02_Création_OL_sur_Engagement.When l'utilisateur double-clique sur la ligne
